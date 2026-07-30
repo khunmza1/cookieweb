@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cookie Run Setup Finder (MVP)
 
-## Getting Started
+MVP web app for:
 
-First, run the development server:
+- Community setup submission (cookie / pet / treasure, rewards, duration)
+- User inventory selection
+- Personalized setup recommendations based on inventory match and rewards
+
+## Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Product direction (marketplace-style)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Planned structure (Amazon/Shopee-inspired):
 
-## Learn More
+- **Home**: feed with new combos, suggested combos from owned inventory, and game/news events
+- **Combo**: browse all combos and filter by Cookie (and later by Pet/Treasure)
+- **Inventory**: add/remove/edit owned Cookies, Pets, and Treasures
+- **Settings**: account and app preferences
 
-To learn more about Next.js, take a look at the following resources:
+## Current architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `app/page.tsx`: Home page feed
+- `app/combo/page.tsx`: Combo browser + cookie filter
+- `app/profile/page.tsx`: Inventory + setup submission profile
+- `app/setting/page.tsx`: Settings + scrape status/instructions
+- `app/api/setups/route.ts`: list + create setup endpoints
+- `app/api/inventory/route.ts`: read + update inventory
+- `app/api/recommendations/route.ts`: recommendation scoring endpoint
+- `app/api/wiki/classic/route.ts`: serves scraped wiki JSON
+- `lib/store.ts`: in-memory data store and recommendation logic
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Wiki scraping bootstrap (Cookie Run Classic / LINE / Kakao references)
 
-## Deploy on Vercel
+This repo includes a local scraper to parse your saved Cookie Run Wiki HTML snapshots and generate JSON for DB import.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Input defaults:
+  - `List of Cookies_Classic - Cookie Run Wiki.html`
+  - `GingerBright_Classic - Cookie Run Wiki.html`
+- Output:
+  - `data/wiki/classic-cookies.index.json`
+  - `data/wiki/cookies/<CookieSlug>.json`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run:
+
+```bash
+npm run scrape:classic
+```
+
+If UI shows no scraped data, run the command above first, then refresh the app.
+
+Optional custom files:
+
+```bash
+npm run scrape:classic -- "List of Cookies_Classic - Cookie Run Wiki.html" "GingerBright_Classic - Cookie Run Wiki.html"
+```
+
+## API overview
+
+- `GET /api/setups` -> all setups
+- `POST /api/setups` -> create setup
+- `GET /api/inventory` -> inventory + catalog
+- `PUT /api/inventory` -> update inventory
+- `POST /api/recommendations` -> ranked recommendations
+
+## Note
+
+Data persistence is currently in-memory (resets on server restart).  
+Next step is swapping `lib/store.ts` to PostgreSQL/Supabase.
+"# cookieweb" 
