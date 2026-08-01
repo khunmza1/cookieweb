@@ -1,0 +1,194 @@
+[
+  {
+    "title": "money-master",
+    "author": "ClassicPro",
+    "category": "Coin Farming",
+    "cookieId": "potato-salad-cookie",
+    "relayCookieId": "buttercream-choco-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "banana-cookie-s-banana-baby-bottle",
+      "50-million-commemorative-firecrackers",
+      "choccy-russian-doll"
+    ],
+    "targetScore": 150,
+    "coinsPerRun": 150000,
+    "description": "Meta strategy setup.",
+    "tags": [
+      "Coin Farming",
+      "Admin Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "Magnetic Aura"
+    },
+    "id": "combo-user-1785512617223",
+    "createdAt": "2026-07-31T15:43:37.223Z",
+    "upvotes": 1,
+    "isBoosted": true
+  },
+  {
+    "title": "YouTube Meta: Cheesecake Cookie & Fluffy Cheese Cat Strategy",
+    "author": "YouTube Creator",
+    "category": "High Score (Points)",
+    "cookieId": "cheesecake-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "50-million-commemorative-firecrackers",
+      "1000-year-old-red-ginseng",
+      "blackberry-cookie-s-blackberry-hat"
+    ],
+    "targetScore": 85000000,
+    "coinsPerRun": 35000,
+    "description": "AI-extracted setup analyzed directly from YouTube video. Utilizes Cheesecake Cookie skill mechanics alongside Fluffy Cheese Cat for maximum yield.",
+    "tags": [
+      "High Score (Points)",
+      "AI Verified",
+      "TikTok/YouTube"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "id": "combo-user-1785512344375",
+    "createdAt": "2026-07-31T15:39:04.375Z",
+    "upvotes": 1,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-coin-meta-1",
+    "title": "Supreme Coin Farming Meta",
+    "author": "ClassicPro",
+    "cookieId": "cheesecake-cookie",
+    "relayCookieId": "mint-choco-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "cheesecake-cookie-s-piece-of-cake",
+      "mint-choco-cookie-s-violin-case",
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 42000,
+    "durationSeconds": 240,
+    "description": "The ultimate coin farming strategy for LINE/Kakao Cookie Run. Cheesecake Cookie spawns Party Invitations while Fluffy Cheese Cat snatches gold coins, followed by Mint Choco relay.",
+    "tags": [
+      "Coin Farming",
+      "S-Rank Meta",
+      "High Yield"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-07-30T12:00:00Z",
+    "upvotes": 142,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-magnet-score-2",
+    "title": "Celestial Angel High Score Magnet Run",
+    "author": "CookieMaster",
+    "cookieId": "angel-cookie",
+    "relayCookieId": "pirate-cookie",
+    "petId": "celestial-star",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "pirate-cookie-s-revival-boots"
+    ],
+    "targetScore": 82000000,
+    "coinsPerRun": 18000,
+    "durationSeconds": 310,
+    "description": "Maximum magnetic jelly absorption setup. Angel Cookie sucks in every jelly across the map, followed by Ghost Pirate relay for invincibility after Energy runs out.",
+    "tags": [
+      "High Score",
+      "Magnet",
+      "Survival"
+    ],
+    "createdAt": "2026-07-29T15:30:00Z",
+    "upvotes": 98,
+    "isBoosted": false
+  },
+  {
+    "id": "combo-lemon-blast-3",
+    "title": "High Voltage Lemon Shield Destruction",
+    "author": "ElectroRunner",
+    "cookieId": "lemon-cookie",
+    "relayCookieId": "hero-cookie",
+    "petId": "electro-lemon",
+    "treasureIds": [
+      "lemon-cookie-s-lemon-mp3-player",
+      "angel-cookie-s-holy-feather",
+      "hero-cookie-s-mint-candy"
+    ],
+    "targetScore": 95000000,
+    "coinsPerRun": 15000,
+    "durationSeconds": 280,
+    "description": "High speed electric shield destruction build. Lemon Cookie's shield constantly clears obstacles while granting high magnetic point bonuses.",
+    "tags": [
+      "Obstacle Destruction",
+      "High Speed",
+      "Score Meta"
+    ],
+    "createdAt": "2026-07-28T09:15:00Z",
+    "upvotes": 215,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-soda-wave-4",
+    "title": "Soda Surf Wave High Score",
+    "author": "SurfLegend",
+    "cookieId": "soda-cookie",
+    "relayCookieId": "vampire-cookie",
+    "petId": "flame-bat",
+    "treasureIds": [
+      "magnetic-rainbow-drink",
+      "angel-cookie-s-holy-feather",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 78000000,
+    "coinsPerRun": 12000,
+    "durationSeconds": 290,
+    "description": "Endless wave surfing setup. Soda Cookie surfs through stage hazards whenever health potions are consumed, followed by Vampire Cookie's bat transformation.",
+    "tags": [
+      "High Score",
+      "Soda Surfing",
+      "Speed"
+    ],
+    "createdAt": "2026-07-27T18:45:00Z",
+    "upvotes": 87,
+    "isBoosted": false
+  },
+  {
+    "id": "combo-legend-moonlight-5",
+    "title": "Legendary Moonlight Crescent Flight",
+    "author": "Starlight",
+    "cookieId": "moonlight-cookie",
+    "relayCookieId": "fire-spirit-cookie",
+    "petId": "king-choco-drop",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "1000-year-old-red-ginseng",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 350,
+    "description": "The peak legendary score build. Moonlight Cookie creates thousands of high-value Starlight Jellies in night flight, relayed by Fire Spirit Cookie's revive dash.",
+    "tags": [
+      "Legendary Meta",
+      "Maximum Score",
+      "Endgame"
+    ],
+    "createdAt": "2026-07-26T20:00:00Z",
+    "upvotes": 310,
+    "isBoosted": true
+  }
+]

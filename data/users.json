@@ -1,0 +1,584 @@
+{
+  "accounts": {
+    "admin": {
+      "id": "admin-user",
+      "username": "admin",
+      "passwordHash": "f98a6e48d7a25302ef5198454f71822bc5df5b2bfca802eacddd99d21526a5aa",
+      "role": "admin",
+      "createdAt": "2026-07-31T15:12:40.402Z"
+    },
+    "runner": {
+      "id": "default-user",
+      "username": "runner",
+      "passwordHash": "d0abfce4d956247a8dcbefe678c51b69927e14ec2cd4d6290acc24140a4b5b42",
+      "role": "user",
+      "createdAt": "2026-07-31T15:12:40.402Z"
+    }
+  },
+  "profiles": {
+    "admin-user": {
+      "id": "admin-user",
+      "username": "admin",
+      "name": "Admin Runner",
+      "role": "admin",
+      "ownedCookies": {
+        "gingerbrave": {
+          "itemId": "gingerbrave",
+          "level": 8
+        },
+        "gingerbright": {
+          "itemId": "gingerbright",
+          "level": 8
+        },
+        "cheesecake-cookie": {
+          "itemId": "cheesecake-cookie",
+          "level": 8
+        },
+        "angel-cookie": {
+          "itemId": "angel-cookie",
+          "level": 8
+        },
+        "alchemist-cookie": {
+          "itemId": "alchemist-cookie",
+          "level": 8
+        },
+        "apple-cookie": {
+          "itemId": "apple-cookie",
+          "level": 8
+        },
+        "banana-cookie": {
+          "itemId": "banana-cookie",
+          "level": 8
+        },
+        "admiral-gimbap-cookie": {
+          "itemId": "admiral-gimbap-cookie",
+          "level": 8
+        },
+        "adventurer-cookie": {
+          "itemId": "adventurer-cookie",
+          "level": 8
+        },
+        "barley-sentry-cookie": {
+          "itemId": "barley-sentry-cookie",
+          "level": 8
+        },
+        "blackberry-cookie": {
+          "itemId": "blackberry-cookie",
+          "level": 8
+        },
+        "blooming-dancheong-cookie": {
+          "itemId": "blooming-dancheong-cookie",
+          "level": 8
+        },
+        "braised-pork-cookie": {
+          "itemId": "braised-pork-cookie",
+          "level": 8
+        },
+        "brave-cookie": {
+          "itemId": "brave-cookie",
+          "level": 8
+        },
+        "bright-cookie": {
+          "itemId": "bright-cookie",
+          "level": 8
+        },
+        "buttercream-choco-cookie": {
+          "itemId": "buttercream-choco-cookie",
+          "level": 8
+        },
+        "candied-yam-cookie": {
+          "itemId": "candied-yam-cookie",
+          "level": 8
+        },
+        "carol-cookie": {
+          "itemId": "carol-cookie",
+          "level": 8
+        },
+        "cheerleader-cookie": {
+          "itemId": "cheerleader-cookie",
+          "level": 8
+        },
+        "cherry-blossom-cookie": {
+          "itemId": "cherry-blossom-cookie",
+          "level": 8
+        },
+        "cherry-cookie": {
+          "itemId": "cherry-cookie",
+          "level": 8
+        },
+        "choco-pistachio-cookie": {
+          "itemId": "choco-pistachio-cookie",
+          "level": 8
+        },
+        "cinnamon-cookie": {
+          "itemId": "cinnamon-cookie",
+          "level": 8
+        },
+        "cloud-cookie": {
+          "itemId": "cloud-cookie",
+          "level": 8
+        },
+        "cocoa-cookie": {
+          "itemId": "cocoa-cookie",
+          "level": 8
+        },
+        "coffee-cookie": {
+          "itemId": "coffee-cookie",
+          "level": 8
+        },
+        "cotton-candy-cookie": {
+          "itemId": "cotton-candy-cookie",
+          "level": 8
+        },
+        "cream-cookie": {
+          "itemId": "cream-cookie",
+          "level": 8
+        },
+        "cream-puff-cookie": {
+          "itemId": "cream-puff-cookie",
+          "level": 8
+        },
+        "cricketer-cookie": {
+          "itemId": "cricketer-cookie",
+          "level": 8
+        },
+        "cucumber-cookie": {
+          "itemId": "cucumber-cookie",
+          "level": 8
+        },
+        "dandelion-fairy-cookie": {
+          "itemId": "dandelion-fairy-cookie",
+          "level": 8
+        },
+        "devil-cookie": {
+          "itemId": "devil-cookie",
+          "level": 8
+        },
+        "dino-sour-cookie": {
+          "itemId": "dino-sour-cookie",
+          "level": 8
+        },
+        "fairy-cookie": {
+          "itemId": "fairy-cookie",
+          "level": 8
+        },
+        "fire-spirit-cookie": {
+          "itemId": "fire-spirit-cookie",
+          "level": 8
+        },
+        "garaetteok-cookie": {
+          "itemId": "garaetteok-cookie",
+          "level": 8
+        },
+        "general-jujube-cookie": {
+          "itemId": "general-jujube-cookie",
+          "level": 8
+        },
+        "ginger-claus": {
+          "itemId": "ginger-claus",
+          "level": 8
+        },
+        "gulab-jamun-cookie": {
+          "itemId": "gulab-jamun-cookie",
+          "level": 8
+        },
+        "gumball-cookie": {
+          "itemId": "gumball-cookie",
+          "level": 8
+        },
+        "herb-cookie": {
+          "itemId": "herb-cookie",
+          "level": 8
+        },
+        "hero-cookie": {
+          "itemId": "hero-cookie",
+          "level": 8
+        },
+        "jalebi-cookie": {
+          "itemId": "jalebi-cookie",
+          "level": 8
+        },
+        "kaju-katli-cookie": {
+          "itemId": "kaju-katli-cookie",
+          "level": 8
+        },
+        "kaymak-cookie": {
+          "itemId": "kaymak-cookie",
+          "level": 8
+        },
+        "kiwi-cookie": {
+          "itemId": "kiwi-cookie",
+          "level": 8
+        },
+        "knight-cookie": {
+          "itemId": "knight-cookie",
+          "level": 8
+        },
+        "kumiho-cookie": {
+          "itemId": "kumiho-cookie",
+          "level": 8
+        },
+        "lemon-cookie": {
+          "itemId": "lemon-cookie",
+          "level": 8
+        },
+        "lime-cookie": {
+          "itemId": "lime-cookie",
+          "level": 8
+        },
+        "lone-survivor-cookie": {
+          "itemId": "lone-survivor-cookie",
+          "level": 8
+        },
+        "lotus-root-phantom-cookie": {
+          "itemId": "lotus-root-phantom-cookie",
+          "level": 8
+        },
+        "macaron-cookie": {
+          "itemId": "macaron-cookie",
+          "level": 8
+        },
+        "magma-cookie": {
+          "itemId": "magma-cookie",
+          "level": 8
+        },
+        "manggaetteok-cookie": {
+          "itemId": "manggaetteok-cookie",
+          "level": 8
+        },
+        "marshmallow-bunny-cookie": {
+          "itemId": "marshmallow-bunny-cookie",
+          "level": 8
+        },
+        "mint-choco-cookie": {
+          "itemId": "mint-choco-cookie",
+          "level": 8
+        },
+        "moon-rabbit-cookie": {
+          "itemId": "moon-rabbit-cookie",
+          "level": 8
+        },
+        "moonlight-cookie": {
+          "itemId": "moonlight-cookie",
+          "level": 8
+        },
+        "muscle-cookie": {
+          "itemId": "muscle-cookie",
+          "level": 8
+        },
+        "ninja-cookie": {
+          "itemId": "ninja-cookie",
+          "level": 8
+        },
+        "onion-cookie": {
+          "itemId": "onion-cookie",
+          "level": 8
+        },
+        "orange-cookie": {
+          "itemId": "orange-cookie",
+          "level": 8
+        },
+        "pancake-cookie": {
+          "itemId": "pancake-cookie",
+          "level": 8
+        },
+        "peach-cookie": {
+          "itemId": "peach-cookie",
+          "level": 8
+        },
+        "peppermint-cookie": {
+          "itemId": "peppermint-cookie",
+          "level": 8
+        },
+        "pine-monk-cookie": {
+          "itemId": "pine-monk-cookie",
+          "level": 8
+        },
+        "pink-choco-cookie": {
+          "itemId": "pink-choco-cookie",
+          "level": 8
+        },
+        "pirate-cookie": {
+          "itemId": "pirate-cookie",
+          "level": 8
+        },
+        "pistachio-cookie": {
+          "itemId": "pistachio-cookie",
+          "level": 8
+        },
+        "potato-salad-cookie": {
+          "itemId": "potato-salad-cookie",
+          "level": 8
+        },
+        "princess-bari-cookie": {
+          "itemId": "princess-bari-cookie",
+          "level": 8
+        },
+        "princess-cookie": {
+          "itemId": "princess-cookie",
+          "level": 8
+        },
+        "prophet-cookie": {
+          "itemId": "prophet-cookie",
+          "level": 8
+        },
+        "rebel-cookie": {
+          "itemId": "rebel-cookie",
+          "level": 8
+        },
+        "red-bean-cookie": {
+          "itemId": "red-bean-cookie",
+          "level": 8
+        },
+        "red-pepper-cookie": {
+          "itemId": "red-pepper-cookie",
+          "level": 8
+        },
+        "rockstar-cookie": {
+          "itemId": "rockstar-cookie",
+          "level": 8
+        },
+        "roll-cake-cookie": {
+          "itemId": "roll-cake-cookie",
+          "level": 8
+        },
+        "scallion-kimchi-cookie": {
+          "itemId": "scallion-kimchi-cookie",
+          "level": 8
+        },
+        "sea-fairy-cookie": {
+          "itemId": "sea-fairy-cookie",
+          "level": 8
+        },
+        "sikhye-cookie": {
+          "itemId": "sikhye-cookie",
+          "level": 8
+        },
+        "skater-cookie": {
+          "itemId": "skater-cookie",
+          "level": 8
+        },
+        "skating-queen-cookie": {
+          "itemId": "skating-queen-cookie",
+          "level": 8
+        },
+        "snow-sugar-cookie": {
+          "itemId": "snow-sugar-cookie",
+          "level": 8
+        },
+        "soda-cookie": {
+          "itemId": "soda-cookie",
+          "level": 8
+        },
+        "special-force-cookie": {
+          "itemId": "special-force-cookie",
+          "level": 8
+        },
+        "strawberry-cookie": {
+          "itemId": "strawberry-cookie",
+          "level": 8
+        },
+        "strawberry-shortcake-cookie": {
+          "itemId": "strawberry-shortcake-cookie",
+          "level": 8
+        },
+        "sujeonggwa-cookie": {
+          "itemId": "sujeonggwa-cookie",
+          "level": 8
+        },
+        "tiger-lily-cookie": {
+          "itemId": "tiger-lily-cookie",
+          "level": 8
+        },
+        "vampire-cookie": {
+          "itemId": "vampire-cookie",
+          "level": 8
+        },
+        "werewolf-cookie": {
+          "itemId": "werewolf-cookie",
+          "level": 8
+        },
+        "white-choco-cookie": {
+          "itemId": "white-choco-cookie",
+          "level": 8
+        },
+        "white-kimchi-cookie": {
+          "itemId": "white-kimchi-cookie",
+          "level": 8
+        },
+        "wind-archer-cookie": {
+          "itemId": "wind-archer-cookie",
+          "level": 8
+        },
+        "wizard-cookie": {
+          "itemId": "wizard-cookie",
+          "level": 8
+        },
+        "zombie-cookie": {
+          "itemId": "zombie-cookie",
+          "level": 8
+        }
+      },
+      "ownedPets": {
+        "choco-drop": {
+          "itemId": "choco-drop",
+          "level": 8
+        },
+        "fluffy-cheese-cat": {
+          "itemId": "fluffy-cheese-cat",
+          "level": 8
+        },
+        "air-drop": {
+          "itemId": "air-drop",
+          "level": 8
+        },
+        "brown-balloon": {
+          "itemId": "brown-balloon",
+          "level": 8
+        },
+        "brain-gum": {
+          "itemId": "brain-gum",
+          "level": 8
+        },
+        "book-of-wizdom": {
+          "itemId": "book-of-wizdom",
+          "level": 8
+        },
+        "awol-cracker": {
+          "itemId": "awol-cracker",
+          "level": 8
+        },
+        "backpacky": {
+          "itemId": "backpacky",
+          "level": 8
+        },
+        "banana-potion": {
+          "itemId": "banana-potion",
+          "level": 8
+        },
+        "bean-drop-duo": {
+          "itemId": "bean-drop-duo",
+          "level": 8
+        },
+        "black-stone-teacher": {
+          "itemId": "black-stone-teacher",
+          "level": 8
+        }
+      },
+      "ownedTreasures": {
+        "furball-pup-s-doggy-biscuit": {
+          "itemId": "furball-pup-s-doggy-biscuit",
+          "level": 9,
+          "isEvolved": true
+        },
+        "5g-ankle-weights-for-amateurs": {
+          "itemId": "5g-ankle-weights-for-amateurs",
+          "level": 9,
+          "isEvolved": true
+        },
+        "banana-cookie-s-banana-baby-bottle": {
+          "itemId": "banana-cookie-s-banana-baby-bottle",
+          "level": 9,
+          "isEvolved": true
+        },
+        "sea-fairy-s-crystallized-affection": {
+          "itemId": "sea-fairy-s-crystallized-affection",
+          "level": 9,
+          "isEvolved": true
+        },
+        "icy-blade-skates": {
+          "itemId": "icy-blade-skates",
+          "level": 9,
+          "isEvolved": true
+        },
+        "ninja-cookie-s-tree-leaf": {
+          "itemId": "ninja-cookie-s-tree-leaf",
+          "level": 0,
+          "isEvolved": true
+        },
+        "pirate-cookie-s-revival-boots": {
+          "itemId": "pirate-cookie-s-revival-boots",
+          "level": 0,
+          "isEvolved": true
+        },
+        "hero-cookie-s-mint-candy": {
+          "itemId": "hero-cookie-s-mint-candy",
+          "level": 0,
+          "isEvolved": true
+        },
+        "cheerleader-cookie-s-pink-megaphone": {
+          "itemId": "cheerleader-cookie-s-pink-megaphone",
+          "level": 0,
+          "isEvolved": true
+        },
+        "lv-50-golden-club-trophy": {
+          "itemId": "lv-50-golden-club-trophy",
+          "level": 0,
+          "isEvolved": true
+        },
+        "wizard-cookie-s-cone-of-ice-cream": {
+          "itemId": "wizard-cookie-s-cone-of-ice-cream",
+          "level": 0,
+          "isEvolved": true
+        },
+        "fairy-cookie-s-green-tea-cake": {
+          "itemId": "fairy-cookie-s-green-tea-cake",
+          "level": 0,
+          "isEvolved": true
+        },
+        "cheesecake-cookie-s-piece-of-cake": {
+          "itemId": "cheesecake-cookie-s-piece-of-cake",
+          "level": 0,
+          "isEvolved": true
+        },
+        "soda-cookie-s-soda-wave": {
+          "itemId": "soda-cookie-s-soda-wave",
+          "level": 0,
+          "isEvolved": true
+        },
+        "blackberry-cookie-s-blackberry-hat": {
+          "itemId": "blackberry-cookie-s-blackberry-hat",
+          "level": 0,
+          "isEvolved": true
+        },
+        "kiwi-biker-cookie-s-key": {
+          "itemId": "kiwi-biker-cookie-s-key",
+          "level": 0,
+          "isEvolved": true
+        }
+      },
+      "updatedAt": "2026-07-31T22:10:26.201Z"
+    },
+    "default-user": {
+      "id": "default-user",
+      "username": "runner",
+      "name": "Classic Runner",
+      "role": "user",
+      "ownedCookies": {},
+      "ownedPets": {
+        "choco-drop": {
+          "itemId": "choco-drop",
+          "level": 8
+        },
+        "cheese-drop": {
+          "itemId": "cheese-drop",
+          "level": 8
+        },
+        "fluffy-cheese-cat": {
+          "itemId": "fluffy-cheese-cat",
+          "level": 8
+        },
+        "mr-fa-sol-la-si": {
+          "itemId": "mr-fa-sol-la-si",
+          "level": 8
+        },
+        "celestial-star": {
+          "itemId": "celestial-star",
+          "level": 5
+        }
+      },
+      "ownedTreasures": {},
+      "updatedAt": "2026-07-31T19:24:50.038Z"
+    }
+  }
+}
