@@ -545,9 +545,13 @@
           "itemId": "kiwi-biker-cookie-s-key",
           "level": 0,
           "isEvolved": true
+        },
+        "10-million-points-certificate": {
+          "itemId": "10-million-points-certificate",
+          "level": 9
         }
       },
-      "updatedAt": "2026-07-31T22:10:26.201Z"
+      "updatedAt": "2026-08-01T17:22:18.324Z"
     },
     "default-user": {
       "id": "default-user",
@@ -575,10 +579,19 @@
         "celestial-star": {
           "itemId": "celestial-star",
           "level": 5
+        },
+        "apple-rabbit": {
+          "itemId": "apple-rabbit",
+          "level": 8
         }
       },
-      "ownedTreasures": {},
-      "updatedAt": "2026-07-31T19:24:50.038Z"
+      "ownedTreasures": {
+        "blessed-buttercream-choco-pancake": {
+          "itemId": "blessed-buttercream-choco-pancake",
+          "level": 9
+        }
+      },
+      "updatedAt": "2026-08-01T17:11:23.730Z"
     }
   }
 }

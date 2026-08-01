@@ -43,6 +43,12 @@ export interface Pet {
   isHidden?: boolean;
 }
 
+export interface TreasureProgression {
+  level: number;
+  upgrade: string;
+  effect: string;
+}
+
 export interface Treasure {
   id: string;
   name: string;
@@ -56,6 +62,7 @@ export interface Treasure {
     baseEffect: string;
     plus9Effect: string;
   };
+  enhancementProgression?: TreasureProgression[];
   imageUrl: string;
   isHidden?: boolean;
   // Optional structured effect classification used to suggest substitute
@@ -101,13 +108,27 @@ export interface UserProfile {
   updatedAt: string;
 }
 
+export type EpisodeName =
+  | 'EP1 (Escape from the Oven)'
+  | 'EP2 (Primeval Jungle)'
+  | 'EP3 (Dragon\'s Valley)'
+  | 'EP4 (City of the Wizards)'
+  | 'EP5 (Dessert Paradise)'
+  | 'EP6'
+  | 'EP7'
+  | 'Special 1 (Tower of Frozen Waves)'
+  | 'Special 2 (Island of Memories)'
+  | 'Special 3';
+
 export type ComboCategory =
   | 'High Score (Points)'
   | 'XP Farming'
   | 'Coin Farming'
   | 'Treasure Box Farming'
   | 'AFK Coin Farming'
-  | 'AFK Treasure Box Farming';
+  | 'AFK Treasure Box Farming'
+  | 'Semi-AFK (준손크로)'
+  | 'Full Manual (손크로)';
 
 export type RandomBoostType =
   | 'Energy Drains 15% slower'
@@ -135,6 +156,7 @@ export interface ComboSetup {
   id: string;
   title: string;
   author: string;
+  episode?: EpisodeName;
   category?: ComboCategory;
   cookieId: string;
   relayCookieId?: string;

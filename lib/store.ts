@@ -465,6 +465,24 @@ export function addCombo(combo: Omit<ComboSetup, 'id' | 'createdAt' | 'upvotes'>
   return newCombo;
 }
 
+export function updateCombo(combo: ComboSetup): ComboSetup | null {
+  const idx = communityCombos.findIndex(c => c.id === combo.id);
+  if (idx >= 0) {
+    communityCombos[idx] = { ...communityCombos[idx], ...combo };
+  } else {
+    communityCombos.unshift(combo);
+  }
+  saveCombos();
+  return combo;
+}
+
+export function deleteCombo(comboId: string): boolean {
+  const initialLen = communityCombos.length;
+  communityCombos = communityCombos.filter(c => c.id !== comboId);
+  saveCombos();
+  return communityCombos.length < initialLen;
+}
+
 export function toggleComboBoost(comboId: string, isBoosted?: boolean): ComboSetup | null {
   const combo = communityCombos.find(c => c.id === comboId);
   if (!combo) return null;

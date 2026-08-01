@@ -1,0 +1,967 @@
+{
+  "ep1": {
+    "score": {
+      "episode": "ep1",
+      "purpose": "score",
+      "cookies": [
+        86,
+        92,
+        49,
+        78,
+        5,
+        74,
+        89,
+        91
+      ],
+      "pets": [
+        100,
+        59,
+        97,
+        87,
+        99,
+        74
+      ],
+      "treasures": [
+        569,
+        554,
+        290,
+        588,
+        380,
+        291,
+        344,
+        627
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    },
+    "coin": {
+      "episode": "ep1",
+      "purpose": "coin",
+      "cookies": [
+        5,
+        74,
+        63
+      ],
+      "pets": [
+        87,
+        42,
+        90,
+        33,
+        88,
+        17,
+        81
+      ],
+      "treasures": [
+        569,
+        290,
+        386,
+        570,
+        291,
+        551,
+        272,
+        288
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    },
+    "exp": {
+      "episode": "ep1",
+      "purpose": "exp",
+      "cookies": [
+        2,
+        33,
+        74,
+        18,
+        13,
+        63,
+        38,
+        82
+      ],
+      "pets": [
+        42,
+        4,
+        87,
+        33,
+        90,
+        65
+      ],
+      "treasures": [
+        615,
+        543,
+        626,
+        141,
+        377,
+        612,
+        169,
+        290
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 8
+    },
+    "mystery_box": {
+      "episode": "ep1",
+      "purpose": "mystery_box",
+      "cookies": [
+        37
+      ],
+      "pets": [
+        81
+      ],
+      "treasures": [],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    }
+  },
+  "ep2": {
+    "score": {
+      "episode": "ep2",
+      "purpose": "score",
+      "cookies": [
+        91,
+        78,
+        86,
+        62,
+        73,
+        82,
+        81,
+        90
+      ],
+      "pets": [
+        99,
+        85,
+        89,
+        52,
+        98,
+        94,
+        79,
+        97
+      ],
+      "treasures": [
+        569,
+        496,
+        373,
+        290,
+        617,
+        380,
+        73,
+        80
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    },
+    "coin": {
+      "episode": "ep2",
+      "purpose": "coin",
+      "cookies": [
+        5,
+        74,
+        63,
+        66,
+        73
+      ],
+      "pets": [
+        87,
+        90,
+        42
+      ],
+      "treasures": [
+        567,
+        551,
+        570,
+        569,
+        626,
+        623,
+        272,
+        151
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 19
+    },
+    "exp": {
+      "episode": "ep2",
+      "purpose": "exp",
+      "cookies": [
+        2,
+        9,
+        33,
+        38,
+        13
+      ],
+      "pets": [
+        4,
+        42,
+        50
+      ],
+      "treasures": [
+        543,
+        615,
+        14,
+        626,
+        328,
+        518,
+        589
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 4
+    },
+    "mystery_box": {
+      "episode": "ep2",
+      "purpose": "mystery_box",
+      "cookies": [
+        82,
+        63,
+        5,
+        37
+      ],
+      "pets": [
+        81,
+        87,
+        34,
+        50,
+        2,
+        61,
+        21
+      ],
+      "treasures": [
+        80,
+        573,
+        297,
+        586,
+        569,
+        294,
+        240,
+        257
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 13
+    }
+  },
+  "ep3": {
+    "score": {
+      "episode": "ep3",
+      "purpose": "score",
+      "cookies": [
+        86,
+        92,
+        62,
+        91,
+        89,
+        82,
+        63,
+        76
+      ],
+      "pets": [
+        100,
+        97,
+        2,
+        89,
+        99,
+        40,
+        49,
+        33
+      ],
+      "treasures": [
+        569,
+        496,
+        617,
+        449,
+        573,
+        571,
+        588,
+        250
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 14
+    },
+    "coin": {
+      "episode": "ep3",
+      "purpose": "coin",
+      "cookies": [
+        5,
+        74
+      ],
+      "pets": [
+        87
+      ],
+      "treasures": [
+        169,
+        272,
+        567
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    },
+    "exp": {
+      "episode": "ep3",
+      "purpose": "exp",
+      "cookies": [
+        33,
+        2,
+        3
+      ],
+      "pets": [
+        42,
+        3
+      ],
+      "treasures": [
+        615,
+        14,
+        333,
+        478
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 3
+    },
+    "mystery_box": {
+      "episode": "ep3",
+      "purpose": "mystery_box",
+      "cookies": [
+        18,
+        74,
+        37,
+        40,
+        38,
+        9
+      ],
+      "pets": [
+        2,
+        87,
+        81,
+        74
+      ],
+      "treasures": [
+        569,
+        14,
+        290,
+        240,
+        73,
+        377,
+        257,
+        293
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 17
+    }
+  },
+  "ep4": {
+    "score": {
+      "episode": "ep4",
+      "purpose": "score",
+      "cookies": [
+        62,
+        89,
+        86,
+        91,
+        40,
+        82,
+        80,
+        78
+      ],
+      "pets": [
+        97,
+        49,
+        33,
+        81,
+        85,
+        89,
+        99,
+        88
+      ],
+      "treasures": [
+        569,
+        617,
+        496,
+        573,
+        377,
+        228,
+        290,
+        373
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    },
+    "coin": {
+      "episode": "ep4",
+      "purpose": "coin",
+      "cookies": [],
+      "pets": [],
+      "treasures": [],
+      "refreshed_at": null,
+      "sample_size": 0
+    },
+    "exp": {
+      "episode": "ep4",
+      "purpose": "exp",
+      "cookies": [],
+      "pets": [],
+      "treasures": [],
+      "refreshed_at": null,
+      "sample_size": 0
+    },
+    "mystery_box": {
+      "episode": "ep4",
+      "purpose": "mystery_box",
+      "cookies": [
+        82,
+        91,
+        63,
+        5,
+        38
+      ],
+      "pets": [
+        58,
+        81,
+        21,
+        61,
+        2,
+        80,
+        23,
+        87
+      ],
+      "treasures": [
+        573,
+        569,
+        586,
+        80,
+        240,
+        386,
+        51,
+        508
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 15
+    }
+  },
+  "ep5": {
+    "score": {
+      "episode": "ep5",
+      "purpose": "score",
+      "cookies": [
+        86,
+        62,
+        91,
+        87,
+        76,
+        80,
+        82,
+        69
+      ],
+      "pets": [
+        93,
+        81,
+        89,
+        99,
+        33,
+        97,
+        49,
+        56
+      ],
+      "treasures": [
+        569,
+        496,
+        531,
+        554,
+        588,
+        617,
+        492,
+        536
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 17
+    },
+    "coin": {
+      "episode": "ep5",
+      "purpose": "coin",
+      "cookies": [
+        5,
+        74
+      ],
+      "pets": [
+        42
+      ],
+      "treasures": [
+        117,
+        249,
+        290
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    },
+    "exp": {
+      "episode": "ep5",
+      "purpose": "exp",
+      "cookies": [],
+      "pets": [],
+      "treasures": [],
+      "refreshed_at": null,
+      "sample_size": 0
+    },
+    "mystery_box": {
+      "episode": "ep5",
+      "purpose": "mystery_box",
+      "cookies": [
+        82,
+        63
+      ],
+      "pets": [
+        87,
+        81,
+        59,
+        42,
+        2
+      ],
+      "treasures": [
+        80,
+        294,
+        144,
+        569,
+        39,
+        257,
+        290,
+        583
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 7
+    }
+  },
+  "ep6": {
+    "score": {
+      "episode": "ep6",
+      "purpose": "score",
+      "cookies": [
+        82,
+        32,
+        86,
+        18,
+        77,
+        2,
+        92,
+        3
+      ],
+      "pets": [
+        40,
+        33,
+        24,
+        4,
+        100,
+        3,
+        78
+      ],
+      "treasures": [
+        569,
+        377,
+        571,
+        554,
+        523,
+        594,
+        449,
+        615
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    },
+    "coin": {
+      "episode": "ep6",
+      "purpose": "coin",
+      "cookies": [
+        5,
+        74
+      ],
+      "pets": [
+        87
+      ],
+      "treasures": [
+        570,
+        297,
+        551,
+        569,
+        377,
+        544,
+        576
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 4
+    },
+    "exp": {
+      "episode": "ep6",
+      "purpose": "exp",
+      "cookies": [
+        18,
+        33,
+        2,
+        3,
+        9,
+        37
+      ],
+      "pets": [
+        4,
+        42,
+        3,
+        81
+      ],
+      "treasures": [
+        377,
+        543,
+        615,
+        626,
+        612,
+        206,
+        572,
+        518
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 13
+    },
+    "mystery_box": {
+      "episode": "ep6",
+      "purpose": "mystery_box",
+      "cookies": [
+        82,
+        37,
+        9,
+        5,
+        38,
+        60
+      ],
+      "pets": [
+        2,
+        81,
+        50,
+        61,
+        87,
+        40,
+        97,
+        14
+      ],
+      "treasures": [
+        573,
+        586,
+        80,
+        569,
+        135,
+        274,
+        290,
+        163
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    }
+  },
+  "ep7": {
+    "score": {
+      "episode": "ep7",
+      "purpose": "score",
+      "cookies": [
+        82,
+        92,
+        93,
+        89,
+        86,
+        1
+      ],
+      "pets": [
+        100,
+        33,
+        56,
+        50,
+        87
+      ],
+      "treasures": [
+        569,
+        588,
+        571,
+        554,
+        573,
+        528,
+        495,
+        616
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    },
+    "coin": {
+      "episode": "ep7",
+      "purpose": "coin",
+      "cookies": [
+        74,
+        5,
+        82
+      ],
+      "pets": [
+        87
+      ],
+      "treasures": [
+        290,
+        418,
+        570,
+        386,
+        573,
+        586,
+        169,
+        272
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 3
+    },
+    "exp": {
+      "episode": "ep7",
+      "purpose": "exp",
+      "cookies": [
+        18,
+        2,
+        3,
+        33,
+        82
+      ],
+      "pets": [
+        3,
+        42,
+        87
+      ],
+      "treasures": [
+        612,
+        377,
+        543,
+        626,
+        615,
+        73,
+        569,
+        573
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 4
+    },
+    "mystery_box": {
+      "episode": "ep7",
+      "purpose": "mystery_box",
+      "cookies": [
+        82,
+        5,
+        91
+      ],
+      "pets": [
+        2,
+        87,
+        34,
+        21,
+        81,
+        61,
+        50,
+        80
+      ],
+      "treasures": [
+        80,
+        573,
+        569,
+        586,
+        167,
+        386,
+        377,
+        294
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 20
+    }
+  },
+  "special1": {
+    "score": {
+      "episode": "special1",
+      "purpose": "score",
+      "cookies": [
+        83
+      ],
+      "pets": [
+        67,
+        6
+      ],
+      "treasures": [
+        386,
+        151,
+        551,
+        587,
+        582,
+        573
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 4
+    },
+    "coin": {
+      "episode": "special1",
+      "purpose": "coin",
+      "cookies": [],
+      "pets": [],
+      "treasures": [],
+      "refreshed_at": null,
+      "sample_size": 0
+    },
+    "exp": {
+      "episode": "special1",
+      "purpose": "exp",
+      "cookies": [],
+      "pets": [],
+      "treasures": [],
+      "refreshed_at": null,
+      "sample_size": 0
+    },
+    "mystery_box": {
+      "episode": "special1",
+      "purpose": "mystery_box",
+      "cookies": [
+        84
+      ],
+      "pets": [
+        67
+      ],
+      "treasures": [
+        244,
+        578
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    }
+  },
+  "special2": {
+    "score": {
+      "episode": "special2",
+      "purpose": "score",
+      "cookies": [
+        29,
+        84
+      ],
+      "pets": [
+        67
+      ],
+      "treasures": [
+        151,
+        578,
+        582
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    },
+    "coin": {
+      "episode": "special2",
+      "purpose": "coin",
+      "cookies": [
+        37
+      ],
+      "pets": [
+        91
+      ],
+      "treasures": [
+        561,
+        377
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    },
+    "exp": {
+      "episode": "special2",
+      "purpose": "exp",
+      "cookies": [],
+      "pets": [],
+      "treasures": [],
+      "refreshed_at": null,
+      "sample_size": 0
+    },
+    "mystery_box": {
+      "episode": "special2",
+      "purpose": "mystery_box",
+      "cookies": [
+        39
+      ],
+      "pets": [
+        74
+      ],
+      "treasures": [
+        449
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    }
+  },
+  "special3": {
+    "score": {
+      "episode": "special3",
+      "purpose": "score",
+      "cookies": [
+        89,
+        62,
+        82,
+        49,
+        86,
+        32,
+        80,
+        57
+      ],
+      "pets": [
+        97,
+        59,
+        81,
+        40,
+        72,
+        78,
+        88,
+        93
+      ],
+      "treasures": [
+        569,
+        377,
+        617,
+        536,
+        531,
+        627,
+        553,
+        443
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 15
+    },
+    "coin": {
+      "episode": "special3",
+      "purpose": "coin",
+      "cookies": [],
+      "pets": [],
+      "treasures": [],
+      "refreshed_at": null,
+      "sample_size": 0
+    },
+    "exp": {
+      "episode": "special3",
+      "purpose": "exp",
+      "cookies": [
+        25
+      ],
+      "pets": [
+        32
+      ],
+      "treasures": [
+        518
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 1
+    },
+    "mystery_box": {
+      "episode": "special3",
+      "purpose": "mystery_box",
+      "cookies": [
+        5,
+        82,
+        37,
+        38
+      ],
+      "pets": [
+        87,
+        81
+      ],
+      "treasures": [
+        377,
+        386,
+        573,
+        586
+      ],
+      "refreshed_at": "2026-08-01T15:08:57.212833Z",
+      "sample_size": 2
+    }
+  }
+}

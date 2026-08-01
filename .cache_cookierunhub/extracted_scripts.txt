@@ -1,0 +1,108 @@
+
+--- SCRIPT 0 (len 0) ---
+
+
+--- SCRIPT 1 (len 0) ---
+
+
+--- SCRIPT 2 (len 0) ---
+
+
+--- SCRIPT 3 (len 0) ---
+
+
+--- SCRIPT 4 (len 0) ---
+
+
+--- SCRIPT 5 (len 0) ---
+
+
+--- SCRIPT 6 (len 0) ---
+
+
+--- SCRIPT 7 (len 0) ---
+
+
+--- SCRIPT 8 (len 0) ---
+
+
+--- SCRIPT 9 (len 0) ---
+
+
+--- SCRIPT 10 (len 0) ---
+
+
+--- SCRIPT 11 (len 0) ---
+
+
+--- SCRIPT 12 (len 0) ---
+
+
+--- SCRIPT 13 (len 0) ---
+
+
+--- SCRIPT 14 (len 0) ---
+
+
+--- SCRIPT 15 (len 0) ---
+
+
+--- SCRIPT 16 (len 0) ---
+
+
+--- SCRIPT 17 (len 0) ---
+
+
+--- SCRIPT 18 (len 314) ---
+(function(){try{var p=localStorage.getItem("crhub_theme");if(p!=="light"&&p!=="dark"&&p!=="system")p="system";var r=p==="system"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;var e=document.documentElement;e.dataset.theme=r;e.dataset.themePreference=p;e.style.colorScheme=r;}catch(e){}})();
+
+--- SCRIPT 19 (len 948) ---
+{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.cookierunhub.com/#website","name":"쿠키런HUB","alternateName":["쿠키런 허브","쿠키런허브","cookierunhub","cookie run hub"],"url":"https://www.cookierunhub.com","description":"쿠키런 for Kakao 최강 조합을 공유하는 커뮤니티. 에피소드·얼파탑 공략, 손크로·코인·점수 조합 정보 제공.","inLanguage":"ko","publisher":{"@type":"Organization","@id":"https://www.cookierunhub.com/#organization","name":"쿠키런HUB","url":"https://www.cookierunhub.com","logo":{"@type":"ImageObject","url":"https://www.cookierunhub.com/icon.png"}},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.cookierunhub.com/board?search={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://www.cookierunhub.com/#organization","name":"쿠키런HUB","url":"https://www.cookierunhub.com","description":"쿠키런 for Kakao 조합 커뮤니티 - 최강 조합, 에피소드 공략, 얼파탑 공략 정보 제공"}]}
+
+--- SCRIPT 20 (len 0) ---
+
+
+--- SCRIPT 21 (len 0) ---
+
+
+--- SCRIPT 22 (len 0) ---
+
+
+--- SCRIPT 23 (len 43) ---
+(self.__next_f=self.__next_f||[]).push([0])
+
+--- SCRIPT 24 (len 3861) ---
+self.__next_f.push([1,"1:\"$Sreact.fragment\"\n3:I[32035,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"default\"]\n4:I[91168,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"default\"]\n6:I[64381,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"OutletBoundary\"]\n7:\"$Sreact.suspense\"\na:I[64381,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/
+
+--- SCRIPT 25 (len 4212) ---
+self.__next_f.push([1,"0:{\"P\":null,\"c\":[\"\",\"en\",\"episodes\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"en\",{\"children\":[\"episodes\",{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",16],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/0s7v3-qswuvm4.css?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/0j8y-itzbde9m.css?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-2\",{\"src\":\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-3\",{\"src\":\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-4\",{\"src\":\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-5\",{\"src\":\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-6\",{\"src\":\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"async\":true,\"nonce\":\"$undefined\"}]],\"$L2\"]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefin
+
+--- SCRIPT 26 (len 4244) ---
+self.__next_f.push([1,"11:I[77878,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"\"]\n12:I[11193,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"ThemeProvider\"]\n13:I[45953,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"LocaleProvider\"]\n14:I[8188,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7t
+
+--- SCRIPT 27 (len 3346) ---
+self.__next_f.push([1,"cJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/1jxzxnd_6fytk.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"default\"]\n19:I[33365,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"default\"]\n1a:I[66951,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"default\"]\n1b:I[32189,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7t
+
+--- SCRIPT 28 (len 4115) ---
+self.__next_f.push([1,"2:[\"$\",\"html\",null,{\"lang\":\"ko\",\"suppressHydrationWarning\":true,\"children\":[[\"$\",\"head\",null,{\"children\":[[\"$\",\"meta\",null,{\"name\":\"theme-color\",\"content\":\"#fff8e7\"}],[\"$\",\"script\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"(function(){try{var p=localStorage.getItem(\\\"crhub_theme\\\");if(p!==\\\"light\\\"\u0026\u0026p!==\\\"dark\\\"\u0026\u0026p!==\\\"system\\\")p=\\\"system\\\";var r=p===\\\"system\\\"?(matchMedia(\\\"(prefers-color-scheme: dark)\\\").matches?\\\"dark\\\":\\\"light\\\"):p;var e=document.documentElement;e.dataset.theme=r;e.dataset.themePreference=p;e.style.colorScheme=r;}catch(e){}})();\"}}],[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@graph\\\":[{\\\"@type\\\":\\\"WebSite\\\",\\\"@id\\\":\\\"https://www.cookierunhub.com/#website\\\",\\\"name\\\":\\\"쿠키런HUB\\\",\\\"alternateName\\\":[\\\"쿠키런 허브\\\",\\\"쿠키런허브\\\",\\\"cookierunhub\\\",\\\"cookie run hub\\\"],\\\"url\\\":\\\"https://www.cookierunhub.com\\\",\\\"description\\\":\\\"쿠키런 for Kakao 최강 조합을 공유하는 커뮤니티. 에피소드·얼파탑 공략, 손크로·코인·점수 조합 정보 제공.\\\",\\\"inLanguage\\\":\\\"ko\\\",\\\"publisher\\\":{\\\"@type\\\":\\\"Organization\\\",\\\"@id\\\":\\\"https://www.cookierunhub.com/#organization\\\",\\\"name\\\":\\\"쿠키런HUB\\\",\\\"url\\\":\\\"https://www.cookierunhub.com\\\",\\\"logo\\\":{\\\"@type\\\":\\\"ImageObject\\\",\\\"url\\\":\\\"https://www.cookierunhub.com/icon.png\\\"}},\\\"potentialAction\\\":{\\\"@type\\\":\\\"SearchAction\\\",\\\"target\\\":{\\\"@type\\\":\\\"EntryPoint\\\",\\\"urlTemplate\\\":\\\"https://www.cookierunhub.com/board?search={search_term_string}\\\"},\\\"query-input\\\":\\\"required name=search_term_string\\\"}},{\\\"@type\\\":\\\"Organization\\\",\\\"@id\\\":\\\"https://www.cookierunhub.com/#organization\\\",\\\"name\\\":\\\"쿠키런HUB\\\",\\\"url\\\":\\\"https://www.cookierunhub.com\\\",\\\"description\\\":\\\"쿠키런 for 
+
+--- SCRIPT 29 (len 194) ---
+self.__next_f.push([1,"b:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1, maximum-scale=1\"}]]\n"])
+
+--- SCRIPT 30 (len 615) ---
+self.__next_f.push([1,"1d:I[12843,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"IconMark\"]\n8:null\n"])
+
+--- SCRIPT 31 (len 3893) ---
+self.__next_f.push([1,"d:[[\"$\",\"title\",\"0\",{\"children\":\"쿠키런HUB - 쿠키런 for Kakao 조합 공유 커뮤니티\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"쿠키런 허브(쿠키런HUB) - 쿠키런 조합 추천·공유 커뮤니티. 쿠키런 for Kakao 에피소드 조합, 얼파탑 공략, 손크로·코인·점수 파밍 최적 조합 정보를 확인하세요.\"}],[\"$\",\"meta\",\"2\",{\"name\":\"application-name\",\"content\":\"cookierunhub\"}],[\"$\",\"link\",\"3\",{\"rel\":\"manifest\",\"href\":\"/manifest-en.json\",\"crossOrigin\":\"$undefined\"}],[\"$\",\"meta\",\"4\",{\"name\":\"keywords\",\"content\":\"쿠키런,쿠키런 for kakao,쿠키런 조합,쿠키런 공략,쿠키런HUB,쿠키런 허브,쿠키런허브,cookierunhub\"}],[\"$\",\"meta\",\"5\",{\"name\":\"robots\",\"content\":\"index, follow\"}],[\"$\",\"meta\",\"6\",{\"name\":\"googlebot\",\"content\":\"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1\"}],[\"$\",\"meta\",\"7\",{\"name\":\"mobile-web-app-capable\",\"content\":\"yes\"}],[\"$\",\"link\",\"8\",{\"rel\":\"canonical\",\"href\":\"https://www.cookierunhub.com\"}],[\"$\",\"link\",\"9\",{\"rel\":\"alternate\",\"hrefLang\":\"ko\",\"href\":\"https://www.cookierunhub.com\"}],[\"$\",\"link\",\"10\",{\"rel\":\"alternate\",\"hrefLang\":\"en\",\"href\":\"https://www.cookierunhub.com/en\"}],[\"$\",\"link\",\"11\",{\"rel\":\"alternate\",\"hrefLang\":\"th\",\"href\":\"https://www.cookierunhub.com/th\"}],[\"$\",\"link\",\"12\",{\"rel\":\"alternate\",\"hrefLang\":\"x-default\",\"href\":\"https://www.cookierunhub.com\"}],[\"$\",\"meta\",\"13\",{\"name\":\"google-site-verification\",\"content\":\"NY57fBJiHt1bD3Ol-xYP2Q_1Hj78CEa_L_JXgWUT_k0\"}],[\"$\",\"meta\",\"14\",{\"name\":\"naver-site-verification\",\"content\":\"495a71777d8b70f7aa2a1017b3b7c340fd9d95ad\"}],[\"$\",\"meta\",\"15\",{\"name\":\"mobile-web-app-capable\",\"content\":\"yes\"}],[\"$\",\"meta\",\"16\",{\"name\":\"apple-mobile-web-app-title\",\"content\":\"cookierunhub\"}],[\"$\",\"meta\",\"17\",{\"name\":\"apple-mobile-web-app-status-bar-style\",\"content\":\"black-translucent\"}],[\"$\",\"meta\",\"18\",{\"property\":\"og:ti
+
+--- SCRIPT 32 (len 843) ---
+self.__next_f.push([1,"1e:I[62647,[\"/_next/static/chunks/3_3pzfp4tgono.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3mj55emz6q84l.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0ynyb72ggxjqr.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/17-vzxyjtytas.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/426ain5wxzacn.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0joadxehd1qz9.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/3isqgtud0lyns.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/029y4pkjnw6yj.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0sa7ib9kay3fv.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\",\"/_next/static/chunks/0bafwsmq2chsx.js?dpl=dpl_5wLs9rprMVCC7tcJGyhyvCpKbA52\"],\"default\"]\n"])
+
+--- SCRIPT 33 (len 117631) ---
+self.__next_f.push([1,"5:[\"$\",\"$L1e\",null,{\"initialData\":{\"items\":[{\"source_locale\":\"ko\",\"translations\":{},\"translation_status\":\"missing\",\"translation_source\":null,\"original_available\":true,\"id\":1762,\"episode\":\"ep1\",\"purpose\":\"score\",\"floor\":null,\"archive_season_id\":null,\"restored_from_archive_combination_id\":null,\"restored_current_combination_id\":null,\"can_restore_to_current\":false,\"author\":{\"user_id\":294,\"nickname\":\"튜브\",\"nickname_color\":\"cyan\",\"profile_image\":null,\"role\":\"user\",\"anonymous_nickname\":null,\"anonymous_identity\":null},\"first_cookie\":{\"id\":92,\"name\":\"동파육맛 쿠키\",\"english_name\":\"Braised Pork Cookie\",\"grade\":\"S\",\"image_path\":\"https://res.cloudinary.com/ddlgnadxl/image/upload/f_auto,q_auto/v1784846227/cookierun/cookies/game_item_4e320abcaf.png\",\"image_file_name\":\"game_item_4e320abcaf.png\",\"ability\":\"• 체력 : 140 ~ 160\\r\\n• 능력 : 일정 시간마다 땅을 내려찍어 동파육 젤리를 수확한다. 동파육 젤리를 일정 횟수만큼 수확하면, 동파육 쇠스랑을 휘둘러 주변 젤리들과 장애물을 끌어당기고, 끌어당긴 젤리들로 추가 점수를 획득한다. 마지막에는 동파육 쇠스랑을 던져 앞에 있는 젤리들을 끌어온다. (체력이 낮을수록 빠르게 변신한다.)\\r\\n• 조합보너스 : 청경채 방석 (휩쓸기 젤리 점수 증가 + 체력 70으로 1회 부활)\\r\\n• 보유효과 : 카이막맛 쿠키, 금강법사맛 쿠키, 연근요괴맛 쿠키, 동파육맛 쿠키를 함께 보유하고 있는 경우 경험치 파티 발동\\r\\n• 해금조건 : 금강법사맛 쿠키, 카이막맛 쿠키, 연근요괴맛 쿠키 보유하기\",\"ability_en\":null,\"health_stat\":null,\"ability_desc\":null,\"ability_desc_en\":null,\"combo_bonus\":null,\"owned_effect\":null,\"owned_effect_en\":null,\"extra_info\":null,\"unlock_method\":null,\"partner_pets\":[{\"id\":100,\"name\":\"청경채 방석\",\"english_name\":\"Bok Choy Cushion\",\"image_path\":\"https://res.cloudinary.com/ddlgnadxl/image/upload/f_auto,q_auto/v1785418292/cookierun/pets/game_item_6061f0db28.png\",\"image_file_name\":\"game_item_6061f0db28.png\",\"grade\":\"S\"}]},\"second_cookie\":{\"id\":86,\"name\":\"매화단청 쿠키\",\"english_name\":\"Blooming Dancheong Cookie\",\"grade\":\"L\",\"image_path\":\"cookies/plum_dancheong_cookie.png\",\"image_file_name\":\"plum_dancheong_cookie.png\",\"ability\":\"
+
+--- SCRIPT 34 (len 921) ---
+(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a24696f2abc3a3dd',t:'MTc4NTYwNTYyNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+
+--- SCRIPT 35 (len 0) ---
+

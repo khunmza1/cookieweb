@@ -5,6 +5,15 @@ import Image from 'next/image';
 import ItemPickerModal from './ItemPickerModal';
 import { ScannedTileResult } from '@/lib/scannerEngine';
 import { Treasure } from '@/lib/types';
+import { 
+  SparklesIcon, 
+  CameraIcon, 
+  CheckIcon, 
+  PlusIcon, 
+  TrashIcon, 
+  LightbulbIcon, 
+  EditIcon 
+} from '@/components/icons';
 
 interface ScanVerificationModalProps {
   isOpen: boolean;
@@ -17,10 +26,6 @@ interface ScanVerificationModalProps {
 
 let nextManualSlotIndex = 100000;
 
-// NOTE: `tiles` is only initialized from `initialTiles` once, on mount — it is
-// NOT re-synced if `initialTiles` changes while this component stays mounted.
-// The parent must remount this component (e.g. `key={scanRunId}`) whenever a
-// fresh scan result should replace the current editable tile list
 export default function ScanVerificationModal({
   isOpen,
   onClose,
@@ -103,7 +108,8 @@ export default function ScanVerificationModal({
           <div className="flex items-center gap-3">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-black uppercase tracking-wider mb-1">
-                <span>🎯 AI Vision Scanner & Verification</span>
+                <SparklesIcon className="w-4 h-4 text-amber-400" />
+                <span>AI Vision Scanner & Verification</span>
               </div>
               <h2 className="text-xl font-black text-white tracking-tight">
                 Verify Detected Treasures & Enhancement Levels (+0 to +9)
@@ -117,14 +123,14 @@ export default function ScanVerificationModal({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-              className="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-amber-400 border border-amber-500/30 flex items-center gap-1.5 transition"
+              className="px-3.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-amber-400 border border-amber-500/30 flex items-center gap-1.5 transition cursor-pointer"
             >
-              {isDrawerOpen ? '◀ Hide List Drawer' : '▶ Open List Drawer'}
+              <span>{isDrawerOpen ? '◀ Hide List Drawer' : '▶ Open List Drawer'}</span>
             </button>
 
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white font-bold text-sm shrink-0"
+              className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white font-bold text-sm shrink-0 cursor-pointer"
             >
               ✕
             </button>
@@ -145,8 +151,9 @@ export default function ScanVerificationModal({
           {/* Left: Uploaded Screenshot Preview with Interactive Clean Frames + Fixed-Height Side Hover Card */}
           <div className={`${isDrawerOpen ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col bg-zinc-950 p-4 rounded-2xl border border-zinc-800 transition-all`}>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">
-                📸 Screenshot & Frame Tracker
+              <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                <CameraIcon className="w-3.5 h-3.5" />
+                <span>Screenshot & Frame Tracker</span>
               </span>
               <span className="text-[10px] text-zinc-400 font-mono">
                 {identifiedCount}/{tiles.length} detected
@@ -179,7 +186,7 @@ export default function ScanVerificationModal({
                 </>
               ) : (
                 <div className="text-xs text-zinc-500 flex items-center gap-2">
-                  <span className="text-base">💡</span>
+                  <LightbulbIcon className="w-4 h-4 text-amber-400 shrink-0" />
                   <span>Hover over any frame box on the screenshot to view full DB details here.</span>
                 </div>
               )}
@@ -253,7 +260,7 @@ export default function ScanVerificationModal({
                 <div className="flex items-center gap-1 p-0.5 bg-zinc-950 rounded-lg border border-zinc-800">
                   <button
                     onClick={() => setSortBy('slot')}
-                    className={`px-2 py-0.5 text-[10px] font-bold rounded transition ${
+                    className={`px-2 py-0.5 text-[10px] font-bold rounded transition cursor-pointer ${
                       sortBy === 'slot'
                         ? 'bg-amber-500 text-zinc-950 shadow'
                         : 'text-zinc-400 hover:text-white'
@@ -263,7 +270,7 @@ export default function ScanVerificationModal({
                   </button>
                   <button
                     onClick={() => setSortBy('accuracy')}
-                    className={`px-2 py-0.5 text-[10px] font-bold rounded transition ${
+                    className={`px-2 py-0.5 text-[10px] font-bold rounded transition cursor-pointer ${
                       sortBy === 'accuracy'
                         ? 'bg-amber-500 text-zinc-950 shadow'
                         : 'text-zinc-400 hover:text-white'
@@ -276,9 +283,10 @@ export default function ScanVerificationModal({
 
               <button
                 onClick={() => setShowAddPicker(true)}
-                className="text-[11px] font-bold text-amber-400 hover:text-amber-300 px-2 py-1 rounded-lg border border-amber-500/30 hover:border-amber-500/60 transition"
+                className="text-[11px] font-bold text-amber-400 hover:text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30 hover:border-amber-500/60 transition flex items-center gap-1 cursor-pointer"
               >
-                + Add treasure manually
+                <PlusIcon className="w-3.5 h-3.5 stroke-[3]" />
+                <span>Add treasure manually</span>
               </button>
             </div>
 
@@ -322,8 +330,9 @@ export default function ScanVerificationModal({
                         </h4>
                       </div>
                       <div className="flex items-center gap-1.5 mt-1 flex-wrap">
-                        <span className="text-[10px] text-amber-400 font-bold shrink-0">
-                          ✏️ Click to change
+                        <span className="text-[10px] text-amber-400 font-bold shrink-0 flex items-center gap-0.5">
+                          <EditIcon className="w-3 h-3" />
+                          <span>Click to change</span>
                         </span>
                         <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full shrink-0 ${
                           tile.confidence > 80
@@ -349,7 +358,7 @@ export default function ScanVerificationModal({
                     <select
                       value={tile.level}
                       onChange={(e) => handleLevelChange(tile.slotIndex, Number(e.target.value))}
-                      className="bg-zinc-900 border border-amber-500/50 rounded-lg px-2 py-1 text-xs font-black text-amber-400 outline-none"
+                      className="bg-zinc-900 border border-amber-500/50 rounded-lg px-2 py-1 text-xs font-black text-amber-400 outline-none cursor-pointer"
                     >
                       {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(lvl => (
                         <option key={lvl} value={lvl}>+{lvl}</option>
@@ -358,9 +367,9 @@ export default function ScanVerificationModal({
                     <button
                       onClick={() => handleRemoveTile(tile.slotIndex)}
                       title="Remove this row"
-                      className="w-7 h-7 rounded-lg bg-zinc-900 hover:bg-rose-500/20 border border-zinc-800 hover:border-rose-500/40 flex items-center justify-center text-zinc-500 hover:text-rose-400 font-bold text-xs transition"
+                      className="w-7 h-7 rounded-lg bg-zinc-900 hover:bg-rose-500/20 border border-zinc-800 hover:border-rose-500/40 flex items-center justify-center text-zinc-500 hover:text-rose-400 font-bold text-xs transition cursor-pointer"
                     >
-                      ✕
+                      <TrashIcon className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
@@ -375,7 +384,7 @@ export default function ScanVerificationModal({
         <div className="pt-4 border-t border-zinc-800 mt-4 flex items-center justify-between shrink-0">
           <button
             onClick={onClose}
-            className="px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300 transition"
+            className="px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300 transition cursor-pointer"
           >
             Cancel
           </button>
@@ -383,9 +392,10 @@ export default function ScanVerificationModal({
           <button
             onClick={() => onConfirmImport(tiles)}
             disabled={identifiedCount === 0}
-            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-emerald-500 hover:from-amber-400 hover:to-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed text-zinc-950 font-black text-xs shadow-lg shadow-amber-500/20 transition flex items-center gap-2"
+            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-emerald-500 hover:from-amber-400 hover:to-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed text-zinc-950 font-black text-xs shadow-lg shadow-amber-500/20 transition flex items-center gap-2 cursor-pointer"
           >
-            <span>✅ Confirm & Import Verified Collection ({identifiedCount} Items)</span>
+            <CheckIcon className="w-4 h-4 stroke-[3]" />
+            <span>Confirm & Import Verified Collection ({identifiedCount} Items)</span>
           </button>
         </div>
 

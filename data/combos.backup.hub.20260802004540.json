@@ -1,0 +1,365 @@
+[
+  {
+    "title": "money-master",
+    "author": "ClassicPro",
+    "category": "Coin Farming",
+    "cookieId": "potato-salad-cookie",
+    "relayCookieId": "buttercream-choco-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "banana-cookie-s-banana-baby-bottle",
+      "50-million-commemorative-firecrackers",
+      "choccy-russian-doll"
+    ],
+    "targetScore": 150,
+    "coinsPerRun": 150000,
+    "description": "Meta strategy setup.",
+    "tags": [
+      "Coin Farming",
+      "Admin Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "Magnetic Aura"
+    },
+    "id": "combo-user-1785512617223",
+    "createdAt": "2026-07-31T15:43:37.223Z",
+    "upvotes": 1,
+    "isBoosted": true,
+    "episode": "EP1 (Escape from the Oven)"
+  },
+  {
+    "title": "YouTube Meta: Cheesecake Cookie & Fluffy Cheese Cat Strategy",
+    "author": "YouTube Creator",
+    "category": "High Score (Points)",
+    "cookieId": "cheesecake-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "50-million-commemorative-firecrackers",
+      "1000-year-old-red-ginseng",
+      "blackberry-cookie-s-blackberry-hat"
+    ],
+    "targetScore": 85000000,
+    "coinsPerRun": 35000,
+    "description": "AI-extracted setup analyzed directly from YouTube video. Utilizes Cheesecake Cookie skill mechanics alongside Fluffy Cheese Cat for maximum yield.",
+    "tags": [
+      "High Score (Points)",
+      "AI Verified",
+      "TikTok/YouTube"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "id": "combo-user-1785512344375",
+    "createdAt": "2026-07-31T15:39:04.375Z",
+    "upvotes": 1,
+    "isBoosted": true,
+    "episode": "EP2 (Primeval Jungle)"
+  },
+  {
+    "id": "combo-coin-meta-1",
+    "title": "Supreme Coin Farming Meta",
+    "author": "ClassicPro",
+    "cookieId": "cheesecake-cookie",
+    "relayCookieId": "mint-choco-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "cheesecake-cookie-s-piece-of-cake",
+      "mint-choco-cookie-s-violin-case",
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 42000,
+    "durationSeconds": 240,
+    "description": "The ultimate coin farming strategy for LINE/Kakao Cookie Run. Cheesecake Cookie spawns Party Invitations while Fluffy Cheese Cat snatches gold coins, followed by Mint Choco relay.",
+    "tags": [
+      "Coin Farming",
+      "S-Rank Meta",
+      "High Yield"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-07-30T12:00:00Z",
+    "upvotes": 142,
+    "isBoosted": true,
+    "episode": "EP3 (Dragon's Valley)"
+  },
+  {
+    "id": "combo-magnet-score-2",
+    "title": "Celestial Angel High Score Magnet Run",
+    "author": "CookieMaster",
+    "cookieId": "angel-cookie",
+    "relayCookieId": "pirate-cookie",
+    "petId": "celestial-star",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "pirate-cookie-s-revival-boots"
+    ],
+    "targetScore": 82000000,
+    "coinsPerRun": 18000,
+    "durationSeconds": 310,
+    "description": "Maximum magnetic jelly absorption setup. Angel Cookie sucks in every jelly across the map, followed by Ghost Pirate relay for invincibility after Energy runs out.",
+    "tags": [
+      "High Score",
+      "Magnet",
+      "Survival"
+    ],
+    "createdAt": "2026-07-29T15:30:00Z",
+    "upvotes": 98,
+    "isBoosted": false,
+    "episode": "EP4 (City of the Wizards)"
+  },
+  {
+    "id": "combo-lemon-blast-3",
+    "title": "High Voltage Lemon Shield Destruction",
+    "author": "ElectroRunner",
+    "cookieId": "lemon-cookie",
+    "relayCookieId": "hero-cookie",
+    "petId": "electro-lemon",
+    "treasureIds": [
+      "lemon-cookie-s-lemon-mp3-player",
+      "angel-cookie-s-holy-feather",
+      "hero-cookie-s-mint-candy"
+    ],
+    "targetScore": 95000000,
+    "coinsPerRun": 15000,
+    "durationSeconds": 280,
+    "description": "High speed electric shield destruction build. Lemon Cookie's shield constantly clears obstacles while granting high magnetic point bonuses.",
+    "tags": [
+      "Obstacle Destruction",
+      "High Speed",
+      "Score Meta"
+    ],
+    "createdAt": "2026-07-28T09:15:00Z",
+    "upvotes": 215,
+    "isBoosted": true,
+    "episode": "EP5 (Dessert Paradise)"
+  },
+  {
+    "id": "combo-soda-wave-4",
+    "title": "Soda Surf Wave High Score",
+    "author": "SurfLegend",
+    "cookieId": "soda-cookie",
+    "relayCookieId": "vampire-cookie",
+    "petId": "flame-bat",
+    "treasureIds": [
+      "magnetic-rainbow-drink",
+      "angel-cookie-s-holy-feather",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 78000000,
+    "coinsPerRun": 12000,
+    "durationSeconds": 290,
+    "description": "Endless wave surfing setup. Soda Cookie surfs through stage hazards whenever health potions are consumed, followed by Vampire Cookie's bat transformation.",
+    "tags": [
+      "High Score",
+      "Soda Surfing",
+      "Speed"
+    ],
+    "createdAt": "2026-07-27T18:45:00Z",
+    "upvotes": 87,
+    "isBoosted": false,
+    "episode": "Special 1 (Tower of Frozen Waves)"
+  },
+  {
+    "id": "combo-legend-moonlight-5",
+    "title": "Legendary Moonlight Crescent Flight",
+    "author": "Starlight",
+    "cookieId": "moonlight-cookie",
+    "relayCookieId": "fire-spirit-cookie",
+    "petId": "king-choco-drop",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "1000-year-old-red-ginseng",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 350,
+    "description": "The peak legendary score build. Moonlight Cookie creates thousands of high-value Starlight Jellies in night flight, relayed by Fire Spirit Cookie's revive dash.",
+    "tags": [
+      "Legendary Meta",
+      "Maximum Score",
+      "Endgame"
+    ],
+    "createdAt": "2026-07-26T20:00:00Z",
+    "upvotes": 310,
+    "isBoosted": true,
+    "episode": "Special 2 (Island of Memories)"
+  },
+  {
+    "id": "combo-ep1-score-meta",
+    "title": "EP1 Escape from Oven: Peach & Peppermint High Score Meta",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "peach-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 145000000,
+    "coinsPerRun": 22000,
+    "durationSeconds": 320,
+    "description": "CookieRunHub Meta setup for Episode 1. Peach Cookie destroys obstacles with martial arts while Peppermint Cookie summons dolphin waves.",
+    "tags": [
+      "EP1",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T12:00:00Z",
+    "upvotes": 340,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-ep2-afk-coin",
+    "title": "EP2 Primeval Jungle: Semi-AFK Auto Coin Farming",
+    "author": "CookieRunHub AFK",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "AFK Coin Farming",
+    "cookieId": "cheesecake-cookie",
+    "relayCookieId": "mint-choco-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "cheesecake-cookie-s-piece-of-cake",
+      "mint-choco-cookie-s-violin-case",
+      "50-million-commemorative-firecrackers"
+    ],
+    "targetScore": 52000000,
+    "coinsPerRun": 55000,
+    "durationSeconds": 240,
+    "description": "Episode 2 semi-AFK coin setup. High magnet yield allows running without jump/slide keypresses.",
+    "tags": [
+      "EP2",
+      "AFK Coin Farming",
+      "Semi-AFK (준손크로)"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T14:30:00Z",
+    "upvotes": 285,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-ep3-dragon-score",
+    "title": "EP3 Dragon's Valley: Moonlight & Fire Spirit High Yield",
+    "author": "Dragon Slayer",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "High Score (Points)",
+    "cookieId": "moonlight-cookie",
+    "relayCookieId": "fire-spirit-cookie",
+    "petId": "dreamcatcher",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "1000-year-old-red-ginseng",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 168000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 360,
+    "description": "Episode 3 High Score build. Uses Moonlight Cookie's crescent sleep flight to bypass lava hazards.",
+    "tags": [
+      "EP3",
+      "High Score (Points)",
+      "Lava Immunity"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "Energy Drains 15% slower"
+    },
+    "createdAt": "2026-08-01T16:00:00Z",
+    "upvotes": 412,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-ep4-wizard-xp",
+    "title": "EP4 City of Wizards: Double XP Arcane Speedrun",
+    "author": "Wizard Master",
+    "episode": "EP4 (City of the Wizards)",
+    "category": "XP Farming",
+    "cookieId": "wizard-cookie",
+    "relayCookieId": "alchemist-cookie",
+    "petId": "book-of-wisdom",
+    "treasureIds": [
+      "1000-year-old-red-ginseng",
+      "500-year-old-ginseng-root",
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 76000000,
+    "coinsPerRun": 31000,
+    "durationSeconds": 270,
+    "description": "XP farming setup for Episode 4. Magic spell missles convert obstacles into high-value exp jellies.",
+    "tags": [
+      "EP4",
+      "XP Farming",
+      "Speedrun"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T18:20:00Z",
+    "upvotes": 194,
+    "isBoosted": false
+  },
+  {
+    "id": "combo-special1-frozen-tower",
+    "title": "Special 1 Tower of Frozen Waves: Floor 48 Mission 3 Clear",
+    "author": "Frozen Tower Pro",
+    "episode": "Special 1 (Tower of Frozen Waves)",
+    "category": "Full Manual (손크로)",
+    "cookieId": "peppermint-cookie",
+    "relayCookieId": "pirate-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "pirate-cookie-s-revival-boots",
+      "heavenly-sweet-donut",
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 92000000,
+    "coinsPerRun": 18000,
+    "durationSeconds": 310,
+    "description": "Special Episode 1 Tower of Frozen Waves (얼파탑) Floor 48 setup. High revives for tight jumps.",
+    "tags": [
+      "Special 1",
+      "Tower of Frozen Waves",
+      "Floor 48 Clear"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "fastStart": false,
+      "randomBoost": "Revives with 80 Energy 1 time"
+    },
+    "createdAt": "2026-08-01T20:10:00Z",
+    "upvotes": 520,
+    "isBoosted": true
+  }
+]

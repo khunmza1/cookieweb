@@ -5,6 +5,27 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ItemPickerModal from '@/components/ItemPickerModal';
 import { CatalogData, Cookie, Pet, Treasure, ComboSetup, Grade, ItemCategory, ComboCategory } from '@/lib/types';
+import PaginationControls, { PageSizeOption } from '@/components/PaginationControls';
+import { 
+  AdminIcon, 
+  CookieIcon, 
+  PetIcon, 
+  TreasureIcon, 
+  VideoIcon, 
+  CameraIcon, 
+  EditIcon, 
+  EyeIcon, 
+  EyeOffIcon, 
+  PlusIcon, 
+  StarIcon, 
+  TrashIcon,
+  FlaskIcon, 
+  LightningIcon, 
+  RocketIcon, 
+  DiceIcon, 
+  SparklesIcon, 
+  SearchIcon 
+} from '@/components/icons';
 
 export default function AdminPage() {
   const router = useRouter();
@@ -13,6 +34,14 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<'catalog' | 'boost'>('catalog');
   const [catalogCategory, setCatalogCategory] = useState<ItemCategory>('cookie');
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState<PageSizeOption>(20);
+
+  // Combo List Search & Pagination State
+  const [comboSearchTerm, setComboSearchTerm] = useState('');
+  const [comboCurrentPage, setComboCurrentPage] = useState(1);
+  const [comboPageSize, setComboPageSize] = useState<PageSizeOption>(20);
+  const [editingComboId, setEditingComboId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -29,6 +58,7 @@ export default function AdminPage() {
   } | null>(null);
 
   const [isNew, setIsNew] = useState(false);
+  const [saveError, setSaveError] = useState('');
 
   // Combo Creator Modal & AI Video Subfunction State
   const [showComboModal, setShowComboModal] = useState(false);
@@ -137,8 +167,9 @@ export default function AdminPage() {
   // Handle Item Save (Add/Edit)
   const handleSaveItem = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSaveError('');
     if (!editItem || !editItem.id || !editItem.name) {
-      alert("Please fill in ID and Name.");
+      setSaveError("Please fill in ID and Name.");
       return;
     }
 
@@ -177,16 +208,16 @@ export default function AdminPage() {
         setEditItem(null);
       } else {
         const err = await res.json();
-        alert(`Failed to save: ${err.error}`);
+        setSaveError(err.error || "Failed to save item.");
       }
     } catch (e) {
       console.error(e);
-      alert("Save failed.");
+      setSaveError("Save failed.");
     }
   };
 
   // Handle Item Hide / Unhide
-  const handleToggleHideItem = async (category: ItemCategory, id: string, name: string, isCurrentlyHidden?: boolean) => {
+  const handleToggleHideItem = async (category: ItemCategory, id: string) => {
     try {
       const res = await fetch('/api/admin/catalog/toggle-hide', {
         method: 'POST',
@@ -197,8 +228,6 @@ export default function AdminPage() {
       if (res.ok) {
         const data = await res.json();
         setCatalog(data.catalog);
-      } else {
-        alert("Failed to update item visibility.");
       }
     } catch (e) {
       console.error(e);
@@ -216,6 +245,125 @@ export default function AdminPage() {
 
       if (res.ok) {
         setCombos(combos.map(c => c.id === comboId ? { ...c, isBoosted: !currentBoosted } : c));
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  // Open Edit Combo Modal
+  const openEditComboModal = (combo: ComboSetup) => {
+    setEditingComboId(combo.id);
+    setComboModalMode('manual');
+    setComboForm({
+      title: combo.title,
+      author: combo.author || 'Admin',
+      category: combo.category || 'High Score (Points)',
+      cookieId: combo.cookieId || '',
+      relayCookieId: combo.relayCookieId || '',
+      petId: combo.petId || '',
+      t1: combo.treasureIds?.[0] || '',
+      t2: combo.treasureIds?.[1] || '',
+      t3: combo.treasureIds?.[2] || '',
+      targetScore: combo.targetScore || 85000000,
+      coinsPerRun: combo.coinsPerRun || 35000,
+      description: combo.description || '',
+      hpExtension: combo.boosts?.hpExtension ?? true,
+      powerJellyBoost: combo.boosts?.powerJellyBoost ?? true,
+      doubleXp: combo.boosts?.doubleXp ?? false,
+      fastStart: combo.boosts?.fastStart ?? true,
+      randomBoost: combo.boosts?.randomBoost || 'Double Coins'
+    });
+    setShowComboModal(true);
+  };
+
+  // Open Create Combo Modal
+  const openCreateComboModal = () => {
+    setEditingComboId(null);
+    setComboModalMode('manual');
+    setComboForm({
+      title: '',
+      author: 'ClassicPro',
+      category: 'High Score (Points)',
+      cookieId: catalog?.cookies[0]?.id || '',
+      relayCookieId: '',
+      petId: catalog?.pets[0]?.id || '',
+      t1: catalog?.treasures[0]?.id || '',
+      t2: catalog?.treasures[1]?.id || '',
+      t3: catalog?.treasures[2]?.id || '',
+      targetScore: 85000000,
+      coinsPerRun: 35000,
+      description: '',
+      hpExtension: true,
+      powerJellyBoost: true,
+      doubleXp: false,
+      fastStart: true,
+      randomBoost: 'Double Coins'
+    });
+    setShowComboModal(true);
+  };
+
+  // Handle Delete Combo
+  const handleDeleteCombo = async (comboId: string) => {
+    if (!confirm("Are you sure you want to delete this combo setup?")) return;
+    try {
+      const res = await fetch(`/api/setups?id=${comboId}`, { method: 'DELETE' });
+      if (res.ok) {
+        setCombos(combos.filter(c => c.id !== comboId));
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  // Handle Save Combo (Create or Edit)
+  const handleSaveCombo = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!comboForm.title || !comboForm.cookieId || !comboForm.petId || !comboForm.t1) {
+      alert("Please fill in title, main cookie, pet, and at least 1 treasure.");
+      return;
+    }
+
+    const payload = {
+      id: editingComboId || undefined,
+      title: comboForm.title,
+      author: comboForm.author,
+      category: comboForm.category,
+      cookieId: comboForm.cookieId,
+      relayCookieId: comboForm.relayCookieId || undefined,
+      petId: comboForm.petId,
+      treasureIds: [comboForm.t1, comboForm.t2, comboForm.t3].filter(Boolean),
+      targetScore: Number(comboForm.targetScore),
+      coinsPerRun: Number(comboForm.coinsPerRun),
+      description: comboForm.description,
+      tags: [comboForm.category, "Admin Setup"],
+      boosts: {
+        hpExtension: comboForm.hpExtension,
+        powerJellyBoost: comboForm.powerJellyBoost,
+        doubleXp: comboForm.doubleXp,
+        fastStart: comboForm.fastStart,
+        randomBoost: comboForm.randomBoost as any
+      }
+    };
+
+    try {
+      const method = editingComboId ? 'PUT' : 'POST';
+      const res = await fetch('/api/setups', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        const updated = await res.json();
+        if (editingComboId) {
+          setCombos(combos.map(c => c.id === editingComboId ? updated : c));
+        } else {
+          setCombos([updated, ...combos]);
+        }
+        setShowComboModal(false);
+      } else {
+        alert("Failed to save combo.");
       }
     } catch (e) {
       console.error(e);
@@ -280,7 +428,7 @@ export default function AdminPage() {
         setAiAnalyzeMessage({
           text: data.warning
             ? `AI Vision extracted setup at ${data.confidenceScore}% confidence — ${data.warning}`
-            : `🎉 AI Vision extracted setup with ${data.confidenceScore}% confidence! Form auto-populated below — double-check target score & coins per run.`,
+            : `AI Vision extracted setup with ${data.confidenceScore}% confidence! Form auto-populated below — double-check target score & coins per run.`,
           isError: Boolean(data.warning)
         });
       } else {
@@ -298,7 +446,7 @@ export default function AdminPage() {
   const handlePublishCombo = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!comboForm.title || !comboForm.cookieId || !comboForm.petId) {
-      alert("Please select main cookie and pet!");
+      setAiAnalyzeMessage({ text: "Please select main cookie and pet!", isError: true });
       return;
     }
 
@@ -338,9 +486,8 @@ export default function AdminPage() {
         });
         setCombos([{ ...created, isBoosted: true }, ...combos]);
         setShowComboModal(false);
-        alert("🎉 Meta Combo published & boosted successfully!");
       } else {
-        alert("Failed to publish combo.");
+        setAiAnalyzeMessage({ text: "Failed to publish combo.", isError: true });
       }
     } catch (e) {
       console.error(e);
@@ -349,6 +496,7 @@ export default function AdminPage() {
 
   const openAddModal = (cat: ItemCategory) => {
     setIsNew(true);
+    setSaveError('');
     setEditItem({
       id: `new-${cat}-${Date.now()}`,
       name: '',
@@ -363,6 +511,7 @@ export default function AdminPage() {
 
   const openEditModal = (item: Cookie | Pet | Treasure, cat: ItemCategory) => {
     setIsNew(false);
+    setSaveError('');
     const descText = (item as Cookie | Pet).description || (item as Treasure).effect || '';
     const skillText = (item as Cookie | Pet).skill || descText;
     setEditItem({
@@ -382,7 +531,7 @@ export default function AdminPage() {
       <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-zinc-400 font-medium">Verifying Admin Access...</p>
+          <p className="text-zinc-400 font-medium text-sm">Verifying Admin Access...</p>
         </div>
       </div>
     );
@@ -418,8 +567,9 @@ export default function AdminPage() {
       <div className="bg-gradient-to-b from-purple-500/20 via-zinc-900/40 to-zinc-950 border-b border-zinc-800/80 py-8 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
-              <span>⚡ Admin Management Portal</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
+              <AdminIcon className="w-4 h-4" />
+              <span>Admin Management Portal</span>
             </div>
             <h1 className="text-3xl font-black text-white tracking-tight">
               Catalog Control, Visual Combo Maker & Meta Boosting
@@ -429,26 +579,26 @@ export default function AdminPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 bg-zinc-900 p-1 rounded-xl border border-zinc-800 flex-wrap">
+          <div className="flex items-center gap-2 bg-zinc-900 p-1.5 rounded-2xl border border-zinc-800 flex-wrap">
             <button
               onClick={() => setActiveTab('catalog')}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
                 activeTab === 'catalog'
                   ? 'bg-purple-600 text-white shadow-lg'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
-              📦 Catalog Items ({catalog.cookies.length + catalog.pets.length + catalog.treasures.length})
+              Catalog Items ({catalog.cookies.length + catalog.pets.length + catalog.treasures.length})
             </button>
             <button
               onClick={() => setActiveTab('boost')}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
                 activeTab === 'boost'
                   ? 'bg-amber-500 text-zinc-950 shadow-lg font-black'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
-              ★ Manage Meta Combos ({combos.length})
+              Manage Meta Combos ({combos.length})
             </button>
           </div>
         </div>
@@ -464,62 +614,85 @@ export default function AdminPage() {
               {/* Category Selector */}
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setCatalogCategory('cookie')}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+                  onClick={() => { setCatalogCategory('cookie'); setSearchTerm(''); setCurrentPage(1); }}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                     catalogCategory === 'cookie'
                       ? 'bg-amber-500 text-zinc-950 font-black'
                       : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white'
                   }`}
                 >
-                  🍪 Cookies ({catalog.cookies.length})
+                  <CookieIcon className="w-3.5 h-3.5" />
+                  <span>Cookies ({catalog.cookies.length})</span>
                 </button>
 
                 <button
-                  onClick={() => setCatalogCategory('pet')}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+                  onClick={() => { setCatalogCategory('pet'); setSearchTerm(''); setCurrentPage(1); }}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                     catalogCategory === 'pet'
                       ? 'bg-purple-500 text-white font-black'
                       : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white'
                   }`}
                 >
-                  🐾 Pets ({catalog.pets.length})
+                  <PetIcon className="w-3.5 h-3.5" />
+                  <span>Pets ({catalog.pets.length})</span>
                 </button>
 
                 <button
-                  onClick={() => setCatalogCategory('treasure')}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+                  onClick={() => { setCatalogCategory('treasure'); setSearchTerm(''); setCurrentPage(1); }}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                     catalogCategory === 'treasure'
                       ? 'bg-amber-400 text-zinc-950 font-black'
                       : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white'
                   }`}
                 >
-                  💎 Treasures ({catalog.treasures.length})
+                  <TreasureIcon className="w-3.5 h-3.5" />
+                  <span>Treasures ({catalog.treasures.length})</span>
                 </button>
               </div>
 
               {/* Add & Search Controls */}
               <div className="flex items-center gap-3">
-                <input
-                  type="text"
-                  placeholder={`Search ${catalogCategory}s...`}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-500 outline-none"
-                />
+                <div className="relative">
+                  <SearchIcon className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    placeholder={`Search ${catalogCategory}s...`}
+                    value={searchTerm}
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="bg-zinc-900 border border-zinc-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-500 transition"
+                  />
+                </div>
 
                 <button
                   onClick={() => openAddModal(catalogCategory)}
-                  className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-black text-xs shadow-lg shadow-emerald-500/20 transition flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-black text-xs shadow-lg shadow-emerald-500/20 transition flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span>+ Add New {catalogCategory.toUpperCase()}</span>
+                  <PlusIcon className="w-4 h-4 stroke-[3]" />
+                  <span>Add New {catalogCategory.toUpperCase()}</span>
                 </button>
               </div>
 
             </div>
 
+            {/* Top Pagination Controls */}
+            <PaginationControls
+              currentPage={currentPage}
+              totalItems={filteredItems.length}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+              onPageSizeChange={setPageSize}
+              className="mb-4 bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4"
+            />
+
             {/* Catalog Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {filteredItems.map(item => (
+              {(pageSize === 'ALL'
+                ? filteredItems
+                : filteredItems.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+              ).map(item => (
                 <div
                   key={item.id}
                   className="bg-zinc-900/90 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between hover:border-zinc-700 transition"
@@ -548,24 +721,45 @@ export default function AdminPage() {
                   <div className="pt-3 mt-2 border-t border-zinc-800 flex items-center justify-end gap-2">
                     <button
                       onClick={() => openEditModal(item, catalogCategory)}
-                      className="px-3 py-1 rounded-lg text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 transition"
+                      className="px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 transition flex items-center gap-1 cursor-pointer"
                     >
-                      ✏️ Edit
+                      <EditIcon className="w-3.5 h-3.5 text-zinc-400" />
+                      <span>Edit</span>
                     </button>
                     <button
-                      onClick={() => handleToggleHideItem(catalogCategory, item.id, item.name, item.isHidden)}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                      onClick={() => handleToggleHideItem(catalogCategory, item.id)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1 cursor-pointer ${
                         item.isHidden
                           ? 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40'
                           : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-400 border border-zinc-700'
                       }`}
                     >
-                      {item.isHidden ? '👁️ Unhide' : '🙈 Hide'}
+                      {item.isHidden ? (
+                        <>
+                          <EyeIcon className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>Unhide</span>
+                        </>
+                      ) : (
+                        <>
+                          <EyeOffIcon className="w-3.5 h-3.5 text-zinc-400" />
+                          <span>Hide</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Bottom Pagination Controls */}
+            <PaginationControls
+              currentPage={currentPage}
+              totalItems={filteredItems.length}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+              onPageSizeChange={setPageSize}
+              className="mt-6 bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4"
+            />
           </div>
         )}
 
@@ -574,62 +768,139 @@ export default function AdminPage() {
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-zinc-900/90 border border-zinc-800 rounded-2xl p-5">
               <div>
-                <h2 className="text-xl font-black text-white">Manage & Create Meta Combos</h2>
-                <p className="text-xs text-zinc-400 mt-0.5">Boost combo visibility or create new metas using visual asset pickers or AI Video Extractor.</p>
+                <h2 className="text-xl font-black text-white">Manage & Edit Meta Combos ({combos.length})</h2>
+                <p className="text-xs text-zinc-400 mt-0.5">Search, edit details, boost visibility, or delete setups directly from the database.</p>
               </div>
 
-              <button
-                onClick={() => setShowComboModal(true)}
-                className="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-zinc-950 font-black text-xs shadow-lg shadow-emerald-500/20 transition flex items-center gap-2"
-              >
-                <span>+ Create New Combo (Visual / AI Extractor)</span>
-              </button>
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <SearchIcon className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    placeholder="Search setups by title, ID, tag..."
+                    value={comboSearchTerm}
+                    onChange={(e) => { setComboSearchTerm(e.target.value); setComboCurrentPage(1); }}
+                    className="bg-zinc-950 border border-zinc-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-500 transition"
+                  />
+                </div>
+
+                <button
+                  onClick={openCreateComboModal}
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-zinc-950 font-black text-xs shadow-lg shadow-emerald-500/20 transition flex items-center gap-2 cursor-pointer shrink-0"
+                >
+                  <PlusIcon className="w-4 h-4 stroke-[3]" />
+                  <span>Create New Combo</span>
+                </button>
+              </div>
             </div>
 
-            <div className="space-y-4">
-              {combos.map(combo => (
-                <div
-                  key={combo.id}
-                  className={`bg-zinc-900/90 border rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition ${
-                    combo.isBoosted ? 'border-amber-500/80 ring-1 ring-amber-500/30' : 'border-zinc-800'
-                  }`}
-                >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      {combo.isBoosted && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-500 text-zinc-950 shadow-md uppercase tracking-wider">
-                          ★ BOOSTED META
-                        </span>
-                      )}
-                      {combo.category && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                          {combo.category}
-                        </span>
-                      )}
-                      {combo.tags.map((t, idx) => (
-                        <span key={idx} className="px-2 py-0.5 rounded text-[10px] font-bold bg-zinc-800 text-zinc-300">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+            {/* Pagination & Filtered Combos List */}
+            {(() => {
+              const filteredCombosList = combos.filter(c => {
+                if (!comboSearchTerm) return true;
+                const term = comboSearchTerm.toLowerCase();
+                return c.title.toLowerCase().includes(term) ||
+                  c.id.toLowerCase().includes(term) ||
+                  c.description.toLowerCase().includes(term) ||
+                  (c.episode && c.episode.toLowerCase().includes(term)) ||
+                  c.tags.some(t => t.toLowerCase().includes(term));
+              });
 
-                    <h3 className="text-lg font-black text-white">{combo.title}</h3>
-                    <p className="text-xs text-zinc-400 mt-0.5">{combo.description}</p>
+              const paginatedCombos = comboPageSize === 'ALL'
+                ? filteredCombosList
+                : filteredCombosList.slice((comboCurrentPage - 1) * comboPageSize, comboCurrentPage * comboPageSize);
+
+              return (
+                <div className="space-y-4">
+                  <PaginationControls
+                    currentPage={comboCurrentPage}
+                    totalItems={filteredCombosList.length}
+                    pageSize={comboPageSize}
+                    onPageChange={setComboCurrentPage}
+                    onPageSizeChange={setComboPageSize}
+                    className="bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4 py-2"
+                  />
+
+                  <div className="space-y-3">
+                    {paginatedCombos.map(combo => (
+                      <div
+                        key={combo.id}
+                        className={`bg-zinc-900/90 border rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition ${
+                          combo.isBoosted ? 'border-amber-500/80 ring-1 ring-amber-500/30' : 'border-zinc-800'
+                        }`}
+                      >
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-zinc-950 text-amber-400 border border-amber-500/30">
+                              {combo.id}
+                            </span>
+                            {combo.isBoosted && (
+                              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-500 text-zinc-950 shadow-md uppercase tracking-wider flex items-center gap-1">
+                                <StarIcon className="w-3 h-3 fill-zinc-950" />
+                                <span>BOOSTED</span>
+                              </span>
+                            )}
+                            {combo.episode && (
+                              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-purple-500/20 text-purple-300 border border-purple-500/40">
+                                {combo.episode}
+                              </span>
+                            )}
+                            {combo.category && (
+                              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                                {combo.category}
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 className="text-base font-black text-white truncate mt-1">{combo.title}</h3>
+                          <p className="text-xs text-zinc-300 line-clamp-2 mt-1 leading-relaxed">{combo.description}</p>
+                          <span className="text-[10px] text-zinc-500 mt-1.5 block">Author: {combo.author} • Score: {combo.targetScore.toLocaleString()} • Coins: {combo.coinsPerRun?.toLocaleString() || 0}</span>
+                        </div>
+
+                        <div className="flex items-center gap-2 shrink-0">
+                          <button
+                            onClick={() => openEditComboModal(combo)}
+                            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 transition flex items-center gap-1.5 cursor-pointer"
+                          >
+                            <EditIcon className="w-3.5 h-3.5 text-zinc-400" />
+                            <span>Edit</span>
+                          </button>
+
+                          <button
+                            onClick={() => handleToggleBoost(combo.id, Boolean(combo.isBoosted))}
+                            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                              combo.isBoosted
+                                ? 'bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-md'
+                                : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700'
+                            }`}
+                          >
+                            <StarIcon className={`w-3.5 h-3.5 ${combo.isBoosted ? 'fill-zinc-950' : 'fill-none stroke-current'}`} />
+                            <span>{combo.isBoosted ? 'Boosted' : 'Boost'}</span>
+                          </button>
+
+                          <button
+                            onClick={() => handleDeleteCombo(combo.id)}
+                            className="px-3 py-2 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-rose-500/20 text-zinc-400 hover:text-rose-400 border border-zinc-700 hover:border-rose-500/40 transition flex items-center gap-1 cursor-pointer"
+                          >
+                            <TrashIcon className="w-3.5 h-3.5" />
+                            <span>Delete</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
-                  <button
-                    onClick={() => handleToggleBoost(combo.id, Boolean(combo.isBoosted))}
-                    className={`px-5 py-2.5 rounded-xl text-xs font-black transition ${
-                      combo.isBoosted
-                        ? 'bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-lg shadow-amber-500/20'
-                        : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700'
-                    }`}
-                  >
-                    {combo.isBoosted ? '★ Boosted (Click to Remove)' : '☆ Boost Visibility'}
-                  </button>
+                  <PaginationControls
+                    currentPage={comboCurrentPage}
+                    totalItems={filteredCombosList.length}
+                    pageSize={comboPageSize}
+                    onPageChange={setComboCurrentPage}
+                    onPageSizeChange={setComboPageSize}
+                    className="bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4 py-2"
+                  />
                 </div>
-              ))}
-            </div>
+              );
+            })()}
           </div>
         )}
 
@@ -642,13 +913,16 @@ export default function AdminPage() {
             
             <button
               onClick={() => setShowComboModal(false)}
-              className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold"
+              className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-sm cursor-pointer"
             >
               ✕
             </button>
 
             <div className="mb-6">
-              <h2 className="text-2xl font-black text-white tracking-tight">Create & Publish Meta Combo</h2>
+              <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-2">
+                <PlusIcon className="w-6 h-6 text-amber-400 stroke-[3]" />
+                <span>{editingComboId ? 'Edit & Update Combo Setup' : 'Create & Publish Meta Combo'}</span>
+              </h2>
               <p className="text-xs text-zinc-400 mt-0.5">Use the visual asset pickers or extract setup from TikTok/YouTube video frames.</p>
             </div>
 
@@ -657,25 +931,27 @@ export default function AdminPage() {
               <button
                 type="button"
                 onClick={() => setComboModalMode('manual')}
-                className={`py-2.5 rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-2 ${
+                className={`py-2.5 rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-2 cursor-pointer ${
                   comboModalMode === 'manual'
                     ? 'bg-amber-500 text-zinc-950 shadow-md'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                <span>✍️ Visual Setup Builder</span>
+                <EditIcon className="w-4 h-4" />
+                <span>Visual Setup Builder</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setComboModalMode('ai-video')}
-                className={`py-2.5 rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-2 ${
+                className={`py-2.5 rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-2 cursor-pointer ${
                   comboModalMode === 'ai-video'
                     ? 'bg-emerald-500 text-zinc-950 shadow-md'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                <span>🤖 Auto-Extract From Video (AI Vision)</span>
+                <VideoIcon className="w-4 h-4" />
+                <span>AI Video Frame Extractor</span>
               </button>
             </div>
 
@@ -683,19 +959,20 @@ export default function AdminPage() {
             {comboModalMode === 'ai-video' && (
               <div className="bg-zinc-950 p-5 rounded-2xl border border-emerald-500/40 space-y-4 mb-6">
                 <div className="flex items-center gap-2">
-                  <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider">🎬 AI Vision Frame Analyzer</span>
+                  <VideoIcon className="w-4 h-4 text-emerald-400" />
+                  <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider">AI Vision Frame Analyzer</span>
                 </div>
                 <p className="text-xs text-zinc-400 leading-relaxed">
                   AI Vision can&apos;t watch a video directly — pause the TikTok/YouTube video at the frame that shows
-                  the Cookie / Pet / Treasure lineup (team-select or results screen), take a screenshot, and upload
-                  it below. The video link is optional context used only for the title/tags.
+                  the Cookie / Pet / Treasure lineup, take a screenshot, and upload it below.
                 </p>
 
                 <div className="flex gap-3 items-start flex-wrap">
                   <label className={`shrink-0 px-4 py-2.5 rounded-xl font-black text-xs shadow-md transition flex items-center gap-2 cursor-pointer ${
                     aiFramePreview ? 'bg-zinc-800 text-emerald-300 border border-emerald-500/40' : 'bg-emerald-500 hover:bg-emerald-400 text-zinc-950'
                   }`}>
-                    <span>{aiFramePreview ? '🖼️ Change Frame' : '📸 Upload Video Frame'}</span>
+                    <CameraIcon className="w-4 h-4" />
+                    <span>{aiFramePreview ? 'Change Frame' : 'Upload Video Frame'}</span>
                     <input type="file" accept="image/png,image/jpeg,image/webp" onChange={handleFrameFileSelected} className="hidden" />
                   </label>
 
@@ -719,9 +996,10 @@ export default function AdminPage() {
                   type="button"
                   onClick={() => handleAnalyzeVideo()}
                   disabled={aiAnalyzing || !aiFramePreview}
-                  className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed text-zinc-950 font-black text-xs transition flex items-center gap-1.5"
+                  className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed text-zinc-950 font-black text-xs transition flex items-center gap-1.5 cursor-pointer"
                 >
-                  {aiAnalyzing ? 'Analyzing frame...' : 'Analyze Frame with AI Vision'}
+                  <SparklesIcon className="w-4 h-4" />
+                  <span>{aiAnalyzing ? 'Analyzing frame...' : 'Analyze Frame with AI Vision'}</span>
                 </button>
 
                 {aiAnalyzeMessage && (
@@ -753,14 +1031,14 @@ export default function AdminPage() {
                   <select
                     value={comboForm.category}
                     onChange={(e) => setComboForm({ ...comboForm, category: e.target.value as ComboCategory })}
-                    className="w-full bg-zinc-950 border border-emerald-500/40 rounded-xl px-3 py-2 text-xs text-white font-bold outline-none"
+                    className="w-full bg-zinc-950 border border-emerald-500/40 rounded-xl px-3 py-2 text-xs text-white font-bold outline-none cursor-pointer"
                   >
-                    <option value="High Score (Points)">🏆 High Score (Points)</option>
-                    <option value="XP Farming">⭐ XP Farming</option>
-                    <option value="Coin Farming">🪙 Coin Farming</option>
-                    <option value="Treasure Box Farming">🎁 Treasure Box Farming</option>
-                    <option value="AFK Coin Farming">💤 AFK Coin Farming</option>
-                    <option value="AFK Treasure Box Farming">💤🎁 AFK Treasure Box Farming</option>
+                    <option value="High Score (Points)">High Score (Points)</option>
+                    <option value="XP Farming">XP Farming</option>
+                    <option value="Coin Farming">Coin Farming</option>
+                    <option value="Treasure Box Farming">Treasure Box Farming</option>
+                    <option value="AFK Coin Farming">AFK Coin Farming</option>
+                    <option value="AFK Treasure Box Farming">AFK Treasure Box Farming</option>
                   </select>
                 </div>
               </div>
@@ -785,7 +1063,7 @@ export default function AdminPage() {
                       )}
                     </div>
                     <span className="text-xs font-extrabold text-white mt-1 line-clamp-1">{selectedMainCookie?.name || 'Select Cookie'}</span>
-                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">✏️ Click to Change</span>
+                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">Click to Change</span>
                   </div>
 
                   {/* Relay Cookie Visual Tile */}
@@ -802,7 +1080,7 @@ export default function AdminPage() {
                       )}
                     </div>
                     <span className="text-xs font-extrabold text-white mt-1 line-clamp-1">{selectedRelayCookie?.name || 'No Relay'}</span>
-                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">✏️ Click to Change</span>
+                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">Click to Change</span>
                   </div>
 
                   {/* Pet Visual Tile */}
@@ -819,7 +1097,7 @@ export default function AdminPage() {
                       )}
                     </div>
                     <span className="text-xs font-extrabold text-white mt-1 line-clamp-1">{selectedPet?.name || 'Select Pet'}</span>
-                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">✏️ Click to Change</span>
+                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">Click to Change</span>
                   </div>
 
                 </div>
@@ -836,7 +1114,7 @@ export default function AdminPage() {
                     onClick={() => setPickerModal({ isOpen: true, title: 'Select Treasure 1 (Optional)', category: 'treasure', slot: 't1', allowNone: true })}
                     className="bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 hover:border-amber-500/60 p-3 rounded-2xl cursor-pointer transition flex flex-col items-center text-center group"
                   >
-                    <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider mb-1">💎 Treasure 1</span>
+                    <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider mb-1">Treasure 1</span>
                     <div className="w-14 h-14 relative bg-zinc-900 rounded-xl p-1 border border-zinc-800 flex items-center justify-center my-1 group-hover:scale-105 transition-transform">
                       {selectedT1 ? (
                         <Image src={selectedT1.imageUrl} alt="Treasure 1" width={44} height={44} unoptimized className="object-contain" />
@@ -845,7 +1123,7 @@ export default function AdminPage() {
                       )}
                     </div>
                     <span className="text-xs font-extrabold text-white mt-1 line-clamp-1">{selectedT1?.name || 'No Treasure'}</span>
-                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">✏️ Click to Change</span>
+                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">Click to Change</span>
                   </div>
 
                   {/* Treasure 2 */}
@@ -853,7 +1131,7 @@ export default function AdminPage() {
                     onClick={() => setPickerModal({ isOpen: true, title: 'Select Treasure 2', category: 'treasure', slot: 't2', allowNone: true })}
                     className="bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 hover:border-amber-500/60 p-3 rounded-2xl cursor-pointer transition flex flex-col items-center text-center group"
                   >
-                    <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider mb-1">💎 Treasure 2</span>
+                    <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider mb-1">Treasure 2</span>
                     <div className="w-14 h-14 relative bg-zinc-900 rounded-xl p-1 border border-zinc-800 flex items-center justify-center my-1 group-hover:scale-105 transition-transform">
                       {selectedT2 ? (
                         <Image src={selectedT2.imageUrl} alt="Treasure 2" width={44} height={44} unoptimized className="object-contain" />
@@ -862,7 +1140,7 @@ export default function AdminPage() {
                       )}
                     </div>
                     <span className="text-xs font-extrabold text-white mt-1 line-clamp-1">{selectedT2?.name || 'No Treasure'}</span>
-                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">✏️ Click to Change</span>
+                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">Click to Change</span>
                   </div>
 
                   {/* Treasure 3 */}
@@ -870,7 +1148,7 @@ export default function AdminPage() {
                     onClick={() => setPickerModal({ isOpen: true, title: 'Select Treasure 3', category: 'treasure', slot: 't3', allowNone: true })}
                     className="bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 hover:border-amber-500/60 p-3 rounded-2xl cursor-pointer transition flex flex-col items-center text-center group"
                   >
-                    <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider mb-1">💎 Treasure 3</span>
+                    <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider mb-1">Treasure 3</span>
                     <div className="w-14 h-14 relative bg-zinc-900 rounded-xl p-1 border border-zinc-800 flex items-center justify-center my-1 group-hover:scale-105 transition-transform">
                       {selectedT3 ? (
                         <Image src={selectedT3.imageUrl} alt="Treasure 3" width={44} height={44} unoptimized className="object-contain" />
@@ -879,7 +1157,7 @@ export default function AdminPage() {
                       )}
                     </div>
                     <span className="text-xs font-extrabold text-white mt-1 line-clamp-1">{selectedT3?.name || 'No Treasure'}</span>
-                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">✏️ Click to Change</span>
+                    <span className="text-[10px] text-amber-400 font-bold mt-0.5">Click to Change</span>
                   </div>
 
                 </div>
@@ -918,59 +1196,60 @@ export default function AdminPage() {
               </div>
 
               {/* Pre-Run Boosts & Random Boost Selection */}
-              <div className="bg-zinc-950 p-4 rounded-xl border border-zinc-800 space-y-3">
-                <span className="text-xs font-black text-amber-400 uppercase tracking-wider block">
-                  ⚡ Pre-Run Boosts & Random Boost
+              <div className="bg-zinc-950 p-4 rounded-2xl border border-zinc-800 space-y-3">
+                <span className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <LightningIcon className="w-4 h-4 text-amber-400" />
+                  <span>Pre-Run Boosts & Random Boost</span>
                 </span>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2 rounded-lg border border-zinc-800">
+                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2.5 rounded-xl border border-zinc-800">
                     <input
                       type="checkbox"
                       checked={comboForm.hpExtension}
                       onChange={(e) => setComboForm({ ...comboForm, hpExtension: e.target.checked })}
                       className="rounded text-amber-500 bg-zinc-950 border-zinc-700"
                     />
-                    <span>🧪 HP Extension</span>
+                    <span>HP Extension</span>
                   </label>
 
-                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2 rounded-lg border border-zinc-800">
+                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2.5 rounded-xl border border-zinc-800">
                     <input
                       type="checkbox"
                       checked={comboForm.powerJellyBoost}
                       onChange={(e) => setComboForm({ ...comboForm, powerJellyBoost: e.target.checked })}
                       className="rounded text-amber-500 bg-zinc-950 border-zinc-700"
                     />
-                    <span>⚡ Power Jelly</span>
+                    <span>Power Jelly</span>
                   </label>
 
-                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2 rounded-lg border border-zinc-800">
+                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2.5 rounded-xl border border-zinc-800">
                     <input
                       type="checkbox"
                       checked={comboForm.doubleXp}
                       onChange={(e) => setComboForm({ ...comboForm, doubleXp: e.target.checked })}
                       className="rounded text-amber-500 bg-zinc-950 border-zinc-700"
                     />
-                    <span>⭐ Double XP</span>
+                    <span>Double XP</span>
                   </label>
 
-                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2 rounded-lg border border-zinc-800">
+                  <label className="flex items-center gap-2 text-xs text-zinc-300 font-semibold cursor-pointer bg-zinc-900 p-2.5 rounded-xl border border-zinc-800">
                     <input
                       type="checkbox"
                       checked={comboForm.fastStart}
                       onChange={(e) => setComboForm({ ...comboForm, fastStart: e.target.checked })}
                       className="rounded text-amber-500 bg-zinc-950 border-zinc-700"
                     />
-                    <span>🚀 Fast Start</span>
+                    <span>Fast Start</span>
                   </label>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-amber-300 uppercase tracking-wider mb-1">🎰 Required Random Boost</label>
+                  <label className="block text-xs font-bold text-amber-300 uppercase tracking-wider mb-1">Required Random Boost</label>
                   <select
                     value={comboForm.randomBoost}
                     onChange={(e) => setComboForm({ ...comboForm, randomBoost: e.target.value })}
-                    className="w-full bg-zinc-900 border border-amber-500/40 rounded-xl px-3 py-2 text-xs text-white font-bold outline-none"
+                    className="w-full bg-zinc-900 border border-amber-500/40 rounded-xl px-3 py-2 text-xs text-white font-bold outline-none cursor-pointer"
                   >
                     <option value="Energy Drains 15% slower">Energy Drains 15% slower</option>
                     <option value="30% less energy drain when colliding with obstacles">30% less energy drain when colliding with obstacles</option>
@@ -991,15 +1270,15 @@ export default function AdminPage() {
                 <button
                   type="button"
                   onClick={() => setShowComboModal(false)}
-                  className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300"
+                  className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-black text-xs shadow-lg shadow-amber-500/20"
+                  className="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-black text-xs shadow-lg shadow-amber-500/20 cursor-pointer"
                 >
-                  🚀 Publish Meta Combo
+                  Publish Meta Combo
                 </button>
               </div>
             </form>
@@ -1010,11 +1289,11 @@ export default function AdminPage() {
 
       {/* ITEM EDIT MODAL (FOR CATALOG ITEMS) */}
       {editItem && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-lg w-full p-6 relative text-zinc-100 shadow-2xl">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative text-zinc-100 shadow-2xl">
             <button
               onClick={() => setEditItem(null)}
-              className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold"
+              className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-sm cursor-pointer"
             >
               ✕
             </button>
@@ -1022,6 +1301,12 @@ export default function AdminPage() {
             <h2 className="text-xl font-black text-white mb-4">
               {isNew ? `Add New ${editItem.category.toUpperCase()}` : `Edit ${editItem.name}`}
             </h2>
+
+            {saveError && (
+              <div className="mb-4 text-xs bg-rose-500/10 border border-rose-500/30 text-rose-300 p-3 rounded-xl">
+                ⚠️ {saveError}
+              </div>
+            )}
 
             <form onSubmit={handleSaveItem} className="space-y-4">
               <div>
@@ -1055,7 +1340,7 @@ export default function AdminPage() {
                   <select
                     value={editItem.grade}
                     onChange={(e) => setEditItem({ ...editItem, grade: e.target.value as Grade })}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none font-bold"
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none font-bold cursor-pointer"
                   >
                     <option value="C">Grade C</option>
                     <option value="B">Grade B</option>
@@ -1103,13 +1388,13 @@ export default function AdminPage() {
                 <button
                   type="button"
                   onClick={() => setEditItem(null)}
-                  className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300"
+                  className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-lg"
+                  className="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-lg cursor-pointer"
                 >
                   Save Item
                 </button>

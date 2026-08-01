@@ -105,16 +105,26 @@ def parse_level_table(table: BeautifulSoup) -> (list, list):
     if not rows:
         return hp_stats, skill_stats
 
-    header_cells = [c.get_text(strip=True).lower() for c in rows[0].find_all(['th', 'td'])]
-    if not any(k in ' '.join(header_cells) for k in ['level', 'lvl', 'energy', 'hp', 'effect', 'skill', 'ability']):
+    header_row_idx = -1
+    header_cells = []
+    
+    # Check first 4 rows to find the actual table header row
+    for r_idx, row in enumerate(rows[:4]):
+        cells = [c.get_text(strip=True).lower() for c in row.find_all(['th', 'td'])]
+        cells_str = ' '.join(cells)
+        if any(k in cells_str for k in ['level', 'lvl', 'energy', 'hp', 'effect', 'skill', 'ability']):
+            header_row_idx = r_idx
+            header_cells = cells
+            break
+
+    if header_row_idx == -1:
         return hp_stats, skill_stats
 
     level_idx = next((i for i, h in enumerate(header_cells) if 'level' in h or 'lvl' in h), 0)
     hp_idx = next((i for i, h in enumerate(header_cells) if any(x in h for x in ['hp', 'energy', 'health'])), -1)
     skill_idx = next((i for i, h in enumerate(header_cells) if any(x in h for x in ['effect', 'skill', 'ability'])), -1)
 
-    row_count = 0
-    for row in rows[1:]:
+    for row in rows[header_row_idx + 1:]:
         cols = [c.get_text(strip=True) for c in row.find_all(['td', 'th'])]
         if not cols:
             continue
@@ -122,12 +132,14 @@ def parse_level_table(table: BeautifulSoup) -> (list, list):
         if any(bad in row_txt for bad in ['documents a feature', 'Cookie Run ClassicPlayable', 'Playable Pets', 'Playable Cookies']):
             continue
 
-        row_count += 1
-        lvl_val = row_count
+        lvl_val = None
         if len(cols) > level_idx:
-            m = re.search(r'\d+', cols[level_idx])
+            m = re.search(r'^\d+$', cols[level_idx].strip()) or re.search(r'\d+', cols[level_idx])
             if m:
                 lvl_val = int(m.group())
+
+        if lvl_val is None or lvl_val <= 0:
+            continue
 
         if hp_idx != -1 and len(cols) > hp_idx and cols[hp_idx]:
             hp_stats.append({"level": lvl_val, "effect": cols[hp_idx]})

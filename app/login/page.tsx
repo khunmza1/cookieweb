@@ -2,6 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { 
+  CookieIcon, 
+  LockIcon, 
+  UserIcon, 
+  AdminIcon, 
+  SparklesIcon 
+} from '@/components/icons';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -57,38 +64,42 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col">
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6">
-        <div className="bg-zinc-900/90 border border-zinc-800 rounded-3xl max-w-md w-full p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden">
-          
-          {/* Top Gradient Flare */}
-          <div className="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
+        
+        {/* Background Ambient Lights */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
+        <div className="bg-zinc-900/90 border border-zinc-800 rounded-3xl max-w-md w-full p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden z-10">
+          
           <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-black uppercase tracking-wider mb-3">
+              <LockIcon className="w-3.5 h-3.5" />
               <span>Runner Authentication Module</span>
             </div>
             <h1 className="text-3xl font-black text-white tracking-tight">
               {isRegister ? 'Create Your Account' : 'Sign In To Cookie Run'}
             </h1>
-            <p className="text-xs text-zinc-400 mt-1">
+            <p className="text-xs text-zinc-400 mt-1.5 leading-relaxed">
               Store your owned Cookies, Pets, & Treasures to unlock 100% personalized recommendations.
             </p>
           </div>
 
           {/* Mode Switcher Tabs */}
-          <div className="grid grid-cols-2 gap-1 p-1 bg-zinc-950 rounded-xl border border-zinc-800 mb-6">
+          <div className="grid grid-cols-2 gap-1 p-1 bg-zinc-950 rounded-2xl border border-zinc-800 mb-6">
             <button
+              type="button"
               onClick={() => { setIsRegister(false); setError(''); }}
-              className={`py-2 rounded-lg text-xs font-bold transition ${
-                !isRegister ? 'bg-amber-500 text-zinc-950 shadow-md' : 'text-zinc-400 hover:text-white'
+              className={`py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                !isRegister ? 'bg-amber-500 text-zinc-950 shadow-md font-black' : 'text-zinc-400 hover:text-white'
               }`}
             >
               Sign In
             </button>
             <button
+              type="button"
               onClick={() => { setIsRegister(true); setError(''); }}
-              className={`py-2 rounded-lg text-xs font-bold transition ${
-                isRegister ? 'bg-amber-500 text-zinc-950 shadow-md' : 'text-zinc-400 hover:text-white'
+              className={`py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                isRegister ? 'bg-amber-500 text-zinc-950 shadow-md font-black' : 'text-zinc-400 hover:text-white'
               }`}
             >
               Register New
@@ -129,7 +140,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black text-sm shadow-xl shadow-amber-500/20 transition"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black text-sm shadow-xl shadow-amber-500/20 transition cursor-pointer"
             >
               {loading ? 'Processing...' : isRegister ? 'Register Account' : 'Sign In'}
             </button>
@@ -138,30 +149,39 @@ export default function LoginPage() {
           {/* Quick Demo Credentials Fill Section */}
           <div className="mt-6 pt-6 border-t border-zinc-800">
             <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block text-center mb-3">
-              ⚡ Quick Fill Demo Accounts
+              Quick Fill Demo Accounts
             </span>
             <div className="grid grid-cols-2 gap-2">
               <button
+                type="button"
                 onClick={fillDemoAdmin}
-                className="py-2 px-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs font-bold transition text-left"
+                className="py-2.5 px-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs font-bold transition text-left cursor-pointer"
               >
-                <span className="block font-black">👑 Admin Account</span>
-                <span className="text-[10px] text-zinc-400 font-mono">admin / admin123</span>
+                <div className="flex items-center gap-1.5 font-black">
+                  <AdminIcon className="w-3.5 h-3.5" />
+                  <span>Admin Account</span>
+                </div>
+                <span className="text-[10px] text-zinc-400 font-mono block mt-0.5">admin / admin123</span>
               </button>
 
               <button
+                type="button"
                 onClick={fillDemoRunner}
-                className="py-2 px-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold transition text-left"
+                className="py-2.5 px-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold transition text-left cursor-pointer"
               >
-                <span className="block font-black">🍪 Runner Account</span>
-                <span className="text-[10px] text-zinc-400 font-mono">runner / runner123</span>
+                <div className="flex items-center gap-1.5 font-black">
+                  <CookieIcon className="w-3.5 h-3.5" />
+                  <span>Runner Account</span>
+                </div>
+                <span className="text-[10px] text-zinc-400 font-mono block mt-0.5">runner / runner123</span>
               </button>
             </div>
           </div>
 
           {/* OAuth Production Readiness Banner */}
-          <div className="mt-6 p-3 bg-zinc-950/60 rounded-xl border border-zinc-800/80 text-[11px] text-zinc-400 text-center">
-            🔐 <strong className="text-zinc-300">Production OAuth Architecture</strong>: Plug-and-play interface ready for Google OIDC, Discord, or NextAuth provider integration.
+          <div className="mt-6 p-3 bg-zinc-950/60 rounded-xl border border-zinc-800/80 text-[11px] text-zinc-400 text-center flex items-center justify-center gap-1.5">
+            <LockIcon className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+            <span><strong className="text-zinc-300">OAuth Architecture</strong>: OIDC / Discord / NextAuth provider integration ready.</span>
           </div>
 
         </div>

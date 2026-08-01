@@ -1,0 +1,3010 @@
+[
+  {
+    "id": "hub-rec-ep1-score",
+    "title": "EP1 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "blooming-dancheong-cookie",
+    "relayCookieId": "braised-pork-cookie",
+    "petId": "bok-choy-cushion",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "jelly-pong-pong-jumping-jelly-horse",
+      "feather-laurel-wreath-for-winner"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (High Score (Points)).",
+    "tags": [
+      "EP1",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:51.952829+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep1-coin",
+    "title": "EP1 Top Popular Coin Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "feather-laurel-wreath-for-winner",
+      "radiant-banana-milk-two-handed-cup"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 65000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (Coin Farming).",
+    "tags": [
+      "EP1",
+      "Coin Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:45:57.423655+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep1-exp",
+    "title": "EP1 Top Popular XP Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "XP Farming",
+    "cookieId": "gingerbright",
+    "relayCookieId": "alchemist-cookie",
+    "petId": "coin-scale",
+    "treasureIds": [
+      "raspberry-carousel-music-box",
+      "fatal-twin-iceberg-bar",
+      "rock-spirit-korean-melon-electric-guitar"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (XP Farming).",
+    "tags": [
+      "EP1",
+      "XP Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:00.455679+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep1-mystery_box",
+    "title": "EP1 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "Treasure Box Farming",
+    "cookieId": "soda-cookie",
+    "petId": "soft-egg-bunny",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (Treasure Box Farming).",
+    "tags": [
+      "EP1",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:00.840316+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep2-score",
+    "title": "EP2 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "High Score (Points)",
+    "cookieId": "lotus-root-phantom-cookie",
+    "relayCookieId": "garaetteok-cookie",
+    "petId": "lotus-sitter",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "darkness-swallowing-transparent-lantern",
+      "indomitable-tricolor-hairband"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (High Score (Points)).",
+    "tags": [
+      "EP2",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:01.320854+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep2-coin",
+    "title": "EP2 Top Popular Coin Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "sweet-sour-thrilling-super-carbonated-drink",
+      "slippery-golden-banana-peel",
+      "rich-rich-coin-wallet"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 65000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (Coin Farming).",
+    "tags": [
+      "EP2",
+      "Coin Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:04.455674+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep2-exp",
+    "title": "EP2 Top Popular XP Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "XP Farming",
+    "cookieId": "gingerbright",
+    "relayCookieId": "boarder-cookie",
+    "petId": "forgotten-stocking",
+    "treasureIds": [
+      "fatal-twin-iceberg-bar",
+      "raspberry-carousel-music-box",
+      "holy-feather"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (XP Farming).",
+    "tags": [
+      "EP2",
+      "XP Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:05.559363+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep2-mystery_box",
+    "title": "EP2 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "banana-cookie",
+    "petId": "soft-egg-bunny",
+    "treasureIds": [
+      "fire-spirit-cookie-flame-orb",
+      "mushroom-lamp-in-the-forest",
+      "hyper-carbonated-drink-zero"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (Treasure Box Farming).",
+    "tags": [
+      "EP2",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:07.025512+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep3-score",
+    "title": "EP3 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "High Score (Points)",
+    "cookieId": "blooming-dancheong-cookie",
+    "relayCookieId": "braised-pork-cookie",
+    "petId": "bok-choy-cushion",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "darkness-swallowing-transparent-lantern",
+      "pro-s-golden-glove"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (High Score (Points)).",
+    "tags": [
+      "EP3",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:07.747162+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep3-coin",
+    "title": "EP3 Top Popular Coin Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "dasara-bread-fresh-bread-clip",
+      "banana-peel-left-by-someone",
+      "sweet-sour-thrilling-super-carbonated-drink"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 65000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (Coin Farming).",
+    "tags": [
+      "EP3",
+      "Coin Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:08.212393+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep3-exp",
+    "title": "EP3 Top Popular XP Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "XP Farming",
+    "cookieId": "alchemist-cookie",
+    "relayCookieId": "gingerbright",
+    "petId": "coin-scale",
+    "treasureIds": [
+      "raspberry-carousel-music-box",
+      "holy-feather",
+      "sugar-covered-lollipop-piece"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (XP Farming).",
+    "tags": [
+      "EP3",
+      "XP Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:08.558296+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep3-mystery_box",
+    "title": "EP3 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "Treasure Box Farming",
+    "cookieId": "hero-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "cheeseberry",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "holy-feather",
+      "feather-laurel-wreath-for-winner"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (Treasure Box Farming).",
+    "tags": [
+      "EP3",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:08.846068+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep4-score",
+    "title": "EP4 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP4 (City of the Wizards)",
+    "category": "High Score (Points)",
+    "cookieId": "roll-cake-cookie",
+    "relayCookieId": "kaymak-cookie",
+    "petId": "honey-gourd",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "pro-s-golden-glove",
+      "darkness-swallowing-transparent-lantern"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP4 (City of the Wizards) (High Score (Points)).",
+    "tags": [
+      "EP4",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:09.122098+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep4-mystery_box",
+    "title": "EP4 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP4 (City of the Wizards)",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "lotus-root-phantom-cookie",
+    "petId": "elctro-lemon",
+    "treasureIds": [
+      "mushroom-lamp-in-the-forest",
+      "shining-crown-for-champion",
+      "badge-covered-rookie-backpack"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP4 (City of the Wizards) (Treasure Box Farming).",
+    "tags": [
+      "EP4",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:09.897634+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep5-score",
+    "title": "EP5 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP5 (Dessert Paradise)",
+    "category": "High Score (Points)",
+    "cookieId": "blooming-dancheong-cookie",
+    "relayCookieId": "roll-cake-cookie",
+    "petId": "choco-hedgehog",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "darkness-swallowing-transparent-lantern",
+      "royal-bear-jelly-saddle"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP5 (Dessert Paradise) (High Score (Points)).",
+    "tags": [
+      "EP5",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:10.176843+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep5-coin",
+    "title": "EP5 Top Popular Coin Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP5 (Dessert Paradise)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "coin-scale",
+    "treasureIds": [
+      "spotlight-vanilla-bulb",
+      "whipped-cream",
+      "feather-laurel-wreath-for-winner"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 65000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP5 (Dessert Paradise) (Coin Farming).",
+    "tags": [
+      "EP5",
+      "Coin Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:10.432444+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep5-mystery_box",
+    "title": "EP5 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP5 (Dessert Paradise)",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "banana-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "fire-spirit-cookie-flame-orb",
+      "long-lasting-mushroom-flashlight",
+      "mr-squeak-bouncy-life-tube"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP5 (Dessert Paradise) (Treasure Box Farming).",
+    "tags": [
+      "EP5",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:10.968635+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep6-score",
+    "title": "EP6 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "High Score (Points)",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "pistachio-cookie",
+    "petId": "pistachio-firefly",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "frozen-orange-drink",
+      "autumn-night-camping-skewer-set"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP6 (High Score (Points)).",
+    "tags": [
+      "EP6",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:11.218158+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep6-coin",
+    "title": "EP6 Top Popular Coin Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "rich-rich-coin-wallet",
+      "hyper-carbonated-drink-zero",
+      "slippery-golden-banana-peel"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 65000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP6 (Coin Farming).",
+    "tags": [
+      "EP6",
+      "Coin Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:11.460587+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep6-exp",
+    "title": "EP6 Top Popular XP Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "XP Farming",
+    "cookieId": "hero-cookie",
+    "relayCookieId": "alchemist-cookie",
+    "petId": "forgotten-stocking",
+    "treasureIds": [
+      "frozen-orange-drink",
+      "fatal-twin-iceberg-bar",
+      "raspberry-carousel-music-box"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP6 (XP Farming).",
+    "tags": [
+      "EP6",
+      "XP Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:11.711433+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep6-mystery_box",
+    "title": "EP6 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "soda-cookie",
+    "petId": "cheeseberry",
+    "treasureIds": [
+      "mushroom-lamp-in-the-forest",
+      "badge-covered-rookie-backpack",
+      "fire-spirit-cookie-flame-orb"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP6 (Treasure Box Farming).",
+    "tags": [
+      "EP6",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:11.960225+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep7-score",
+    "title": "EP7 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "High Score (Points)",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "braised-pork-cookie",
+    "petId": "bok-choy-cushion",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "early-adopter-smart-pad",
+      "autumn-night-camping-skewer-set"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP7 (High Score (Points)).",
+    "tags": [
+      "EP7",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:12.245160+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep7-coin",
+    "title": "EP7 Top Popular Coin Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "Coin Farming",
+    "cookieId": "potato-salad-cookie",
+    "relayCookieId": "buttercream-choco-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "feather-laurel-wreath-for-winner",
+      "magic-dictionary-appendix-bromide",
+      "rich-rich-coin-wallet"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 65000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP7 (Coin Farming).",
+    "tags": [
+      "EP7",
+      "Coin Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:13.737775+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep7-exp",
+    "title": "EP7 Top Popular XP Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "XP Farming",
+    "cookieId": "hero-cookie",
+    "relayCookieId": "gingerbright",
+    "petId": "air-drop",
+    "treasureIds": [
+      "blueberry-white-horse-music-box",
+      "frozen-orange-drink",
+      "fatal-twin-iceberg-bar"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP7 (XP Farming).",
+    "tags": [
+      "EP7",
+      "XP Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:14.153712+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-ep7-mystery_box",
+    "title": "EP7 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "buttercream-choco-cookie",
+    "petId": "cheeseberry",
+    "treasureIds": [
+      "fire-spirit-cookie-flame-orb",
+      "mushroom-lamp-in-the-forest",
+      "shining-crown-for-champion"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for EP7 (Treasure Box Farming).",
+    "tags": [
+      "EP7",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:14.451319+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special1-score",
+    "title": "SPECIAL1 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 1 (Tower of Frozen Waves)",
+    "category": "High Score (Points)",
+    "cookieId": "moonlight-cookie",
+    "petId": "wave-drop",
+    "treasureIds": [
+      "radiant-banana-milk-two-handed-cup",
+      "precious-mini-coral",
+      "slippery-golden-banana-peel"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 1 (Tower of Frozen Waves) (High Score (Points)).",
+    "tags": [
+      "SPECIAL1",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:14.763301+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special1-mystery_box",
+    "title": "SPECIAL1 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 1 (Tower of Frozen Waves)",
+    "category": "Treasure Box Farming",
+    "cookieId": "sea-fairy-cookie",
+    "petId": "wave-drop",
+    "treasureIds": [
+      "small-ambulance-toy",
+      "sea-fairy-heart-yearning-for-the-moon"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 1 (Tower of Frozen Waves) (Treasure Box Farming).",
+    "tags": [
+      "SPECIAL1",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:15.692832+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special2-score",
+    "title": "SPECIAL2 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 2 (Island of Memories)",
+    "category": "High Score (Points)",
+    "cookieId": "snow-sugar-cookie",
+    "relayCookieId": "sea-fairy-cookie",
+    "petId": "wave-drop",
+    "treasureIds": [
+      "precious-mini-coral",
+      "sea-fairy-heart-yearning-for-the-moon",
+      "ice-lily-infused-with-starlight"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 2 (Island of Memories) (High Score (Points)).",
+    "tags": [
+      "SPECIAL2",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:15.955737+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special2-coin",
+    "title": "SPECIAL2 Top Popular Coin Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 2 (Island of Memories)",
+    "category": "Coin Farming",
+    "cookieId": "soda-cookie",
+    "petId": "king-choco-drop",
+    "treasureIds": [
+      "flashy-golden-mace",
+      "frozen-orange-drink"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 65000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 2 (Island of Memories) (Coin Farming).",
+    "tags": [
+      "SPECIAL2",
+      "Coin Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:16.209040+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special2-mystery_box",
+    "title": "SPECIAL2 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 2 (Island of Memories)",
+    "category": "Treasure Box Farming",
+    "cookieId": "blackberry-cookie",
+    "petId": "light-bros",
+    "treasureIds": [
+      "sticky-rice-seal-premium-red-bean-can"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 2 (Island of Memories) (Treasure Box Farming).",
+    "tags": [
+      "SPECIAL2",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:16.708561+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special3-score",
+    "title": "SPECIAL3 Top Popular High Score (Points) Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 3",
+    "category": "High Score (Points)",
+    "cookieId": "kaymak-cookie",
+    "relayCookieId": "roll-cake-cookie",
+    "petId": "honey-gourd",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "frozen-orange-drink",
+      "pro-s-golden-glove"
+    ],
+    "targetScore": 120000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 3 (High Score (Points)).",
+    "tags": [
+      "SPECIAL3",
+      "High Score (Points)",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:16.954416+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special3-exp",
+    "title": "SPECIAL3 Top Popular XP Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 3",
+    "category": "XP Farming",
+    "cookieId": "fairy-cookie",
+    "petId": "magic-pod",
+    "treasureIds": [
+      "chocolate-cover-workbook"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 3 (XP Farming).",
+    "tags": [
+      "SPECIAL3",
+      "XP Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:17.440320+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-rec-special3-mystery_box",
+    "title": "SPECIAL3 Top Popular Treasure Box Farming Build",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 3",
+    "category": "Treasure Box Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "fire-spirit-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "frozen-orange-drink",
+      "radiant-banana-milk-two-handed-cup",
+      "mushroom-lamp-in-the-forest"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular item recommendation meta aggregated from CookieRunHub player runs for Special 3 (Treasure Box Farming).",
+    "tags": [
+      "SPECIAL3",
+      "Treasure Box Farming",
+      "Popular Matrix",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:17.680068+00:00",
+    "upvotes": 240,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-18",
+    "title": "Cookie Ranking Season: 복숭아맛 쿠키 · 박하사탕맛 쿠키 · 블랙베리맛 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "peach-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 복숭아맛 쿠키 · 박하사탕맛 쿠키 · 블랙베리맛 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-07-29T12:23:59.534811Z",
+    "upvotes": 10,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-17",
+    "title": "Cookie Ranking Season: 특전사맛 쿠키 · 카주카틀리맛 쿠키 · 연근요괴맛 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "special-force-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 특전사맛 쿠키 · 카주카틀리맛 쿠키 · 연근요괴맛 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-07-15T13:32:00.156930Z",
+    "upvotes": 20,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-16",
+    "title": "Cookie Ranking Season: 히어로맛 쿠키 · 마법사맛 쿠키 · 민트초코쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "hero-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 히어로맛 쿠키 · 마법사맛 쿠키 · 민트초코쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-07-01T12:21:21.236908Z",
+    "upvotes": 13,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-15",
+    "title": "Cookie Ranking Season: 보더맛 쿠키 · 용사맛 쿠키 · 해적맛 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "boarder-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 보더맛 쿠키 · 용사맛 쿠키 · 해적맛 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-06-17T12:06:02.021946Z",
+    "upvotes": 7,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-14",
+    "title": "Cookie Ranking Season: 용감한 쿠키군 · 홍고추맛 쿠키 · 카이막맛 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "gingerbrave",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 용감한 쿠키군 · 홍고추맛 쿠키 · 카이막맛 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-06-03T12:32:10.309836Z",
+    "upvotes": 7,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-13",
+    "title": "Cookie Ranking Season: 허브맛 쿠키 · 치어리더맛 쿠키 · 바람궁수 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "herb-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 허브맛 쿠키 · 치어리더맛 쿠키 · 바람궁수 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-05-20T12:00:47.718229Z",
+    "upvotes": 8,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-12",
+    "title": "Cookie Ranking Season: 풋사과맛 쿠키 · 오이맛 쿠키 · 민들레요정맛 쿠기",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "apple-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 풋사과맛 쿠키 · 오이맛 쿠키 · 민들레요정맛 쿠기.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-05-06T15:50:52.160233Z",
+    "upvotes": 8,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-11",
+    "title": "Cookie Ranking Season: 요정맛 쿠키 · 치즈케이크맛 쿠키 · 마법사맛 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "fairy-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 요정맛 쿠키 · 치즈케이크맛 쿠키 · 마법사맛 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-04-22T12:04:30.980796Z",
+    "upvotes": 6,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-9",
+    "title": "Cookie Ranking Season: 바나나맛 쿠키 · 딸기쇼트케이크맛 쿠키 · 멜로우버니 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "banana-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 바나나맛 쿠키 · 딸기쇼트케이크맛 쿠키 · 멜로우버니 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-04-08T12:02:40.209412Z",
+    "upvotes": 12,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-8",
+    "title": "Cookie Ranking Season: 벚꽃맛 쿠키 · 화이트초코 쿠키 · 보리장수맛 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "cherry-blossom-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 벚꽃맛 쿠키 · 화이트초코 쿠키 · 보리장수맛 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-03-25T12:02:03.215798Z",
+    "upvotes": 14,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-season-3",
+    "title": "Cookie Ranking Season: 용사맛 쿠키 · 솜사탕맛 쿠키 · 두바이 쫀쫀 쿠키",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "knight-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 155000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 300,
+    "description": "Official CookieRunHub active ranking season meta for 용사맛 쿠키 · 솜사탕맛 쿠키 · 두바이 쫀쫀 쿠키.",
+    "tags": [
+      "Cookie Ranking",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-03-13T04:46:18.420238Z",
+    "upvotes": 7,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep3-exp",
+    "title": "EP3 (Dragon's Valley): XP Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "XP Farming",
+    "cookieId": "alchemist-cookie",
+    "relayCookieId": "gingerbright",
+    "petId": "coin-scale",
+    "treasureIds": [
+      "raspberry-carousel-music-box",
+      "holy-feather",
+      "sugar-covered-lollipop-piece"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (XP Farming).",
+    "tags": [
+      "EP3",
+      "XP Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:00.726368+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep3-mystery_box",
+    "title": "EP3 (Dragon's Valley): Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "Treasure Box Farming",
+    "cookieId": "hero-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "cheeseberry",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "holy-feather",
+      "feather-laurel-wreath-for-winner"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (Treasure Box Farming).",
+    "tags": [
+      "EP3",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:01.120288+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep4-score",
+    "title": "EP4 (City of the Wizards): High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP4 (City of the Wizards)",
+    "category": "High Score (Points)",
+    "cookieId": "roll-cake-cookie",
+    "relayCookieId": "kaymak-cookie",
+    "petId": "honey-gourd",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "pro-s-golden-glove",
+      "darkness-swallowing-transparent-lantern"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP4 (City of the Wizards) (High Score (Points)).",
+    "tags": [
+      "EP4",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:03.365034+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep4-mystery_box",
+    "title": "EP4 (City of the Wizards): Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP4 (City of the Wizards)",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "lotus-root-phantom-cookie",
+    "petId": "elctro-lemon",
+    "treasureIds": [
+      "mushroom-lamp-in-the-forest",
+      "shining-crown-for-champion",
+      "badge-covered-rookie-backpack"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP4 (City of the Wizards) (Treasure Box Farming).",
+    "tags": [
+      "EP4",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:05.330831+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep5-score",
+    "title": "EP5 (Dessert Paradise): High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP5 (Dessert Paradise)",
+    "category": "High Score (Points)",
+    "cookieId": "blooming-dancheong-cookie",
+    "relayCookieId": "roll-cake-cookie",
+    "petId": "choco-hedgehog",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "darkness-swallowing-transparent-lantern",
+      "royal-bear-jelly-saddle"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP5 (Dessert Paradise) (High Score (Points)).",
+    "tags": [
+      "EP5",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:07.745915+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep5-coin",
+    "title": "EP5 (Dessert Paradise): Coin Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP5 (Dessert Paradise)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "coin-scale",
+    "treasureIds": [
+      "spotlight-vanilla-bulb",
+      "whipped-cream",
+      "feather-laurel-wreath-for-winner"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 68000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP5 (Dessert Paradise) (Coin Farming).",
+    "tags": [
+      "EP5",
+      "Coin Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:08.162681+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep5-mystery_box",
+    "title": "EP5 (Dessert Paradise): Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP5 (Dessert Paradise)",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "banana-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "fire-spirit-cookie-flame-orb",
+      "long-lasting-mushroom-flashlight",
+      "mr-squeak-bouncy-life-tube"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP5 (Dessert Paradise) (Treasure Box Farming).",
+    "tags": [
+      "EP5",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:08.558328+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep6-score",
+    "title": "EP6: High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "High Score (Points)",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "pistachio-cookie",
+    "petId": "pistachio-firefly",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "frozen-orange-drink",
+      "autumn-night-camping-skewer-set"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP6 (High Score (Points)).",
+    "tags": [
+      "EP6",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:09.251049+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep6-coin",
+    "title": "EP6: Coin Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "rich-rich-coin-wallet",
+      "hyper-carbonated-drink-zero",
+      "slippery-golden-banana-peel"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 68000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP6 (Coin Farming).",
+    "tags": [
+      "EP6",
+      "Coin Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:09.400553+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep6-exp",
+    "title": "EP6: XP Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "XP Farming",
+    "cookieId": "hero-cookie",
+    "relayCookieId": "alchemist-cookie",
+    "petId": "forgotten-stocking",
+    "treasureIds": [
+      "frozen-orange-drink",
+      "fatal-twin-iceberg-bar",
+      "raspberry-carousel-music-box"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP6 (XP Farming).",
+    "tags": [
+      "EP6",
+      "XP Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:09.534851+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep6-mystery_box",
+    "title": "EP6: Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP6",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "soda-cookie",
+    "petId": "cheeseberry",
+    "treasureIds": [
+      "mushroom-lamp-in-the-forest",
+      "badge-covered-rookie-backpack",
+      "fire-spirit-cookie-flame-orb"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP6 (Treasure Box Farming).",
+    "tags": [
+      "EP6",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:09.708713+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep7-score",
+    "title": "EP7: High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "High Score (Points)",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "braised-pork-cookie",
+    "petId": "bok-choy-cushion",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "early-adopter-smart-pad",
+      "autumn-night-camping-skewer-set"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP7 (High Score (Points)).",
+    "tags": [
+      "EP7",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:10.320699+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep7-coin",
+    "title": "EP7: Coin Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "Coin Farming",
+    "cookieId": "potato-salad-cookie",
+    "relayCookieId": "buttercream-choco-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "feather-laurel-wreath-for-winner",
+      "magic-dictionary-appendix-bromide",
+      "rich-rich-coin-wallet"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 68000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP7 (Coin Farming).",
+    "tags": [
+      "EP7",
+      "Coin Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:10.491737+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep7-exp",
+    "title": "EP7: XP Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "XP Farming",
+    "cookieId": "hero-cookie",
+    "relayCookieId": "gingerbright",
+    "petId": "air-drop",
+    "treasureIds": [
+      "blueberry-white-horse-music-box",
+      "frozen-orange-drink",
+      "fatal-twin-iceberg-bar"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP7 (XP Farming).",
+    "tags": [
+      "EP7",
+      "XP Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:10.642459+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep7-mystery_box",
+    "title": "EP7: Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP7",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "buttercream-choco-cookie",
+    "petId": "cheeseberry",
+    "treasureIds": [
+      "fire-spirit-cookie-flame-orb",
+      "mushroom-lamp-in-the-forest",
+      "shining-crown-for-champion"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP7 (Treasure Box Farming).",
+    "tags": [
+      "EP7",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:10.804566+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special1-score",
+    "title": "Special 1 (Tower of Frozen Waves): High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 1 (Tower of Frozen Waves)",
+    "category": "High Score (Points)",
+    "cookieId": "moonlight-cookie",
+    "petId": "wave-drop",
+    "treasureIds": [
+      "radiant-banana-milk-two-handed-cup",
+      "precious-mini-coral",
+      "slippery-golden-banana-peel"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 1 (Tower of Frozen Waves) (High Score (Points)).",
+    "tags": [
+      "SPECIAL1",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:11.437406+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special1-mystery_box",
+    "title": "Special 1 (Tower of Frozen Waves): Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 1 (Tower of Frozen Waves)",
+    "category": "Treasure Box Farming",
+    "cookieId": "sea-fairy-cookie",
+    "petId": "wave-drop",
+    "treasureIds": [
+      "small-ambulance-toy",
+      "sea-fairy-heart-yearning-for-the-moon"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 1 (Tower of Frozen Waves) (Treasure Box Farming).",
+    "tags": [
+      "SPECIAL1",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:11.915280+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special2-score",
+    "title": "Special 2 (Island of Memories): High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 2 (Island of Memories)",
+    "category": "High Score (Points)",
+    "cookieId": "snow-sugar-cookie",
+    "relayCookieId": "sea-fairy-cookie",
+    "petId": "wave-drop",
+    "treasureIds": [
+      "precious-mini-coral",
+      "sea-fairy-heart-yearning-for-the-moon",
+      "ice-lily-infused-with-starlight"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 2 (Island of Memories) (High Score (Points)).",
+    "tags": [
+      "SPECIAL2",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:13.736560+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special2-coin",
+    "title": "Special 2 (Island of Memories): Coin Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 2 (Island of Memories)",
+    "category": "Coin Farming",
+    "cookieId": "soda-cookie",
+    "petId": "king-choco-drop",
+    "treasureIds": [
+      "flashy-golden-mace",
+      "frozen-orange-drink"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 68000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 2 (Island of Memories) (Coin Farming).",
+    "tags": [
+      "SPECIAL2",
+      "Coin Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:46:14.046144+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special2-mystery_box",
+    "title": "Special 2 (Island of Memories): Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 2 (Island of Memories)",
+    "category": "Treasure Box Farming",
+    "cookieId": "blackberry-cookie",
+    "petId": "light-bros",
+    "treasureIds": [
+      "sticky-rice-seal-premium-red-bean-can"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 2 (Island of Memories) (Treasure Box Farming).",
+    "tags": [
+      "SPECIAL2",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:14.452807+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special3-score",
+    "title": "Special 3: High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 3",
+    "category": "High Score (Points)",
+    "cookieId": "kaymak-cookie",
+    "relayCookieId": "roll-cake-cookie",
+    "petId": "honey-gourd",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "frozen-orange-drink",
+      "pro-s-golden-glove"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 3 (High Score (Points)).",
+    "tags": [
+      "SPECIAL3",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:15.334646+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special3-exp",
+    "title": "Special 3: XP Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 3",
+    "category": "XP Farming",
+    "cookieId": "fairy-cookie",
+    "petId": "magic-pod",
+    "treasureIds": [
+      "chocolate-cover-workbook"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 3 (XP Farming).",
+    "tags": [
+      "SPECIAL3",
+      "XP Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:15.701033+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-special3-mystery_box",
+    "title": "Special 3: Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "Special 3",
+    "category": "Treasure Box Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "fire-spirit-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "frozen-orange-drink",
+      "radiant-banana-milk-two-handed-cup",
+      "mushroom-lamp-in-the-forest"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for Special 3 (Treasure Box Farming).",
+    "tags": [
+      "SPECIAL3",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:46:15.850075+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep3-score",
+    "title": "EP3 (Dragon's Valley): High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "High Score (Points)",
+    "cookieId": "blooming-dancheong-cookie",
+    "relayCookieId": "braised-pork-cookie",
+    "petId": "bok-choy-cushion",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "darkness-swallowing-transparent-lantern",
+      "pro-s-golden-glove"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (High Score (Points)).",
+    "tags": [
+      "EP3",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:06.132174+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep3-coin",
+    "title": "EP3 (Dragon's Valley): Coin Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "dasara-bread-fresh-bread-clip",
+      "banana-peel-left-by-someone",
+      "sweet-sour-thrilling-super-carbonated-drink"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 68000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP3 (Dragon's Valley) (Coin Farming).",
+    "tags": [
+      "EP3",
+      "Coin Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:45:06.525795+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep1-score",
+    "title": "EP1 (Escape from the Oven): High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "blooming-dancheong-cookie",
+    "relayCookieId": "braised-pork-cookie",
+    "petId": "bok-choy-cushion",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "jelly-pong-pong-jumping-jelly-horse",
+      "feather-laurel-wreath-for-winner"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (High Score (Points)).",
+    "tags": [
+      "EP1",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:40.569303+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep1-coin",
+    "title": "EP1 (Escape from the Oven): Coin Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "feather-laurel-wreath-for-winner",
+      "radiant-banana-milk-two-handed-cup"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 68000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (Coin Farming).",
+    "tags": [
+      "EP1",
+      "Coin Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:45:40.569464+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep1-exp",
+    "title": "EP1 (Escape from the Oven): XP Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "XP Farming",
+    "cookieId": "gingerbright",
+    "relayCookieId": "alchemist-cookie",
+    "petId": "coin-scale",
+    "treasureIds": [
+      "raspberry-carousel-music-box",
+      "fatal-twin-iceberg-bar",
+      "rock-spirit-korean-melon-electric-guitar"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (XP Farming).",
+    "tags": [
+      "EP1",
+      "XP Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:40.569553+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep1-mystery_box",
+    "title": "EP1 (Escape from the Oven): Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "Treasure Box Farming",
+    "cookieId": "soda-cookie",
+    "petId": "soft-egg-bunny",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP1 (Escape from the Oven) (Treasure Box Farming).",
+    "tags": [
+      "EP1",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:40.569607+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep2-score",
+    "title": "EP2 (Primeval Jungle): High Score (Points) Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "High Score (Points)",
+    "cookieId": "lotus-root-phantom-cookie",
+    "relayCookieId": "garaetteok-cookie",
+    "petId": "lotus-sitter",
+    "treasureIds": [
+      "shining-crown-for-champion",
+      "darkness-swallowing-transparent-lantern",
+      "indomitable-tricolor-hairband"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (High Score (Points)).",
+    "tags": [
+      "EP2",
+      "High Score (Points)",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:40.569685+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep2-coin",
+    "title": "EP2 (Primeval Jungle): Coin Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "Coin Farming",
+    "cookieId": "buttercream-choco-cookie",
+    "relayCookieId": "potato-salad-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "sweet-sour-thrilling-super-carbonated-drink",
+      "slippery-golden-banana-peel",
+      "rich-rich-coin-wallet"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 68000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (Coin Farming).",
+    "tags": [
+      "EP2",
+      "Coin Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T17:45:40.569740+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep2-exp",
+    "title": "EP2 (Primeval Jungle): XP Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "XP Farming",
+    "cookieId": "gingerbright",
+    "relayCookieId": "boarder-cookie",
+    "petId": "forgotten-stocking",
+    "treasureIds": [
+      "fatal-twin-iceberg-bar",
+      "raspberry-carousel-music-box",
+      "holy-feather"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (XP Farming).",
+    "tags": [
+      "EP2",
+      "XP Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:40.569830+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "id": "hub-matrix-ep2-mystery_box",
+    "title": "EP2 (Primeval Jungle): Treasure Box Farming Meta",
+    "author": "CookieRunHub Aggregator",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "Treasure Box Farming",
+    "cookieId": "fire-spirit-cookie",
+    "relayCookieId": "banana-cookie",
+    "petId": "soft-egg-bunny",
+    "treasureIds": [
+      "fire-spirit-cookie-flame-orb",
+      "mushroom-lamp-in-the-forest",
+      "hyper-carbonated-drink-zero"
+    ],
+    "targetScore": 48000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 300,
+    "description": "Real-time top popular meta build aggregated from CookieRunHub player runs for EP2 (Primeval Jungle) (Treasure Box Farming).",
+    "tags": [
+      "EP2",
+      "Treasure Box Farming",
+      "Popular Meta",
+      "CookieRunHub"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": false,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T17:45:40.569903+00:00",
+    "upvotes": 290,
+    "isBoosted": true
+  },
+  {
+    "title": "money-master",
+    "author": "ClassicPro",
+    "category": "Coin Farming",
+    "cookieId": "potato-salad-cookie",
+    "relayCookieId": "buttercream-choco-cookie",
+    "petId": "tater-trader",
+    "treasureIds": [
+      "banana-cookie-s-banana-baby-bottle",
+      "50-million-commemorative-firecrackers",
+      "choccy-russian-doll"
+    ],
+    "targetScore": 150,
+    "coinsPerRun": 150000,
+    "description": "Meta strategy setup.",
+    "tags": [
+      "Coin Farming",
+      "Admin Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "Magnetic Aura"
+    },
+    "id": "combo-user-1785512617223",
+    "createdAt": "2026-07-31T15:43:37.223Z",
+    "upvotes": 1,
+    "isBoosted": true,
+    "episode": "EP1 (Escape from the Oven)"
+  },
+  {
+    "title": "YouTube Meta: Cheesecake Cookie & Fluffy Cheese Cat Strategy",
+    "author": "YouTube Creator",
+    "category": "High Score (Points)",
+    "cookieId": "cheesecake-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "50-million-commemorative-firecrackers",
+      "1000-year-old-red-ginseng",
+      "blackberry-cookie-s-blackberry-hat"
+    ],
+    "targetScore": 85000000,
+    "coinsPerRun": 35000,
+    "description": "AI-extracted setup analyzed directly from YouTube video. Utilizes Cheesecake Cookie skill mechanics alongside Fluffy Cheese Cat for maximum yield.",
+    "tags": [
+      "High Score (Points)",
+      "AI Verified",
+      "TikTok/YouTube"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "id": "combo-user-1785512344375",
+    "createdAt": "2026-07-31T15:39:04.375Z",
+    "upvotes": 1,
+    "isBoosted": true,
+    "episode": "EP2 (Primeval Jungle)"
+  },
+  {
+    "id": "combo-coin-meta-1",
+    "title": "Supreme Coin Farming Meta",
+    "author": "ClassicPro",
+    "cookieId": "cheesecake-cookie",
+    "relayCookieId": "mint-choco-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "cheesecake-cookie-s-piece-of-cake",
+      "mint-choco-cookie-s-violin-case",
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 45000000,
+    "coinsPerRun": 42000,
+    "durationSeconds": 240,
+    "description": "The ultimate coin farming strategy for LINE/Kakao Cookie Run. Cheesecake Cookie spawns Party Invitations while Fluffy Cheese Cat snatches gold coins, followed by Mint Choco relay.",
+    "tags": [
+      "Coin Farming",
+      "S-Rank Meta",
+      "High Yield"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-07-30T12:00:00Z",
+    "upvotes": 142,
+    "isBoosted": true,
+    "episode": "EP3 (Dragon's Valley)"
+  },
+  {
+    "id": "combo-magnet-score-2",
+    "title": "Celestial Angel High Score Magnet Run",
+    "author": "CookieMaster",
+    "cookieId": "angel-cookie",
+    "relayCookieId": "pirate-cookie",
+    "petId": "celestial-star",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "pirate-cookie-s-revival-boots"
+    ],
+    "targetScore": 82000000,
+    "coinsPerRun": 18000,
+    "durationSeconds": 310,
+    "description": "Maximum magnetic jelly absorption setup. Angel Cookie sucks in every jelly across the map, followed by Ghost Pirate relay for invincibility after Energy runs out.",
+    "tags": [
+      "High Score",
+      "Magnet",
+      "Survival"
+    ],
+    "createdAt": "2026-07-29T15:30:00Z",
+    "upvotes": 98,
+    "isBoosted": false,
+    "episode": "EP4 (City of the Wizards)"
+  },
+  {
+    "id": "combo-lemon-blast-3",
+    "title": "High Voltage Lemon Shield Destruction",
+    "author": "ElectroRunner",
+    "cookieId": "lemon-cookie",
+    "relayCookieId": "hero-cookie",
+    "petId": "electro-lemon",
+    "treasureIds": [
+      "lemon-cookie-s-lemon-mp3-player",
+      "angel-cookie-s-holy-feather",
+      "hero-cookie-s-mint-candy"
+    ],
+    "targetScore": 95000000,
+    "coinsPerRun": 15000,
+    "durationSeconds": 280,
+    "description": "High speed electric shield destruction build. Lemon Cookie's shield constantly clears obstacles while granting high magnetic point bonuses.",
+    "tags": [
+      "Obstacle Destruction",
+      "High Speed",
+      "Score Meta"
+    ],
+    "createdAt": "2026-07-28T09:15:00Z",
+    "upvotes": 215,
+    "isBoosted": true,
+    "episode": "EP5 (Dessert Paradise)"
+  },
+  {
+    "id": "combo-soda-wave-4",
+    "title": "Soda Surf Wave High Score",
+    "author": "SurfLegend",
+    "cookieId": "soda-cookie",
+    "relayCookieId": "vampire-cookie",
+    "petId": "flame-bat",
+    "treasureIds": [
+      "magnetic-rainbow-drink",
+      "angel-cookie-s-holy-feather",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 78000000,
+    "coinsPerRun": 12000,
+    "durationSeconds": 290,
+    "description": "Endless wave surfing setup. Soda Cookie surfs through stage hazards whenever health potions are consumed, followed by Vampire Cookie's bat transformation.",
+    "tags": [
+      "High Score",
+      "Soda Surfing",
+      "Speed"
+    ],
+    "createdAt": "2026-07-27T18:45:00Z",
+    "upvotes": 87,
+    "isBoosted": false,
+    "episode": "Special 1 (Tower of Frozen Waves)"
+  },
+  {
+    "id": "combo-legend-moonlight-5",
+    "title": "Legendary Moonlight Crescent Flight",
+    "author": "Starlight",
+    "cookieId": "moonlight-cookie",
+    "relayCookieId": "fire-spirit-cookie",
+    "petId": "king-choco-drop",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "1000-year-old-red-ginseng",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 135000000,
+    "coinsPerRun": 25000,
+    "durationSeconds": 350,
+    "description": "The peak legendary score build. Moonlight Cookie creates thousands of high-value Starlight Jellies in night flight, relayed by Fire Spirit Cookie's revive dash.",
+    "tags": [
+      "Legendary Meta",
+      "Maximum Score",
+      "Endgame"
+    ],
+    "createdAt": "2026-07-26T20:00:00Z",
+    "upvotes": 310,
+    "isBoosted": true,
+    "episode": "Special 2 (Island of Memories)"
+  },
+  {
+    "id": "combo-ep1-score-meta",
+    "title": "EP1 Escape from Oven: Peach & Peppermint High Score Meta",
+    "author": "CookieRunHub Meta",
+    "episode": "EP1 (Escape from the Oven)",
+    "category": "High Score (Points)",
+    "cookieId": "peach-cookie",
+    "relayCookieId": "peppermint-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "500-year-old-ginseng-root",
+      "1000-year-old-red-ginseng"
+    ],
+    "targetScore": 145000000,
+    "coinsPerRun": 22000,
+    "durationSeconds": 320,
+    "description": "CookieRunHub Meta setup for Episode 1. Peach Cookie destroys obstacles with martial arts while Peppermint Cookie summons dolphin waves.",
+    "tags": [
+      "EP1",
+      "High Score (Points)",
+      "CookieRunHub Meta"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "15% Points Bonus"
+    },
+    "createdAt": "2026-08-01T12:00:00Z",
+    "upvotes": 340,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-ep2-afk-coin",
+    "title": "EP2 Primeval Jungle: Semi-AFK Auto Coin Farming",
+    "author": "CookieRunHub AFK",
+    "episode": "EP2 (Primeval Jungle)",
+    "category": "AFK Coin Farming",
+    "cookieId": "cheesecake-cookie",
+    "relayCookieId": "mint-choco-cookie",
+    "petId": "fluffy-cheese-cat",
+    "treasureIds": [
+      "cheesecake-cookie-s-piece-of-cake",
+      "mint-choco-cookie-s-violin-case",
+      "50-million-commemorative-firecrackers"
+    ],
+    "targetScore": 52000000,
+    "coinsPerRun": 55000,
+    "durationSeconds": 240,
+    "description": "Episode 2 semi-AFK coin setup. High magnet yield allows running without jump/slide keypresses.",
+    "tags": [
+      "EP2",
+      "AFK Coin Farming",
+      "Semi-AFK (준손크로)"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "doubleXp": false,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T14:30:00Z",
+    "upvotes": 285,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-ep3-dragon-score",
+    "title": "EP3 Dragon's Valley: Moonlight & Fire Spirit High Yield",
+    "author": "Dragon Slayer",
+    "episode": "EP3 (Dragon's Valley)",
+    "category": "High Score (Points)",
+    "cookieId": "moonlight-cookie",
+    "relayCookieId": "fire-spirit-cookie",
+    "petId": "dreamcatcher",
+    "treasureIds": [
+      "angel-cookie-s-holy-feather",
+      "1000-year-old-red-ginseng",
+      "heavenly-sweet-donut"
+    ],
+    "targetScore": 168000000,
+    "coinsPerRun": 28000,
+    "durationSeconds": 360,
+    "description": "Episode 3 High Score build. Uses Moonlight Cookie's crescent sleep flight to bypass lava hazards.",
+    "tags": [
+      "EP3",
+      "High Score (Points)",
+      "Lava Immunity"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "powerJellyBoost": true,
+      "fastStart": true,
+      "randomBoost": "Energy Drains 15% slower"
+    },
+    "createdAt": "2026-08-01T16:00:00Z",
+    "upvotes": 412,
+    "isBoosted": true
+  },
+  {
+    "id": "combo-ep4-wizard-xp",
+    "title": "EP4 City of Wizards: Double XP Arcane Speedrun",
+    "author": "Wizard Master",
+    "episode": "EP4 (City of the Wizards)",
+    "category": "XP Farming",
+    "cookieId": "wizard-cookie",
+    "relayCookieId": "alchemist-cookie",
+    "petId": "book-of-wisdom",
+    "treasureIds": [
+      "1000-year-old-red-ginseng",
+      "500-year-old-ginseng-root",
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 76000000,
+    "coinsPerRun": 31000,
+    "durationSeconds": 270,
+    "description": "XP farming setup for Episode 4. Magic spell missles convert obstacles into high-value exp jellies.",
+    "tags": [
+      "EP4",
+      "XP Farming",
+      "Speedrun"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "doubleXp": true,
+      "fastStart": true,
+      "randomBoost": "Double Coins"
+    },
+    "createdAt": "2026-08-01T18:20:00Z",
+    "upvotes": 194,
+    "isBoosted": false
+  },
+  {
+    "id": "combo-special1-frozen-tower",
+    "title": "Special 1 Tower of Frozen Waves: Floor 48 Mission 3 Clear",
+    "author": "Frozen Tower Pro",
+    "episode": "Special 1 (Tower of Frozen Waves)",
+    "category": "Full Manual (손크로)",
+    "cookieId": "peppermint-cookie",
+    "relayCookieId": "pirate-cookie",
+    "petId": "paper-boat-sailor",
+    "treasureIds": [
+      "pirate-cookie-s-revival-boots",
+      "heavenly-sweet-donut",
+      "angel-cookie-s-holy-feather"
+    ],
+    "targetScore": 92000000,
+    "coinsPerRun": 18000,
+    "durationSeconds": 310,
+    "description": "Special Episode 1 Tower of Frozen Waves (얼파탑) Floor 48 setup. High revives for tight jumps.",
+    "tags": [
+      "Special 1",
+      "Tower of Frozen Waves",
+      "Floor 48 Clear"
+    ],
+    "boosts": {
+      "hpExtension": true,
+      "fastStart": false,
+      "randomBoost": "Revives with 80 Energy 1 time"
+    },
+    "createdAt": "2026-08-01T20:10:00Z",
+    "upvotes": 520,
+    "isBoosted": true
+  }
+]
