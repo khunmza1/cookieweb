@@ -24,18 +24,68 @@ import {
   RocketIcon, 
   DiceIcon, 
   SparklesIcon, 
-  SearchIcon 
+  SearchIcon,
+  ExternalLinkIcon 
 } from '@/components/icons';
 
 export default function AdminPage() {
   const router = useRouter();
   const [catalog, setCatalog] = useState<CatalogData | null>(null);
   const [combos, setCombos] = useState<ComboSetup[]>([]);
-  const [activeTab, setActiveTab] = useState<'catalog' | 'boost'>('catalog');
+  const [activeTab, setActiveTab] = useState<'catalog' | 'boost' | 'ai-credentials'>('catalog');
   const [catalogCategory, setCatalogCategory] = useState<ItemCategory>('cookie');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState<PageSizeOption>(20);
+
+  // AI Credentials & Provider Manager State
+  const [aiForm, setAiForm] = useState({
+    providerType: 'openai-compatible' as 'openai-compatible' | 'gemini' | 'anthropic',
+    baseUrl: 'https://maxplus-ai.cc/v1',
+    apiKey: '',
+    maskedApiKey: '',
+    modelName: 'deepseek-chat',
+    enabled: true,
+    maxTokens: 4096,
+    temperature: 0.2
+  });
+  const [showApiKey, setShowApiKey] = useState(false);
+  const [aiTestLoading, setAiTestLoading] = useState(false);
+  const [aiTestResult, setAiTestResult] = useState<{
+    success: boolean;
+    reply?: string;
+    latencyMs?: number;
+    error?: string;
+  } | null>(null);
+  const [aiSaveMessage, setAiSaveMessage] = useState<{ text: string; isError: boolean } | null>(null);
+
+  // Live Model Fetching State
+  const [fetchedModels, setFetchedModels] = useState<string[]>([]);
+  const [fetchingModelsLoading, setFetchingModelsLoading] = useState(false);
+  const [fetchingModelsMessage, setFetchingModelsMessage] = useState<{ text: string; isError: boolean } | null>(null);
+
+  const handleFetchLiveModels = async () => {
+    setFetchingModelsLoading(true);
+    setFetchingModelsMessage(null);
+    try {
+      const res = await fetch('/api/admin/ai-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'fetch-models', ...aiForm })
+      });
+      const data = await res.json();
+      if (res.ok && data.success && Array.isArray(data.models)) {
+        setFetchedModels(data.models);
+        setFetchingModelsMessage({ text: `Fetched ${data.count} active live models from provider!`, isError: false });
+      } else {
+        setFetchingModelsMessage({ text: data.error || 'Failed to fetch model list from provider.', isError: true });
+      }
+    } catch (e: any) {
+      setFetchingModelsMessage({ text: `Network error: ${e.message}`, isError: true });
+    } finally {
+      setFetchingModelsLoading(false);
+    }
+  };
 
   // Combo List Search & Pagination State
   const [comboSearchTerm, setComboSearchTerm] = useState('');
@@ -133,16 +183,31 @@ export default function AdminPage() {
 
         setIsAdmin(true);
 
-        const [catRes, comboRes] = await Promise.all([
+        const [catRes, comboRes, aiRes] = await Promise.all([
           fetch('/api/catalog'),
-          fetch('/api/setups')
+          fetch('/api/setups'),
+          fetch('/api/admin/ai-config')
         ]);
 
         const catData: CatalogData = await catRes.json();
         const comboData: ComboSetup[] = await comboRes.json();
+        const aiData = await aiRes.json();
 
         setCatalog(catData);
         setCombos(comboData);
+
+        if (aiData.config) {
+          setAiForm({
+            providerType: aiData.config.providerType || 'openai-compatible',
+            baseUrl: aiData.config.baseUrl || 'https://maxplus-ai.cc/v1',
+            apiKey: '',
+            maskedApiKey: aiData.config.maskedApiKey || '',
+            modelName: aiData.config.modelName || 'deepseek-chat',
+            enabled: aiData.config.enabled !== false,
+            maxTokens: aiData.config.maxTokens || 4096,
+            temperature: aiData.config.temperature || 0.2
+          });
+        }
 
         if (catData.cookies.length > 0) {
           setComboForm(prev => ({
@@ -163,6 +228,47 @@ export default function AdminPage() {
     }
     checkAdmin();
   }, [router]);
+
+  const handleTestAiConnection = async () => {
+    setAiTestLoading(true);
+    setAiTestResult(null);
+    try {
+      const res = await fetch('/api/admin/ai-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(aiForm)
+      });
+      const data = await res.json();
+      setAiTestResult(data);
+    } catch (e: any) {
+      setAiTestResult({ success: false, error: `Connection Error: ${e.message}` });
+    } finally {
+      setAiTestLoading(false);
+    }
+  };
+
+  const handleSaveAiCredentials = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAiSaveMessage(null);
+    try {
+      const res = await fetch('/api/admin/ai-config', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(aiForm)
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setAiSaveMessage({ text: data.message || 'AI Credentials saved successfully!', isError: false });
+        if (data.config) {
+          setAiForm(prev => ({ ...prev, maskedApiKey: data.config.maskedApiKey, apiKey: '' }));
+        }
+      } else {
+        setAiSaveMessage({ text: data.error || 'Failed to save AI configuration.', isError: true });
+      }
+    } catch (e) {
+      setAiSaveMessage({ text: 'Network error saving AI configuration.', isError: true });
+    }
+  };
 
   // Handle Item Save (Add/Edit)
   const handleSaveItem = async (e: React.FormEvent) => {
@@ -600,6 +706,17 @@ export default function AdminPage() {
             >
               Manage Meta Combos ({combos.length})
             </button>
+            <button
+              onClick={() => setActiveTab('ai-credentials')}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                activeTab === 'ai-credentials'
+                  ? 'bg-emerald-500 text-zinc-950 shadow-lg font-black'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <SparklesIcon className="w-3.5 h-3.5 text-emerald-300" />
+              <span>AI Credentials & Models</span>
+            </button>
           </div>
         </div>
       </div>
@@ -901,6 +1018,286 @@ export default function AdminPage() {
                 </div>
               );
             })()}
+          </div>
+        )}
+
+        {/* TAB 3: AI PROVIDER & MODELS CREDENTIALS MANAGER */}
+        {activeTab === 'ai-credentials' && (
+          <div className="max-w-4xl mx-auto space-y-8 animate-fade-in pb-12">
+            <div className="bg-gradient-to-r from-emerald-500/10 via-zinc-900 to-purple-500/10 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-black uppercase tracking-wider mb-2">
+                    <SparklesIcon className="w-4 h-4 text-emerald-400" />
+                    <span>AI Provider & Model Credentials</span>
+                  </div>
+                  <h2 className="text-2xl font-black text-white tracking-tight">Dynamic AI API Settings</h2>
+                  <p className="text-xs text-zinc-400 mt-1">
+                    Configure your custom AI API provider, model name, and secret key. Auto-routes AI Screenshot Vision & Video analysis.
+                  </p>
+                </div>
+
+                <a
+                  href="https://maxplus-ai.cc/docs/api#deepseek-glm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-amber-400 text-xs font-bold border border-amber-500/30 transition flex items-center gap-1.5 shrink-0 self-start sm:self-auto cursor-pointer"
+                >
+                  <span>📄 Provider API Docs (MaxPlus AI)</span>
+                  <ExternalLinkIcon className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              {aiSaveMessage && (
+                <div className={`mt-5 p-4 rounded-2xl text-xs font-bold flex items-center justify-between shadow-lg ${
+                  aiSaveMessage.isError ? 'bg-rose-500/10 border border-rose-500/30 text-rose-300' : 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-300'
+                }`}>
+                  <span>{aiSaveMessage.text}</span>
+                  <button onClick={() => setAiSaveMessage(null)} className="text-zinc-400 hover:text-white cursor-pointer">✕</button>
+                </div>
+              )}
+
+              <form onSubmit={handleSaveAiCredentials} className="mt-6 space-y-6">
+                
+                {/* Enable / Disable Switch */}
+                <div className="flex items-center justify-between bg-zinc-950/80 p-4 rounded-2xl border border-zinc-800">
+                  <div>
+                    <span className="text-sm font-bold text-white block">Enable AI Vision Services</span>
+                    <span className="text-xs text-zinc-400">Controls AI screenshot scanning and video analysis throughout the app.</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setAiForm(prev => ({ ...prev, enabled: !prev.enabled }))}
+                    className={`w-12 h-6 rounded-full transition-colors relative cursor-pointer ${
+                      aiForm.enabled ? 'bg-emerald-500' : 'bg-zinc-800'
+                    }`}
+                  >
+                    <span className={`w-5 h-5 rounded-full bg-white absolute top-0.5 transition-transform ${
+                      aiForm.enabled ? 'translate-x-6' : 'translate-x-0.5'
+                    }`} />
+                  </button>
+                </div>
+
+                {/* Protocol Selector */}
+                <div>
+                  <label className="block text-xs font-black uppercase text-amber-400 mb-2">Provider Protocol Type</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {[
+                      { id: 'openai-compatible', label: 'MaxPlus AI / OpenAI API', desc: 'DeepSeek, GLM, GPT-4o, Custom' },
+                      { id: 'gemini', label: 'Google Gemini API', desc: 'gemini-3.6-flash, gemini-2.5-flash' },
+                      { id: 'anthropic', label: 'Anthropic Claude API', desc: 'claude-3-5-sonnet-20241022' }
+                    ].map(item => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setAiForm(prev => ({
+                            ...prev,
+                            providerType: item.id as any,
+                            baseUrl: item.id === 'openai-compatible' ? 'https://maxplus-ai.cc/v1' : prev.baseUrl
+                          }));
+                        }}
+                        className={`p-3.5 rounded-2xl border text-left transition cursor-pointer ${
+                          aiForm.providerType === item.id
+                            ? 'bg-amber-500/10 border-amber-500 text-white ring-1 ring-amber-500/30'
+                            : 'bg-zinc-950/60 border-zinc-800 text-zinc-400 hover:text-white'
+                        }`}
+                      >
+                        <div className="text-xs font-black text-white">{item.label}</div>
+                        <div className="text-[10px] text-zinc-400 mt-1">{item.desc}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Base URL Input */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-black uppercase text-zinc-300">API Base URL / Endpoint Link</label>
+                    <span className="text-[10px] text-amber-400 font-bold">Default: https://maxplus-ai.cc/v1</span>
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    value={aiForm.baseUrl}
+                    onChange={(e) => setAiForm(prev => ({ ...prev, baseUrl: e.target.value }))}
+                    placeholder="https://maxplus-ai.cc/v1"
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-500 transition font-mono"
+                  />
+                </div>
+
+                {/* API Secret Key */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-black uppercase text-zinc-300">API Secret Key</label>
+                    {aiForm.maskedApiKey && (
+                      <span className="text-[10px] text-emerald-400 font-bold">Saved: {aiForm.maskedApiKey}</span>
+                    )}
+                  </div>
+                  <div className="relative">
+                    <input
+                      type={showApiKey ? 'text' : 'password'}
+                      value={aiForm.apiKey}
+                      onChange={(e) => setAiForm(prev => ({ ...prev, apiKey: e.target.value }))}
+                      placeholder={aiForm.maskedApiKey ? "Leave empty to keep existing key" : "Paste your API secret key here"}
+                      className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-4 pr-24 py-3 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-500 transition font-mono"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowApiKey(!showApiKey)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 px-3 py-1 rounded-lg bg-zinc-800 text-zinc-400 hover:text-white text-[11px] font-bold cursor-pointer"
+                    >
+                      {showApiKey ? 'Hide' : 'Show'}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Model Name Selector & Live Fetcher */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5 flex-wrap gap-2">
+                    <label className="text-xs font-black uppercase text-zinc-300">Model Name / Identifier</label>
+                    <button
+                      type="button"
+                      onClick={handleFetchLiveModels}
+                      disabled={fetchingModelsLoading}
+                      className="px-3 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-[11px] font-bold transition flex items-center gap-1.5 cursor-pointer"
+                    >
+                      {fetchingModelsLoading ? (
+                        <>
+                          <div className="w-3 h-3 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin"></div>
+                          <span>Fetching Pool...</span>
+                        </>
+                      ) : (
+                        <>
+                          <SparklesIcon className="w-3.5 h-3.5" />
+                          <span>🔄 Fetch Live Models from Provider</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {fetchingModelsMessage && (
+                    <div className={`mb-3 p-2.5 rounded-xl text-xs font-semibold ${
+                      fetchingModelsMessage.isError ? 'bg-rose-500/10 border border-rose-500/30 text-rose-300' : 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-300'
+                    }`}>
+                      {fetchingModelsMessage.text}
+                    </div>
+                  )}
+
+                  {/* Live Fetched Models Dropdown if available */}
+                  {fetchedModels.length > 0 && (
+                    <div className="mb-3">
+                      <label className="block text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1">
+                        Select Active Live Model ({fetchedModels.length} Pool Models Available)
+                      </label>
+                      <select
+                        value={aiForm.modelName}
+                        onChange={(e) => setAiForm(prev => ({ ...prev, modelName: e.target.value }))}
+                        className="w-full bg-zinc-950 border border-emerald-500/50 text-emerald-300 text-xs font-mono font-bold rounded-xl px-3.5 py-2.5 outline-none focus:border-amber-500 cursor-pointer"
+                      >
+                        {fetchedModels.map(m => (
+                          <option key={m} value={m}>
+                            {m} {m.includes('vision') || m.includes('4o') || m.includes('4v') || m.includes('sonnet') ? '🖼️ (Vision Multimodal)' : ''}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-2 mb-3 flex-wrap">
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase">Presets:</span>
+                    {[
+                      'deepseek-chat',
+                      'deepseek-coder',
+                      'glm-4',
+                      'glm-4v',
+                      'claude-3-5-sonnet-20241022',
+                      'gemini-3.6-flash',
+                      'gpt-4o'
+                    ].map(m => (
+                      <button
+                        key={m}
+                        type="button"
+                        onClick={() => setAiForm(prev => ({ ...prev, modelName: m }))}
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition cursor-pointer ${
+                          aiForm.modelName === m
+                            ? 'bg-amber-500 text-zinc-950 font-black'
+                            : 'bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700'
+                        }`}
+                      >
+                        {m}
+                      </button>
+                    ))}
+                  </div>
+
+                  <input
+                    type="text"
+                    required
+                    value={aiForm.modelName}
+                    onChange={(e) => setAiForm(prev => ({ ...prev, modelName: e.target.value }))}
+                    placeholder="deepseek-chat"
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-500 transition font-mono"
+                  />
+                </div>
+
+                {/* Test Result Display Box */}
+                {aiTestResult && (
+                  <div className={`p-4 rounded-2xl border text-xs space-y-2 shadow-xl ${
+                    aiTestResult.success
+                      ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-200'
+                      : 'bg-rose-500/10 border-rose-500/40 text-rose-200'
+                  }`}>
+                    <div className="flex items-center justify-between font-black uppercase">
+                      <span>{aiTestResult.success ? '✅ Provider API Connection Successful' : '❌ API Test Failed'}</span>
+                      {aiTestResult.latencyMs !== undefined && (
+                        <span className="px-2.5 py-1 rounded-md bg-zinc-950 text-amber-400 font-mono font-bold text-[11px] border border-zinc-800">
+                          {aiTestResult.latencyMs} ms
+                        </span>
+                      )}
+                    </div>
+                    {aiTestResult.reply && (
+                      <div className="bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-zinc-200 font-mono text-[11px] overflow-x-auto">
+                        <span className="text-zinc-500 font-bold block mb-1">Model Response:</span>
+                        {aiTestResult.reply}
+                      </div>
+                    )}
+                    {aiTestResult.error && (
+                      <div className="text-rose-300 font-semibold">{aiTestResult.error}</div>
+                    )}
+                  </div>
+                )}
+
+                {/* Action Buttons */}
+                <div className="pt-4 border-t border-zinc-800 flex items-center justify-between gap-4 flex-wrap">
+                  <button
+                    type="button"
+                    onClick={handleTestAiConnection}
+                    disabled={aiTestLoading}
+                    className="px-5 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-amber-400 font-black text-xs border border-amber-500/30 shadow-lg transition flex items-center gap-2 cursor-pointer"
+                  >
+                    {aiTestLoading ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+                        <span>Testing Connection...</span>
+                      </>
+                    ) : (
+                      <>
+                        <SparklesIcon className="w-4 h-4 text-amber-400" />
+                        <span>🧪 Test Connection & Model Response</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="submit"
+                    className="px-8 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-zinc-950 font-black text-xs shadow-lg shadow-emerald-500/20 transition cursor-pointer transform hover:scale-105"
+                  >
+                    💾 Save AI Credentials & Settings
+                  </button>
+                </div>
+
+              </form>
+            </div>
           </div>
         )}
 

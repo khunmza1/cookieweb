@@ -1,0 +1,251 @@
+{
+  "source_locale": "ko",
+  "translations": {
+    "en": {
+      "fields": {
+        "score_detail.description": "<p>You can check the build in 'Tiwun's' YouTube video.</p><p></p><p>You can check out the detail build in the video linked below.</p>"
+      },
+      "field_sources": {
+        "score_detail.description": "ai"
+      },
+      "status": "ready",
+      "source": "ai",
+      "source_locale": "ko",
+      "source_hash": "4641a706a36a1d2730357f2c2666c2bf49a3dc693d28bd9f4973d2f7cecef94f",
+      "updated_at": "2026-07-22T15:53:05.007138Z"
+    },
+    "ko": {
+      "fields": {
+        "score_detail.description": "<p>'티운'님의 유튜브 영상에서 빌드를 확인할 수 있습니다.</p><p></p><p>아래 링크된 영상에서 상세 빌드를 확인할 수 있습니다.</p>"
+      },
+      "field_sources": {
+        "score_detail.description": "ai"
+      },
+      "status": "ready",
+      "source": "ai",
+      "source_locale": "en",
+      "source_hash": "4641a706a36a1d2730357f2c2666c2bf49a3dc693d28bd9f4973d2f7cecef94f",
+      "updated_at": "2026-07-20T18:22:59.178472Z"
+    }
+  },
+  "translation_status": "ready",
+  "translation_source": "ai",
+  "original_available": true,
+  "id": 1114,
+  "episode": "ep1",
+  "purpose": "score",
+  "floor": null,
+  "archive_season_id": null,
+  "restored_from_archive_combination_id": null,
+  "restored_current_combination_id": null,
+  "can_restore_to_current": false,
+  "author": {
+    "user_id": 3579,
+    "nickname": "esnah",
+    "nickname_color": null,
+    "profile_image": "https://res.cloudinary.com/ddlgnadxl/image/upload/f_auto,q_auto/v1783685745/cookierun/profiles/4a3b35026ff54acb98c3a5cab6b0c431.jpg",
+    "role": "user",
+    "anonymous_nickname": null,
+    "anonymous_identity": null
+  },
+  "first_cookie": {
+    "id": 69,
+    "name": "멜로우버니 쿠키",
+    "english_name": "Marshmallow Bunny Cookie",
+    "grade": "S",
+    "image_path": "/images/cookies/mellow_bunny_cookie.png",
+    "image_file_name": "mellow_bunny_cookie.png",
+    "ability": "• 체력 : 140~160\r\n • 능력 : 신비한 세계 1~8단 (일정 시간마다 토끼굴 포탈을 통하여 체력을 회복하고 질주하면서 코인과 마시멜로 젤리를 획득함, 초대형 토끼굴 포탈 진입시 다단점프+자력 효과 발동과 동시에 많은 코인과 젤리가 생성됨)\r\n • 조합보너스 : 말랑 에그버니 (모든 젤리 1,400점 추가 + 체력감소 8% 느림)\r\n • 해금조건 : 마시멜로 달걀 400개 획득",
+    "ability_en": null,
+    "health_stat": null,
+    "ability_desc": null,
+    "ability_desc_en": null,
+    "combo_bonus": null,
+    "owned_effect": null,
+    "owned_effect_en": null,
+    "extra_info": null,
+    "unlock_method": null,
+    "partner_pets": [
+      {
+        "id": 81,
+        "name": "말랑 에그버니",
+        "english_name": "Soft Egg Bunny",
+        "image_path": "pets/soft_egg_bunny.png",
+        "image_file_name": "soft_egg_bunny.png",
+        "grade": "S"
+      }
+    ]
+  },
+  "second_cookie": {
+    "id": 62,
+    "name": "롤케이크맛 쿠키",
+    "english_name": "Roll Cake Cookie",
+    "grade": "S",
+    "image_path": "cookies/roll_cake_cookie.png",
+    "image_file_name": "roll_cake_cookie.png",
+    "ability": "• 체력 : 140~160\r\n• 능력 : 로드롤러 탑승 1~8단\r\n• 조합보너스 : 라이트 형제 (장애물 파괴점수 15,000점 추가)\r\n• 해금조건 : 라이트 형제 펫 보유",
+    "ability_en": null,
+    "health_stat": null,
+    "ability_desc": null,
+    "ability_desc_en": null,
+    "combo_bonus": null,
+    "owned_effect": null,
+    "owned_effect_en": null,
+    "extra_info": null,
+    "unlock_method": null,
+    "partner_pets": [
+      {
+        "id": 74,
+        "name": "라이트 형제",
+        "english_name": "Light Bros",
+        "image_path": "pets/light_brothers.png",
+        "image_file_name": "light_brothers.png",
+        "grade": "S"
+      }
+    ]
+  },
+  "pet": {
+    "id": 81,
+    "name": "말랑 에그버니",
+    "english_name": "Soft Egg Bunny",
+    "grade": "S",
+    "image_path": "pets/soft_egg_bunny.png",
+    "image_file_name": "soft_egg_bunny.png",
+    "ability": "• 능력 : 23~16초마다 장애물 파괴, 생명물약/젤리 생성(물약을 5번 나눠서 생성)\r\n• 조합보너스 : 멜로우버니 쿠키(모든 젤리 1,400점 추가 + 체력감소 8% 느림)\r\n\r\n※ 친구 15명 초대 또는 패키지 구매로 획득가능",
+    "ability_en": null,
+    "ability_desc": null,
+    "ability_desc_en": null,
+    "partner_cookie": "멜로우버니 쿠키",
+    "combo_bonus": null,
+    "owned_effect": null,
+    "owned_effect_en": null,
+    "extra_info": null,
+    "unlock_method": null,
+    "partner_cookies": [
+      {
+        "id": 69,
+        "name": "멜로우버니 쿠키",
+        "english_name": "Marshmallow Bunny Cookie",
+        "image_path": "/images/cookies/mellow_bunny_cookie.png",
+        "image_file_name": "mellow_bunny_cookie.png",
+        "grade": "S"
+      }
+    ]
+  },
+  "treasures": [
+    {
+      "slot": 1,
+      "treasure_id": 377,
+      "treasure": {
+        "id": 377,
+        "name": "꽁꽁 얼린 오렌지 음료",
+        "english_name": "Frozen Orange Drink",
+        "grade": "S",
+        "category": "cookie",
+        "image_path": "treasures/frozen_orange_drink.webp",
+        "image_file_name": "frozen_orange_drink.webp",
+        "ability": "일반성공시 :\r\n • 광속질주 속도 10~15% 증가\r\n • 생명물약 획득시 광속질주 0.3~0.8초\r\n대성공시 :\r\n • 광속질주 속도 10~15% 증가\r\n • 생명물약 획득시 광속질주 0.5~1.0초",
+        "ability_en": null,
+        "mystic_fragment_count": null,
+        "evolved_from_id": 47,
+        "owner_cookie_id": 49,
+        "owner_pet_id": null
+      },
+      "enhancement_level": 9,
+      "enhancement_level_gs": null,
+      "enhancement_range": null,
+      "enhancement_range_gs": null,
+      "evolution_status": "great_success"
+    },
+    {
+      "slot": 2,
+      "treasure_id": 492,
+      "treasure": {
+        "id": 492,
+        "name": "무적의 강철 핫도그",
+        "english_name": "Invincible Steel Hot Dog",
+        "grade": "S",
+        "category": "gacha",
+        "image_path": "treasures/invincible_steel_hot_dog.webp",
+        "image_file_name": "invincible_steel_hot_dog.webp",
+        "ability": "일반성공시 :\r\n • 장애물 파괴시 13,300~16,000점 추가\r\n • 체력회복량 4~13% 증가\r\n대성공시 :\r\n • 장애물 파괴시 15,300~18,000점 추가\r\n • 체력회복량 6~15% 증가",
+        "ability_en": null,
+        "mystic_fragment_count": null,
+        "evolved_from_id": 213,
+        "owner_cookie_id": null,
+        "owner_pet_id": null
+      },
+      "enhancement_level": 9,
+      "enhancement_level_gs": null,
+      "enhancement_range": null,
+      "enhancement_range_gs": null,
+      "evolution_status": "great_success"
+    },
+    {
+      "slot": 3,
+      "treasure_id": 569,
+      "treasure": {
+        "id": 569,
+        "name": "챔피언을 위한 빛나는 크라운",
+        "english_name": "Shining Crown for Champion",
+        "grade": "S",
+        "category": "gacha",
+        "image_path": "treasures/shining_crown_for_champion.webp",
+        "image_file_name": "shining_crown_for_champion.webp",
+        "ability": "일반성공시 :\r\n • 꼬마 자력 초급~9단\r\n • 체력 45~55으로 2회 부활\r\n대성공시 :\r\n • 꼬마 자력 초급~9단\r\n • 체력 50~60으로 2회 부활\r\n\r\n※ 미진화형보다 일반성공/대성공 보물의 자력이 조금 더 강함",
+        "ability_en": null,
+        "mystic_fragment_count": null,
+        "evolved_from_id": 290,
+        "owner_cookie_id": null,
+        "owner_pet_id": null
+      },
+      "enhancement_level": 9,
+      "enhancement_level_gs": null,
+      "enhancement_range": null,
+      "enhancement_range_gs": null,
+      "evolution_status": "great_success"
+    }
+  ],
+  "like_count": 10,
+  "dislike_count": 0,
+  "view_count": 5822,
+  "comment_count": 2,
+  "image_count": 0,
+  "link_url": "https://youtu.be/uP7kiOzic4w?si=7N5yA2TXJ1_pGczA",
+  "created_at": "2026-07-18T07:40:18.581289Z",
+  "verification_count": 0,
+  "error_count": 0,
+  "sonkro_manager_approved": false,
+  "is_sonkro_approved": false,
+  "sonkro_categories": null,
+  "manager_editors": [],
+  "manager_edited_at": null,
+  "manager_edit_note": null,
+  "score_detail": {
+    "score": 745762906,
+    "description": "<p>'티운'님의 유튜브 영상에서 빌드를 확인할 수 있습니다.</p><p></p><p>You can check out the detail build in the video linked below.</p>"
+  },
+  "sonkro_detail": null,
+  "coin_detail": null,
+  "exp_detail": null,
+  "mystery_box_detail": null,
+  "has_all_boosts": false,
+  "has_all_effects": false,
+  "category_badge_ranks": null,
+  "is_hidden": false,
+  "hidden_by_nickname": null,
+  "boost_health": true,
+  "boost_item_time": true,
+  "boost_fast_start": true,
+  "boost_draw": "health_decrease_slow",
+  "effect_cheerleader": true,
+  "effect_commando": true,
+  "effect_fairy": true,
+  "effect_cheesecake": true,
+  "effect_sea_fairy": true,
+  "effect_serenade": true,
+  "effect_exp_party": null,
+  "alternative_treasures": [],
+  "images": [],
+  "balance_patch_notices": []
+}

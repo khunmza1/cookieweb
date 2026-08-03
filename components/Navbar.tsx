@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { UserProfile } from '@/lib/types';
+import { useLanguage, LANGUAGE_OPTIONS, SupportedLanguage } from '@/lib/i18nContext';
 import { 
   CookieIcon, 
   SparklesIcon, 
@@ -17,6 +18,8 @@ import {
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const { lang, setLang, t } = useLanguage();
+
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -56,16 +59,18 @@ export default function Navbar() {
   const isLoggedIn = Boolean(profile && profile.username && profile.username !== 'guest');
   const isAdmin = Boolean(isLoggedIn && profile?.role === 'admin');
 
+  const currentLangObj = LANGUAGE_OPTIONS.find(l => l.code === lang) || LANGUAGE_OPTIONS[0];
+
   return (
     <header className="sticky top-0 z-40 bg-zinc-950/85 backdrop-blur-xl border-b border-zinc-800/80 px-4 sm:px-6 py-3 transition-all">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
         
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group cursor-pointer">
+        <Link href="/" className="flex items-center gap-2.5 group cursor-pointer">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center text-zinc-950 shadow-lg shadow-amber-500/25 group-hover:scale-105 transition-transform duration-200">
             <CookieIcon className="w-5 h-5 fill-zinc-950/20 text-zinc-950" />
           </div>
-          <div>
+          <div className="hidden sm:block">
             <div className="flex items-center gap-1.5">
               <span className="font-black text-base text-white tracking-tight leading-none group-hover:text-amber-400 transition-colors">
                 Cookie Run
@@ -81,62 +86,83 @@ export default function Navbar() {
         <nav className="flex items-center gap-1 sm:gap-1.5 bg-zinc-900/70 p-1 rounded-2xl border border-zinc-800/80">
           <Link
             href="/"
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
               pathname === '/' 
                 ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30 shadow-sm' 
                 : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50'
             }`}
           >
             <SparklesIcon className="w-3.5 h-3.5" />
-            <span>Home Metas</span>
+            <span>{t.nav.home}</span>
           </Link>
 
           <Link
             href="/combo"
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
               pathname === '/combo' 
                 ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30 shadow-sm' 
                 : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50'
             }`}
           >
             <TrophyIcon className="w-3.5 h-3.5" />
-            <span>Browse Setups</span>
+            <span>{t.nav.browse}</span>
           </Link>
 
           <Link
             href="/profile"
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
               pathname === '/profile' 
                 ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30 shadow-sm' 
                 : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50'
             }`}
           >
             <UserIcon className="w-3.5 h-3.5" />
-            <span>My Inventory</span>
+            <span>{t.nav.inventory}</span>
           </Link>
 
           {isAdmin && (
             <Link
               href="/admin"
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer ${
                 pathname === '/admin' 
                   ? 'bg-purple-600 text-white shadow-md shadow-purple-500/20' 
                   : 'bg-purple-500/15 text-purple-300 border border-purple-500/30 hover:bg-purple-600 hover:text-white'
               }`}
             >
               <AdminIcon className="w-3.5 h-3.5" />
-              <span>Admin Portal</span>
+              <span>{t.nav.admin}</span>
             </Link>
           )}
         </nav>
 
-        {/* User Account / Auth Widget */}
+        {/* Right Section: Language Switcher + User Account */}
         <div className="flex items-center gap-2">
+          
+          {/* Language Selector Dropdown */}
+          <div className="relative">
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value as SupportedLanguage)}
+              className="bg-zinc-900 text-amber-400 border border-amber-500/30 hover:border-amber-500/60 rounded-xl px-2.5 py-1.5 text-xs font-black outline-none cursor-pointer transition appearance-none pr-7 shadow-sm"
+              title="Switch Language / เปลี่ยนภาษา"
+            >
+              {LANGUAGE_OPTIONS.map(opt => (
+                <option key={opt.code} value={opt.code} className="bg-zinc-950 text-white font-bold">
+                  {opt.flag} {opt.code.toUpperCase()}
+                </option>
+              ))}
+            </select>
+            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-amber-400/80">
+              ▼
+            </span>
+          </div>
+
+          {/* User Auth */}
           {loading ? (
-            <div className="w-20 h-7 bg-zinc-900 animate-pulse rounded-xl border border-zinc-800"></div>
+            <div className="w-16 h-7 bg-zinc-900 animate-pulse rounded-xl border border-zinc-800"></div>
           ) : isLoggedIn ? (
-            <div className="flex items-center gap-3">
-              <div className="hidden sm:flex flex-col text-right">
+            <div className="flex items-center gap-2">
+              <div className="hidden lg:flex flex-col text-right">
                 <span className="text-xs font-bold text-white leading-none">{profile?.name || profile?.username}</span>
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mt-0.5">{profile?.role}</span>
               </div>
@@ -145,16 +171,16 @@ export default function Navbar() {
                 className="px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 hover:border-zinc-700 transition flex items-center gap-1.5 cursor-pointer"
               >
                 <LogoutIcon className="w-3.5 h-3.5 text-zinc-400" />
-                <span>Sign Out</span>
+                <span className="hidden sm:inline">{t.nav.signOut}</span>
               </button>
             </div>
           ) : (
             <Link
               href="/login"
-              className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black text-xs shadow-lg shadow-amber-500/20 transition flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black text-xs shadow-lg shadow-amber-500/20 transition flex items-center gap-1.5 cursor-pointer"
             >
               <LockIcon className="w-3.5 h-3.5" />
-              <span>Sign In</span>
+              <span>{t.nav.signIn}</span>
             </Link>
           )}
         </div>

@@ -1,10 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { CatalogData, UserProfile, ComboSetup } from '@/lib/types';
-import { findTreasureAlternates, TreasureAlternate } from '@/lib/effectTags';
-import PaginationControls, { PageSizeOption } from '@/components/PaginationControls';
+import { CatalogData, UserProfile, ComboSetup, Treasure, Cookie, Pet } from '@/lib/types';
+import { findTreasureAlternates } from '@/lib/effectTags';
+import { findAdvancedBudgetSubstitutes, AdvancedSubstituteRecommendation, ComboStrategyFocus } from '@/lib/abilitySystem';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import ComboDetailModal from '@/components/ComboDetailModal';
+import BudgetSubstituteModal from '@/components/BudgetSubstituteModal';
+import PortalModal from '@/components/PortalModal';
+import { useLanguage } from '@/lib/i18nContext';
 import { 
   TrophyIcon, 
   PlusIcon, 
@@ -19,18 +24,38 @@ import {
   FlaskIcon,
   LightningIcon,
   RocketIcon,
-  DiceIcon
+  DiceIcon,
+  CloseIcon,
+  EyeIcon,
+  SparklesIcon
 } from '@/components/icons';
 
 export default function ComboPage() {
+  const { t } = useLanguage();
   const [catalog, setCatalog] = useState<CatalogData | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [combos, setCombos] = useState<ComboSetup[]>([]);
   const [loading, setLoading] = useState(true);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [selectedComboModal, setSelectedComboModal] = useState<ComboSetup | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState<PageSizeOption>(20);
+  
+  // Interchangeable Budget Substitute State
+  const [substituteModalState, setSubstituteModalState] = useState<{
+    isOpen: boolean;
+    missingItem: Treasure | Cookie | Pet | null;
+    recommendations: AdvancedSubstituteRecommendation[];
+    strategyFocus?: ComboStrategyFocus;
+  }>({
+    isOpen: false,
+    missingItem: null,
+    recommendations: []
+  });
+  
+  // Waterfall Infinite Load State
+  const [visibleCount, setVisibleCount] = useState(12);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   // Form State
   const [newTitle, setNewTitle] = useState('');
@@ -46,6 +71,9 @@ export default function ComboPage() {
   const [newDesc, setNewDesc] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  const [selectedEpisode, setSelectedEpisode] = useState<string>('ALL');
+  const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
   useEffect(() => {
     async function loadData() {
@@ -81,6 +109,77 @@ export default function ComboPage() {
     }
     loadData();
   }, []);
+
+  const handleOpenSubstituteFinder = (missingItem: Treasure | Cookie | Pet) => {
+    if (!catalog) return;
+
+    const userInventoryEntries: { item: Treasure | Cookie | Pet; level: number }[] = [];
+
+    if (profile) {
+      if (profile.ownedTreasures) {
+        Object.values(profile.ownedTreasures).forEach(t => {
+          const found = catalog.treasures.find(cat => cat.id === t.itemId);
+          if (found) userInventoryEntries.push({ item: found, level: t.level || 9 });
+        });
+      }
+      if (profile.ownedCookies) {
+        Object.values(profile.ownedCookies).forEach(c => {
+          const found = catalog.cookies.find(cat => cat.id === c.itemId);
+          if (found) userInventoryEntries.push({ item: found, level: c.level || 8 });
+        });
+      }
+      if (profile.ownedPets) {
+        Object.values(profile.ownedPets).forEach(p => {
+          const found = catalog.pets.find(cat => cat.id === p.itemId);
+          if (found) userInventoryEntries.push({ item: found, level: p.level || 8 });
+        });
+      }
+    }
+
+    const titleLower = (selectedComboModal?.title || '').toLowerCase();
+    const descLower = (selectedComboModal?.description || '').toLowerCase();
+
+    let strategyFocus: ComboStrategyFocus = 'HIGH_SCORE';
+    if (titleLower.includes('afk') || titleLower.includes('auto') || descLower.includes('afk')) {
+      strategyFocus = 'AFK_AUTO_RUN';
+    } else if (titleLower.includes('coin') || descLower.includes('coin')) {
+      strategyFocus = 'COIN_FARMING';
+    } else if (titleLower.includes('survival') || descLower.includes('distance')) {
+      strategyFocus = 'SURVIVAL';
+    }
+
+    const recs = findAdvancedBudgetSubstitutes(missingItem, userInventoryEntries, strategyFocus);
+
+    setSubstituteModalState({
+      isOpen: true,
+      missingItem,
+      recommendations: recs,
+      strategyFocus
+    });
+  };
+
+  const handleSelectSubstitute = (substituteItem: Treasure | Cookie | Pet, level: number) => {
+    if (selectedComboModal && substituteModalState.missingItem) {
+      const missingId = substituteModalState.missingItem.id;
+      const updatedTreasureIds = selectedComboModal.treasureIds.map(id =>
+        id === missingId ? substituteItem.id : id
+      );
+      setSelectedComboModal({
+        ...selectedComboModal,
+        treasureIds: updatedTreasureIds
+      });
+    }
+    setSubstituteModalState({ isOpen: false, missingItem: null, recommendations: [] });
+  };
+
+  const handleLoadMore = useCallback(() => {
+    if (loadingMore) return;
+    setLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount(prev => prev + 12);
+      setLoadingMore(false);
+    }, 300);
+  }, [loadingMore]);
 
   const handleCreateSetup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -128,8 +227,28 @@ export default function ComboPage() {
     }
   };
 
-  const [selectedEpisode, setSelectedEpisode] = useState<string>('ALL');
-  const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
+  // IntersectionObserver for Automatic Scroll-Down Loading
+  useEffect(() => {
+    if (loading || visibleCount >= combos.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loadingMore) {
+          handleLoadMore();
+        }
+      },
+      { rootMargin: '300px 0px' }
+    );
+
+    const currentSentinel = sentinelRef.current;
+    if (currentSentinel) {
+      observer.observe(currentSentinel);
+    }
+
+    return () => {
+      if (currentSentinel) observer.unobserve(currentSentinel);
+    };
+  }, [loading, visibleCount, combos.length, loadingMore, handleLoadMore]);
 
   if (loading || !catalog) {
     return (
@@ -144,7 +263,7 @@ export default function ComboPage() {
   const treasureMap = new Map(catalog.treasures.map(t => [t.id, t]));
 
   const episodesList = [
-    { id: 'ALL', label: 'All Episodes' },
+    { id: 'ALL', label: t.combo.allEpisodes },
     { id: 'EP1', label: 'EP 1 (Oven Escape)' },
     { id: 'EP2', label: 'EP 2 (Primeval Jungle)' },
     { id: 'EP3', label: 'EP 3 (Dragon\'s Valley)' },
@@ -155,13 +274,13 @@ export default function ComboPage() {
   ];
 
   const categoriesList = [
-    { id: 'ALL', label: 'All Goals', icon: TrophyIcon },
-    { id: 'High Score (Points)', label: 'High Score', icon: TrophyIcon },
-    { id: 'Semi-AFK (준손크로)', label: 'Semi-AFK (준손크로)', icon: MoonIcon },
-    { id: 'Full Manual (손크로)', label: 'Full Manual (손크로)', icon: StarIcon },
-    { id: 'Coin Farming', label: 'Coin Farming', icon: CoinIcon },
-    { id: 'XP Farming', label: 'XP Farming', icon: XPIcon },
-    { id: 'Treasure Box Farming', label: 'Treasure Box', icon: GiftIcon }
+    { id: 'ALL', label: t.combo.allGoals, icon: TrophyIcon },
+    { id: 'High Score (Points)', label: t.combo.highScore, icon: TrophyIcon },
+    { id: 'Semi-AFK (준손크로)', label: t.combo.semiAfk, icon: MoonIcon },
+    { id: 'Full Manual (손크로)', label: t.combo.fullManual, icon: StarIcon },
+    { id: 'Coin Farming', label: t.combo.coinFarming, icon: CoinIcon },
+    { id: 'XP Farming', label: t.combo.xpFarming, icon: XPIcon },
+    { id: 'Treasure Box Farming', label: t.combo.treasureBox, icon: GiftIcon }
   ];
 
   const filteredCombos = combos.filter(c => {
@@ -179,13 +298,21 @@ export default function ComboPage() {
       const term = searchTerm.toLowerCase();
       return c.title.toLowerCase().includes(term) ||
         c.description.toLowerCase().includes(term) ||
-        c.tags.some(t => t.toLowerCase().includes(term));
+        c.tags.some(item => item.toLowerCase().includes(term));
     }
     return true;
   });
 
+  const visibleCombos = filteredCombos.slice(0, visibleCount);
+
+  const userOwnedItems = {
+    cookies: new Set(Object.keys(profile?.ownedCookies || {})),
+    pets: new Set(Object.keys(profile?.ownedPets || {})),
+    treasures: new Set(Object.keys(profile?.ownedTreasures || {}))
+  };
+
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 pb-20">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 pb-28 animate-fade-in">
       
       {/* Header */}
       <div className="bg-gradient-to-b from-amber-500/10 via-zinc-900/40 to-zinc-950 border-b border-zinc-800/80 py-10 px-4 sm:px-6">
@@ -193,51 +320,59 @@ export default function ComboPage() {
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-black uppercase tracking-wider mb-3">
               <TrophyIcon className="w-4 h-4" />
-              <span>Cookie Run Classic Combos</span>
+              <span>{t.combo.badge}</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Community Metas & Setups
+              {t.combo.title}
             </h1>
             <p className="text-zinc-400 text-sm mt-1 max-w-xl">
-              Explore authentic LINE/Kakao combinations, coin farming builds, and high score runs submitted by players.
+              {t.combo.subtitle}
             </p>
           </div>
 
           <button
             onClick={() => { setShowSubmitModal(true); setSubmitError(''); }}
-            className="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black text-sm shadow-lg shadow-amber-500/20 transition flex items-center gap-2 self-start sm:self-auto cursor-pointer"
+            className="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black text-sm shadow-lg shadow-amber-500/20 transition flex items-center gap-2 self-start sm:self-auto cursor-pointer hover:scale-105"
           >
             <PlusIcon className="w-4 h-4 stroke-[3]" />
-            <span>Submit New Setup</span>
+            <span>{t.combo.submitSetup}</span>
           </button>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
         
+        {/* Top Google AdSense Leaderboard Banner */}
+        <div className="mb-8">
+          <AdSenseBanner
+            type="leaderboard"
+            slot="browse-top-banner"
+          />
+        </div>
+
         {/* Search & Category Filter Pills */}
         <div className="mb-8 space-y-4">
           <div className="relative max-w-xl">
             <SearchIcon className="w-4 h-4 text-zinc-500 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search combos by name, strategy, or tag (e.g. Coin Farming, Magnet)..."
+              placeholder={t.combo.searchPlaceholder}
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => { setSearchTerm(e.target.value); setVisibleCount(12); }}
               className="w-full bg-zinc-900 border border-zinc-800 rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-zinc-500 outline-none focus:border-amber-500 transition"
             />
           </div>
 
           {/* Episode Stage Selector Pills */}
           <div className="space-y-1.5">
-            <span className="text-xs font-black text-amber-400 uppercase tracking-wider block">1. Select Episode / Stage:</span>
+            <span className="text-xs font-black text-amber-400 uppercase tracking-wider block">{t.combo.selectEpisode}</span>
             <div className="flex items-center gap-1.5 flex-wrap">
               {episodesList.map(ep => {
                 const isActive = selectedEpisode === ep.id;
                 return (
                   <button
                     key={ep.id}
-                    onClick={() => { setSelectedEpisode(ep.id); setCurrentPage(1); }}
+                    onClick={() => { setSelectedEpisode(ep.id); setVisibleCount(12); }}
                     className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
                       isActive
                         ? 'bg-amber-500 text-zinc-950 shadow-md scale-105'
@@ -253,7 +388,7 @@ export default function ComboPage() {
 
           {/* Goal Category Filter Pills */}
           <div className="space-y-1.5">
-            <span className="text-xs font-black text-emerald-400 uppercase tracking-wider block">2. Select Goal / Purpose:</span>
+            <span className="text-xs font-black text-emerald-400 uppercase tracking-wider block">{t.combo.selectGoal}</span>
             <div className="flex items-center gap-1.5 flex-wrap">
               {categoriesList.map(cat => {
                 const IconComponent = cat.icon;
@@ -262,7 +397,7 @@ export default function ComboPage() {
                 return (
                   <button
                     key={cat.id}
-                    onClick={() => { setSelectedCategory(cat.id); setCurrentPage(1); }}
+                    onClick={() => { setSelectedCategory(cat.id); setVisibleCount(12); }}
                     className={`px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all flex items-center gap-1.5 cursor-pointer ${
                       isActive
                         ? 'bg-emerald-500 text-zinc-950 shadow-md scale-105 font-black'
@@ -278,417 +413,355 @@ export default function ComboPage() {
           </div>
         </div>
 
-        {/* Top Pagination Controls */}
-        <PaginationControls
-          currentPage={currentPage}
-          totalItems={filteredCombos.length}
-          pageSize={pageSize}
-          onPageChange={setCurrentPage}
-          onPageSizeChange={setPageSize}
-          className="mb-4 bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4"
-        />
+        {/* Waterfall Header Info */}
+        <div className="flex items-center justify-between mb-4 pb-2 border-b border-zinc-800/80">
+          <div className="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
+            <SparklesIcon className="w-4 h-4 text-amber-400" />
+            <span>{t.combo.waterfallStream} ({visibleCombos.length} / {filteredCombos.length})</span>
+          </div>
+          <span className="text-xs text-zinc-400">Masonry Stream</span>
+        </div>
 
-        {/* Combo Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {(pageSize === 'ALL'
-            ? filteredCombos
-            : filteredCombos.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-          ).map(combo => {
+        {/* WATERFALL MASONRY GRID */}
+        <div className="waterfall-columns">
+          {visibleCombos.map((combo, idx) => {
             const mainCookie = cookieMap.get(combo.cookieId);
             const relayCookie = combo.relayCookieId ? cookieMap.get(combo.relayCookieId) : null;
             const pet = petMap.get(combo.petId);
-            const treasures = combo.treasureIds.map(tid => treasureMap.get(tid)).filter(Boolean);
+            const treasures = combo.treasureIds.map(tid => treasureMap.get(tid)).filter((item): item is Treasure => Boolean(item));
 
-            // Check inventory match if profile loaded
-            let isFullMatch = false;
-            let missingCount = 0;
-            const missingTreasureAlternates: { id: string; name: string; alternates: TreasureAlternate[] }[] = [];
-            if (profile) {
-              const hasMain = Boolean(profile.ownedCookies[combo.cookieId]);
-              const hasRelay = combo.relayCookieId ? Boolean(profile.ownedCookies[combo.relayCookieId]) : true;
-              const hasPet = Boolean(profile.ownedPets[combo.petId]);
-              const hasT = combo.treasureIds.every(tid => Boolean(profile.ownedTreasures[tid]));
-              isFullMatch = hasMain && hasRelay && hasPet && hasT;
+            const userOwnsMain = userOwnedItems.cookies.has(combo.cookieId);
+            const userOwnsRelay = !combo.relayCookieId || userOwnedItems.cookies.has(combo.relayCookieId);
+            const userOwnsPet = userOwnedItems.pets.has(combo.petId);
+            const userOwnedTreasuresCount = combo.treasureIds.filter(tid => userOwnedItems.treasures.has(tid)).length;
 
-              if (!hasMain) missingCount++;
-              if (combo.relayCookieId && !hasRelay) missingCount++;
-              if (!hasPet) missingCount++;
-
-              const ownedTreasureIds = new Set(Object.keys(profile.ownedTreasures));
-              const usedInCombo = new Set(combo.treasureIds);
-              combo.treasureIds.forEach(tid => {
-                if (!profile.ownedTreasures[tid]) {
-                  missingCount++;
-                  const t = treasureMap.get(tid);
-                  if (t) {
-                    const alternates = findTreasureAlternates(t, catalog.treasures, ownedTreasureIds, usedInCombo);
-                    if (alternates.length > 0) {
-                      missingTreasureAlternates.push({ id: tid, name: t.name, alternates });
-                    }
-                  }
-                }
-              });
-            }
+            const isFullMatch = userOwnsMain && userOwnsRelay && userOwnsPet && (userOwnedTreasuresCount === combo.treasureIds.length);
+            const showAd = (idx > 0 && idx % 6 === 0);
 
             return (
-              <div
-                key={combo.id}
-                className={`bg-zinc-900/80 border rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 shadow-xl ${
-                  combo.isBoosted ? 'border-amber-500/80 ring-1 ring-amber-500/30' : 'border-zinc-800 hover:border-zinc-700'
-                }`}
-              >
-                <div>
-                  {/* Top Badges */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
+              <div key={combo.id} className="waterfall-item">
+                
+                {showAd && (
+                  <div className="mb-6">
+                    <AdSenseBanner
+                      type="infeed"
+                      slot={`browse-infeed-${idx}`}
+                    />
+                  </div>
+                )}
+
+                {/* Setup Card */}
+                <div
+                  onClick={() => setSelectedComboModal(combo)}
+                  className={`rounded-2xl border p-5 bg-zinc-900/90 shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer group ${
+                    combo.isBoosted
+                      ? 'border-amber-500/80 ring-1 ring-amber-500/30 hover:border-amber-400'
+                      : isFullMatch
+                        ? 'border-emerald-500/60 ring-1 ring-emerald-500/20 hover:border-emerald-400'
+                        : 'border-zinc-800/80 hover:border-amber-500/40'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       {combo.isBoosted && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-500 text-zinc-950 uppercase tracking-wider flex items-center gap-1">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-500 text-zinc-950 uppercase tracking-wider flex items-center gap-1">
                           <StarIcon className="w-3 h-3 fill-zinc-950" />
-                          <span>BOOSTED META</span>
+                          <span>{t.home.boostedMeta}</span>
                         </span>
                       )}
-                      {combo.tags.map((tag, idx) => (
-                        <span key={idx} className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-800 text-amber-300 border border-zinc-700">
-                          {tag}
-                        </span>
-                      ))}
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-zinc-800 text-zinc-300 border border-zinc-700">
+                        {combo.episode || 'Classic Stage'}
+                      </span>
                     </div>
 
-                    {profile && (
-                      <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold flex items-center gap-1 ${
-                        isFullMatch 
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' 
-                          : 'bg-zinc-800 text-zinc-400 border border-zinc-700'
-                      }`}>
-                        {isFullMatch ? (
-                          <>
-                            <CheckIcon className="w-3 h-3" />
-                            <span>100% Owned</span>
-                          </>
-                        ) : (
-                          <span>{missingCount} missing</span>
-                        )}
+                    {isFullMatch && (
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500 text-zinc-950 uppercase tracking-wider flex items-center gap-1">
+                        <CheckIcon className="w-3 h-3" />
+                        <span>{t.combo.ready}</span>
                       </span>
                     )}
                   </div>
 
-                  {/* Title & Author */}
-                  <h2 className="text-xl font-black text-white">{combo.title}</h2>
-                  <p className="text-xs text-zinc-400 mt-0.5">By <span className="text-amber-400 font-semibold">{combo.author}</span></p>
+                  <h3 className="text-lg font-black text-white group-hover:text-amber-300 transition-colors leading-snug">
+                    {combo.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400 mt-1 line-clamp-2">{combo.description}</p>
 
-                  {/* Item Lineup Display */}
-                  <div className="my-5 bg-zinc-950 p-4 rounded-xl border border-zinc-800/80 grid grid-cols-4 gap-2 text-center">
-                    
-                    {/* Main Cookie */}
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 relative bg-zinc-900 rounded-lg p-1 border border-zinc-800 flex items-center justify-center shrink-0">
-                        {mainCookie && (
-                          <Image src={mainCookie.imageUrl} alt={mainCookie.name} width={40} height={40} unoptimized className="object-contain" />
-                        )}
+                  <div className="mt-4 p-3 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900 shrink-0">
+                        {mainCookie && <Image src={mainCookie.imageUrl} alt={mainCookie.name} fill className="object-contain p-0.5" />}
                       </div>
-                      <span className="text-[10px] font-bold text-amber-400 mt-1 line-clamp-1">{mainCookie?.name || combo.cookieId}</span>
-                      <span className="text-[9px] text-zinc-500 uppercase font-semibold">Main</span>
-                    </div>
-
-                    {/* Relay Cookie */}
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 relative bg-zinc-900 rounded-lg p-1 border border-zinc-800 flex items-center justify-center shrink-0">
-                        {relayCookie ? (
-                          <Image src={relayCookie.imageUrl} alt={relayCookie.name} width={40} height={40} unoptimized className="object-contain" />
-                        ) : (
-                          <span className="text-xs text-zinc-600 font-bold">None</span>
-                        )}
-                      </div>
-                      <span className="text-[10px] font-bold text-amber-300 mt-1 line-clamp-1">{relayCookie?.name || 'No Relay'}</span>
-                      <span className="text-[9px] text-zinc-500 uppercase font-semibold">Relay</span>
-                    </div>
-
-                    {/* Pet */}
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 relative bg-zinc-900 rounded-lg p-1 border border-zinc-800 flex items-center justify-center shrink-0">
-                        {pet && (
-                          <Image src={pet.imageUrl} alt={pet.name} width={40} height={40} unoptimized className="object-contain" />
-                        )}
-                      </div>
-                      <span className="text-[10px] font-bold text-purple-400 mt-1 line-clamp-1">{pet?.name || combo.petId}</span>
-                      <span className="text-[9px] text-zinc-500 uppercase font-semibold">Pet</span>
-                    </div>
-
-                    {/* Treasures */}
-                    <div className="flex flex-col items-center">
-                      <div className="flex items-center gap-0.5 justify-center">
-                        {treasures.slice(0, 3).map((t, idx) => (
-                          <div key={idx} className="w-8 h-8 relative bg-zinc-900 rounded p-0.5 border border-zinc-800 flex items-center justify-center">
-                            {t && <Image src={t.imageUrl} alt={t.name} width={28} height={28} unoptimized className="object-contain" />}
-                          </div>
-                        ))}
-                      </div>
-                      <span className="text-[10px] font-bold text-amber-200 mt-1">{treasures.length} Treasures</span>
-                      <span className="text-[9px] text-zinc-500 uppercase font-semibold">Items</span>
-                    </div>
-
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-xs text-zinc-300 leading-relaxed mb-3">{combo.description}</p>
-
-                  {/* Alternate Treasure Suggestions */}
-                  {missingTreasureAlternates.length > 0 && (
-                    <div className="mb-3 space-y-1.5">
-                      {missingTreasureAlternates.map(m => (
-                        <div key={m.id} className="text-[11px] bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-2 text-emerald-300 flex items-center gap-1.5 flex-wrap">
-                          <span className="font-bold shrink-0 flex items-center gap-1">
-                            <LightbulbIcon className="w-3.5 h-3.5 text-emerald-400" />
-                            <span>Missing {m.name} — substitute:</span>
-                          </span>
-                          {m.alternates.map(alt => (
-                            <span key={alt.id} className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 font-semibold text-xs">
-                              {alt.name}
-                            </span>
-                          ))}
+                      {relayCookie && (
+                        <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900 shrink-0">
+                          <Image src={relayCookie.imageUrl} alt={relayCookie.name} fill className="object-contain p-0.5" />
                         </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Pre-Run Boost Badges */}
-                  {combo.boosts && (
-                    <div className="mb-3 p-2.5 bg-zinc-950 rounded-xl border border-zinc-800 text-[11px] space-y-1">
-                      <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="font-bold text-amber-400 text-[10px] uppercase">Required Boosts:</span>
-                        {combo.boosts.hpExtension && (
-                          <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 font-semibold border border-zinc-800 flex items-center gap-1">
-                            <FlaskIcon className="w-3 h-3 text-red-400" />
-                            <span>HP Extension</span>
-                          </span>
-                        )}
-                        {combo.boosts.powerJellyBoost && (
-                          <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 font-semibold border border-zinc-800 flex items-center gap-1">
-                            <LightningIcon className="w-3 h-3 text-amber-400" />
-                            <span>Power Jelly</span>
-                          </span>
-                        )}
-                        {combo.boosts.doubleXp && (
-                          <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 font-semibold border border-zinc-800 flex items-center gap-1">
-                            <XPIcon className="w-3 h-3 text-purple-400" />
-                            <span>Double XP</span>
-                          </span>
-                        )}
-                        {combo.boosts.fastStart && (
-                          <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 font-semibold border border-zinc-800 flex items-center gap-1">
-                            <RocketIcon className="w-3 h-3 text-cyan-400" />
-                            <span>Fast Start</span>
-                          </span>
-                        )}
-                      </div>
-                      {combo.boosts.randomBoost && (
-                        <div className="text-[10px] text-amber-300 font-black flex items-center gap-1 pt-0.5">
-                          <DiceIcon className="w-3 h-3 text-amber-400" />
-                          <span>Random Boost:</span>
-                          <span className="text-white bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30">{combo.boosts.randomBoost}</span>
+                      )}
+                      {pet && (
+                        <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-purple-500/40 bg-zinc-900 shrink-0 ml-auto">
+                          <Image src={pet.imageUrl} alt={pet.name} fill className="object-contain p-0.5" />
                         </div>
                       )}
                     </div>
-                  )}
-                </div>
 
-                {/* Target Metrics */}
-                <div className="pt-4 border-t border-zinc-800 flex items-center justify-between text-xs">
-                  <div>
-                    <span className="text-zinc-500 font-bold uppercase text-[10px] block">Target Score</span>
-                    <span className="text-amber-400 font-black text-sm">{combo.targetScore.toLocaleString()} pts</span>
-                  </div>
-                  {combo.coinsPerRun && (
-                    <div className="text-right">
-                      <span className="text-zinc-500 font-bold uppercase text-[10px] block">Coins / Run</span>
-                      <span className="text-amber-300 font-black text-sm flex items-center justify-end gap-1">
-                        <CoinIcon className="w-3.5 h-3.5 text-amber-400" />
-                        <span>{combo.coinsPerRun.toLocaleString()}</span>
+                    <div className="flex items-center gap-1.5 pt-2 border-t border-zinc-800/80">
+                      {treasures.map((item, itemIdx) => (
+                        <div key={`${item.id}-${itemIdx}`} className="relative w-8 h-8 rounded-md overflow-hidden border border-zinc-800 bg-zinc-900 shrink-0" title={item.name}>
+                          <Image src={item.imageUrl} alt={item.name} fill className="object-contain p-0.5" />
+                        </div>
+                      ))}
+                      <span className="text-[10px] font-bold text-zinc-400 ml-auto">
+                        Treasures ({treasures.length})
                       </span>
                     </div>
-                  )}
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between text-xs border-t border-zinc-800 pt-3">
+                    <div>
+                      <span className="text-[10px] text-zinc-500 uppercase font-bold block">{t.home.targetScore}</span>
+                      <span className="font-black text-amber-400">{combo.targetScore.toLocaleString()}</span>
+                    </div>
+                    {combo.coinsPerRun && (
+                      <div className="text-right">
+                        <span className="text-[10px] text-zinc-500 uppercase font-bold block">{t.home.coinsPerRun}</span>
+                        <span className="font-black text-yellow-400 flex items-center gap-1">
+                          <CoinIcon className="w-3.5 h-3.5" />
+                          <span>{combo.coinsPerRun.toLocaleString()}</span>
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-3 text-center">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 group-hover:underline">
+                      <EyeIcon className="w-3.5 h-3.5" />
+                      <span>{t.combo.inspectDetails}</span>
+                    </span>
+                  </div>
+
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Pagination Controls */}
-        <PaginationControls
-          currentPage={currentPage}
-          totalItems={filteredCombos.length}
-          pageSize={pageSize}
-          onPageChange={setCurrentPage}
-          onPageSizeChange={setPageSize}
-          className="mt-6 bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4"
-        />
+        {visibleCount < filteredCombos.length && (
+          <div ref={sentinelRef} className="mt-10 text-center py-4">
+            <button
+              onClick={handleLoadMore}
+              disabled={loadingMore}
+              className="px-8 py-3.5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-amber-500/40 text-amber-400 font-black text-sm shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2 mx-auto cursor-pointer"
+            >
+              {loadingMore ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+                  <span>{t.home.streaming}</span>
+                </>
+              ) : (
+                <>
+                  <SparklesIcon className="w-4 h-4" />
+                  <span>{t.home.loadMore} ({filteredCombos.length - visibleCount})</span>
+                </>
+              )}
+            </button>
+          </div>
+        )}
 
       </div>
 
-      {/* Submit Modal */}
+      {selectedComboModal && (
+        <ComboDetailModal
+          combo={selectedComboModal}
+          catalog={catalog}
+          userOwnedItems={userOwnedItems}
+          onClose={() => setSelectedComboModal(null)}
+          onOpenSubstituteFinder={handleOpenSubstituteFinder}
+        />
+      )}
+
+      <BudgetSubstituteModal
+        isOpen={substituteModalState.isOpen}
+        onClose={() => setSubstituteModalState({ isOpen: false, missingItem: null, recommendations: [] })}
+        missingItem={substituteModalState.missingItem}
+        recommendations={substituteModalState.recommendations}
+        strategyFocus={substituteModalState.strategyFocus}
+        onSelectSubstitute={handleSelectSubstitute}
+      />
+
       {showSubmitModal && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-xl w-full p-6 sm:p-8 relative text-zinc-100 shadow-2xl">
-            <button
-              onClick={() => setShowSubmitModal(false)}
-              className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-sm cursor-pointer"
-            >
-              ✕
-            </button>
+        <PortalModal>
+          <div className="modal-backdrop animate-fade-in">
+            <div className="absolute inset-0" onClick={() => setShowSubmitModal(false)}></div>
 
-            <div className="mb-4">
-              <h2 className="text-xl font-black text-white flex items-center gap-2">
-                <PlusIcon className="w-5 h-5 text-amber-400 stroke-[3]" />
-                <span>Submit Cookie Run Setup</span>
-              </h2>
-              <p className="text-xs text-zinc-400 mt-0.5">Share your high score or coin farming build with the community.</p>
+            <div className="relative w-full max-w-xl bg-zinc-900 border border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 animate-modal-pop max-h-[90vh] overflow-y-auto">
+              
+              <button
+                onClick={() => setShowSubmitModal(false)}
+                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+              >
+                <CloseIcon className="w-4 h-4" />
+              </button>
+
+              <h2 className="text-2xl font-black text-white mb-1">{t.combo.submitSetup}</h2>
+              <p className="text-xs text-zinc-400 mb-6">Share your custom Cookie Run Classic meta build with the community.</p>
+
+              {submitError && (
+                <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
+                  {submitError}
+                </div>
+              )}
+
+              <form onSubmit={handleCreateSetup} className="space-y-4 text-xs">
+                <div>
+                  <label className="block font-bold text-zinc-300 mb-1">Setup Title</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g., EP 3 Dragon Run 80M Score Build"
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-bold text-zinc-300 mb-1">Author Name</label>
+                    <input
+                      type="text"
+                      value={newAuthor}
+                      onChange={(e) => setNewAuthor(e.target.value)}
+                      className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-zinc-300 mb-1">{t.modal.mainRunner}</label>
+                    <select
+                      value={newMainCookie}
+                      onChange={(e) => setNewMainCookie(e.target.value)}
+                      className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500"
+                    >
+                      {catalog.cookies.map(c => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-bold text-zinc-300 mb-1">{t.modal.relayRunner}</label>
+                    <select
+                      value={newRelayCookie}
+                      onChange={(e) => setNewRelayCookie(e.target.value)}
+                      className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500"
+                    >
+                      <option value="">None</option>
+                      {catalog.cookies.map(c => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block font-bold text-zinc-300 mb-1">{t.modal.combiPet}</label>
+                    <select
+                      value={newPet}
+                      onChange={(e) => setNewPet(e.target.value)}
+                      className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500"
+                    >
+                      {catalog.pets.map(p => (
+                        <option key={p.id} value={p.id}>{p.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block font-bold text-zinc-300">{t.modal.equippedTreasures}</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    <select
+                      value={newT1}
+                      onChange={(e) => setNewT1(e.target.value)}
+                      className="bg-zinc-950 border border-zinc-800 rounded-xl p-2 text-white outline-none focus:border-amber-500"
+                    >
+                      {catalog.treasures.map(item => (
+                        <option key={item.id} value={item.id}>{item.name}</option>
+                      ))}
+                    </select>
+                    <select
+                      value={newT2}
+                      onChange={(e) => setNewT2(e.target.value)}
+                      className="bg-zinc-950 border border-zinc-800 rounded-xl p-2 text-white outline-none focus:border-amber-500"
+                    >
+                      {catalog.treasures.map(item => (
+                        <option key={item.id} value={item.id}>{item.name}</option>
+                      ))}
+                    </select>
+                    <select
+                      value={newT3}
+                      onChange={(e) => setNewT3(e.target.value)}
+                      className="bg-zinc-950 border border-zinc-800 rounded-xl p-2 text-white outline-none focus:border-amber-500"
+                    >
+                      {catalog.treasures.map(item => (
+                        <option key={item.id} value={item.id}>{item.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-bold text-zinc-300 mb-1">{t.home.targetScore}</label>
+                    <input
+                      type="number"
+                      value={newScore}
+                      onChange={(e) => setNewScore(Number(e.target.value))}
+                      className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-zinc-300 mb-1">{t.home.coinsPerRun}</label>
+                    <input
+                      type="number"
+                      value={newCoins}
+                      onChange={(e) => setNewCoins(Number(e.target.value))}
+                      className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-zinc-300 mb-1">{t.modal.strategyNotes}</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Describe your run strategy, timing, or boost recommendations..."
+                    value={newDesc}
+                    onChange={(e) => setNewDesc(e.target.value)}
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-500 resize-none"
+                  ></textarea>
+                </div>
+
+                <div className="pt-4 flex items-center justify-end gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowSubmitModal(false)}
+                    className="px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 font-bold hover:bg-zinc-700 cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black shadow-lg shadow-amber-500/20 cursor-pointer"
+                  >
+                    {submitting ? 'Submitting...' : t.combo.postSetup}
+                  </button>
+                </div>
+              </form>
+
             </div>
-
-            {submitError && (
-              <div className="mb-4 text-xs bg-rose-500/10 border border-rose-500/30 text-rose-300 p-3 rounded-xl">
-                ⚠️ {submitError}
-              </div>
-            )}
-
-            <form onSubmit={handleCreateSetup} className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Setup Title</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Moonlight Starlight Score Meta"
-                  value={newTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-amber-500 transition"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Main Cookie</label>
-                  <select
-                    value={newMainCookie}
-                    onChange={(e) => setNewMainCookie(e.target.value)}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none cursor-pointer"
-                  >
-                    {catalog.cookies.map(c => (
-                      <option key={c.id} value={c.id}>{c.name} (Grade {c.grade})</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-amber-300 uppercase tracking-wider mb-1">Relay Cookie (Optional)</label>
-                  <select
-                    value={newRelayCookie}
-                    onChange={(e) => setNewRelayCookie(e.target.value)}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none cursor-pointer"
-                  >
-                    <option value="">-- No Relay --</option>
-                    {catalog.cookies.map(c => (
-                      <option key={c.id} value={c.id}>{c.name} (Grade {c.grade})</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-purple-400 uppercase tracking-wider mb-1">Pet</label>
-                <select
-                  value={newPet}
-                  onChange={(e) => setNewPet(e.target.value)}
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none cursor-pointer"
-                >
-                  {catalog.pets.map(p => (
-                    <option key={p.id} value={p.id}>{p.name} (Grade {p.grade})</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-amber-300 uppercase tracking-wider mb-1">Treasures (Up to 3)</label>
-                <div className="grid grid-cols-3 gap-2">
-                  <select
-                    value={newT1}
-                    onChange={(e) => setNewT1(e.target.value)}
-                    className="bg-zinc-950 border border-zinc-800 rounded-xl px-2 py-2 text-[11px] text-white outline-none cursor-pointer"
-                  >
-                    {catalog.treasures.map(t => (
-                      <option key={t.id} value={t.id}>{t.name}</option>
-                    ))}
-                  </select>
-                  <select
-                    value={newT2}
-                    onChange={(e) => setNewT2(e.target.value)}
-                    className="bg-zinc-950 border border-zinc-800 rounded-xl px-2 py-2 text-[11px] text-white outline-none cursor-pointer"
-                  >
-                    {catalog.treasures.map(t => (
-                      <option key={t.id} value={t.id}>{t.name}</option>
-                    ))}
-                  </select>
-                  <select
-                    value={newT3}
-                    onChange={(e) => setNewT3(e.target.value)}
-                    className="bg-zinc-950 border border-zinc-800 rounded-xl px-2 py-2 text-[11px] text-white outline-none cursor-pointer"
-                  >
-                    {catalog.treasures.map(t => (
-                      <option key={t.id} value={t.id}>{t.name}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Target Score</label>
-                  <input
-                    type="number"
-                    value={newScore}
-                    onChange={(e) => setNewScore(Number(e.target.value))}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Coins Per Run</label>
-                  <input
-                    type="number"
-                    value={newCoins}
-                    onChange={(e) => setNewCoins(Number(e.target.value))}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Strategy Description</label>
-                <textarea
-                  rows={3}
-                  value={newDesc}
-                  onChange={(e) => setNewDesc(e.target.value)}
-                  placeholder="Explain why this combination works..."
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white outline-none"
-                ></textarea>
-              </div>
-
-              <div className="pt-3 border-t border-zinc-800 flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowSubmitModal(false)}
-                  className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300 transition cursor-pointer"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs shadow-lg shadow-amber-500/20 transition cursor-pointer"
-                >
-                  {submitting ? 'Submitting...' : 'Post Setup'}
-                </button>
-              </div>
-            </form>
           </div>
-        </div>
+        </PortalModal>
       )}
 
     </div>

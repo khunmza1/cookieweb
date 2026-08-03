@@ -6,6 +6,11 @@ import ScanVerificationModal from '@/components/ScanVerificationModal';
 import { ScannedTileResult } from '@/lib/scannerEngine';
 import { CatalogData, UserProfile, Cookie, Pet, Treasure, Grade } from '@/lib/types';
 import PaginationControls, { PageSizeOption } from '@/components/PaginationControls';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import PortalModal from '@/components/PortalModal';
+import { CookieDetailWikiModal } from '@/components/CookieDetailWikiModal';
+import { PetDetailWikiModal } from '@/components/PetDetailWikiModal';
+import { useLanguage } from '@/lib/i18nContext';
 import { 
   CookieIcon, 
   PetIcon, 
@@ -15,10 +20,12 @@ import {
   CheckIcon, 
   PlusIcon, 
   SearchIcon, 
-  EyeIcon 
+  EyeIcon,
+  CloseIcon
 } from '@/components/icons';
 
 export default function ProfilePage() {
+  const { t } = useLanguage();
   const [catalog, setCatalog] = useState<CatalogData | null>(null);
   const [profile, setProfile] = useState<UserProfile>({
     id: "default-user",
@@ -33,8 +40,10 @@ export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState<'cookie' | 'pet' | 'treasure'>('cookie');
   const [selectedGrade, setSelectedGrade] = useState<string>('ALL');
   const [searchTerm, setSearchTerm] = useState('');
+  
+  // PAGINATION KEPT FOR MY INVENTORY
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState<PageSizeOption>(20);
+  const [pageSize, setPageSize] = useState<PageSizeOption>(24);
   const [selectedItem, setSelectedItem] = useState<{ item: Cookie | Pet | Treasure; type: 'cookie' | 'pet' | 'treasure' } | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -69,7 +78,6 @@ export default function ProfilePage() {
     setProfile(updated);
     window.dispatchEvent(new Event('profile_updated'));
 
-    // Sync with API asynchronously
     fetch('/api/inventory', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -128,8 +136,8 @@ export default function ProfilePage() {
         copy.ownedPets[p.id] = { itemId: p.id, level: p.maxLevel };
       });
     } else if (category === 'treasure') {
-      catalog.treasures.forEach(t => {
-        copy.ownedTreasures[t.id] = { itemId: t.id, level: 9 };
+      catalog.treasures.forEach(tItem => {
+        copy.ownedTreasures[tItem.id] = { itemId: tItem.id, level: 9 };
       });
     }
     saveProfile(copy);
@@ -145,9 +153,17 @@ export default function ProfilePage() {
 
   // AI Screenshot Scanner State
   const [scanning, setScanning] = useState(false);
+  const [scanElapsedMs, setScanElapsedMs] = useState(0);
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [scanIsError, setScanIsError] = useState(false);
   const [scanRunId, setScanRunId] = useState(0);
+  const [debugPayloadModal, setDebugPayloadModal] = useState<{
+    isOpen: boolean;
+    info: any;
+  }>({
+    isOpen: false,
+    info: null
+  });
   const [verificationModal, setVerificationModal] = useState<{
     isOpen: boolean;
     screenshotUrls: string[];
@@ -160,26 +176,79 @@ export default function ProfilePage() {
 
   const MAX_SCAN_IMAGES = 8;
 
-  const fileToDataUrl = (file: File): Promise<string> =>
+  // Live Timer Effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (scanning) {
+      const start = Date.now();
+      setScanElapsedMs(0);
+      timer = setInterval(() => {
+        setScanElapsedMs(Date.now() - start);
+      }, 100);
+    }
+    return () => clearInterval(timer);
+  }, [scanning]);
+
+  // Client-Side Canvas Image Compression: Resizes 4K phone screenshots to 1080p JPEG (drops payload size from 6MB to 120KB)
+  const compressAndResizeScreenshot = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
+      const img = new window.Image();
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
+
+      reader.onload = (e) => {
+        img.src = e.target?.result as string;
+      };
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_DIM = 1080;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_DIM) {
+            height = Math.round((height * MAX_DIM) / width);
+            width = MAX_DIM;
+          }
+        } else {
+          if (height > MAX_DIM) {
+            width = Math.round((width * MAX_DIM) / height);
+            height = MAX_DIM;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          resolve(reader.result as string);
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0, width, height);
+        // Convert to high quality compressed JPEG (0.82)
+        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        resolve(compressedDataUrl);
+      };
+
+      img.onerror = () => resolve(reader.result as string);
       reader.onerror = () => reject(reader.error);
       reader.readAsDataURL(file);
     });
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []).slice(0, MAX_SCAN_IMAGES);
-    e.target.value = ''; // allow re-selecting the same file(s) next time
+    e.target.value = '';
     if (files.length === 0) return;
 
     setScanning(true);
     setScanIsError(false);
-    setScanResult(`Uploading ${files.length} screenshot${files.length !== 1 ? 's' : ''}…`);
+    setScanResult(`Compressing & Uploading ${files.length} screenshot${files.length !== 1 ? 's' : ''}…`);
 
     try {
-      const dataUrls = await Promise.all(files.map(fileToDataUrl));
-
+      // Compress and resize screenshots client-side (98% byte size reduction)
+      const dataUrls = await Promise.all(files.map(compressAndResizeScreenshot));
       setScanResult('AI Vision is reading your treasures & enhancement levels…');
 
       const res = await fetch('/api/inventory/scan-screenshot', {
@@ -191,6 +260,10 @@ export default function ProfilePage() {
       });
 
       const data = await res.json();
+
+      if (data.debugPayloadInfo) {
+        setDebugPayloadModal(prev => ({ ...prev, info: data.debugPayloadInfo }));
+      }
 
       if (!res.ok || !data.success) {
         setScanIsError(true);
@@ -277,20 +350,20 @@ export default function ProfilePage() {
   });
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 pb-20">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 pb-24 animate-fade-in">
       {/* Header Banner */}
       <div className="bg-gradient-to-b from-amber-500/10 via-zinc-900/40 to-zinc-950 border-b border-zinc-800/80 py-10 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-black uppercase tracking-wider mb-3">
               <SparklesIcon className="w-4 h-4" />
-              <span>Runner Inventory Profile</span>
+              <span>{t.profile.badge}</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Manage Your Collection
+              {t.profile.title}
             </h1>
             <p className="text-zinc-400 text-sm mt-1 max-w-xl">
-              Toggle your owned Cookies, Pets, and Treasures or upload an in-game screenshot to auto-import your collection!
+              {t.profile.subtitle}
             </p>
           </div>
 
@@ -301,7 +374,7 @@ export default function ProfilePage() {
                 <CookieIcon className="w-5 h-5 text-amber-400" />
                 <span>{ownedCookieCount}</span>
               </span>
-              <span className="block text-[11px] text-zinc-400 font-bold uppercase tracking-wider mt-1">Cookies</span>
+              <span className="block text-[11px] text-zinc-400 font-bold uppercase tracking-wider mt-1">{t.home.cookiesOwned}</span>
             </div>
 
             <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 text-center min-w-[100px] shadow-lg">
@@ -309,7 +382,7 @@ export default function ProfilePage() {
                 <PetIcon className="w-5 h-5 text-purple-400" />
                 <span>{ownedPetCount}</span>
               </span>
-              <span className="block text-[11px] text-zinc-400 font-bold uppercase tracking-wider mt-1">Pets</span>
+              <span className="block text-[11px] text-zinc-400 font-bold uppercase tracking-wider mt-1">{t.home.petsOwned}</span>
             </div>
 
             <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 text-center min-w-[100px] shadow-lg">
@@ -317,7 +390,7 @@ export default function ProfilePage() {
                 <TreasureIcon className="w-5 h-5 text-amber-300" />
                 <span>{ownedTreasureCount}</span>
               </span>
-              <span className="block text-[11px] text-zinc-400 font-bold uppercase tracking-wider mt-1">Treasures</span>
+              <span className="block text-[11px] text-zinc-400 font-bold uppercase tracking-wider mt-1">{t.home.treasuresOwned}</span>
             </div>
           </div>
         </div>
@@ -331,18 +404,39 @@ export default function ProfilePage() {
             <div className="flex items-center gap-2 flex-wrap">
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 uppercase tracking-wider flex items-center gap-1">
                 <SparklesIcon className="w-3.5 h-3.5" />
-                <span>AI Vision Scanner</span>
+                <span>{t.profile.aiScanner}</span>
               </span>
+              
+              {/* LIVE PROCESSING TIMER */}
+              {scanning && (
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase tracking-wider flex items-center gap-1 font-mono animate-pulse">
+                  <span>⏱️ Processing AI Vision... {(scanElapsedMs / 1000).toFixed(1)}s</span>
+                </span>
+              )}
+
               {scanResult && (
                 <span className={`text-xs font-extrabold ${scanIsError ? 'text-rose-400' : 'text-emerald-400'}`}>
                   {scanResult}
                 </span>
               )}
             </div>
-            <h2 className="text-xl font-black text-white">Upload In-Game Inventory Screenshot(s)</h2>
+            
+            <h2 className="text-xl font-black text-white">{t.profile.uploadScreenshots}</h2>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Upload one or more screenshots of your treasure inventory — AI Vision reads every icon and its +0 to +9 enhancement badge, then lets you verify before importing.
+              {t.profile.uploadDesc}
             </p>
+
+            {/* ALWAYS VISIBLE MONITOR PAYLOAD BUTTON */}
+            <div className="pt-1">
+              <button
+                type="button"
+                onClick={() => setDebugPayloadModal(prev => ({ ...prev, isOpen: true }))}
+                className="px-3.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-amber-400 border border-amber-500/40 text-[11px] font-bold transition flex items-center gap-1.5 cursor-pointer shadow-md"
+              >
+                <SparklesIcon className="w-3.5 h-3.5" />
+                <span>🔍 Inspect AI Request Body & Payload Monitor {debugPayloadModal.info ? `(${debugPayloadModal.info.payloadSizeKb})` : ''}</span>
+              </button>
+            </div>
           </div>
 
           <label className={`shrink-0 px-6 py-3.5 rounded-2xl font-black text-xs shadow-xl transition-all flex items-center gap-2 cursor-pointer ${
@@ -351,7 +445,7 @@ export default function ProfilePage() {
               : 'bg-gradient-to-r from-amber-500 via-amber-400 to-emerald-400 hover:from-amber-400 hover:to-emerald-300 text-zinc-950 transform hover:-translate-y-0.5'
           }`}>
             <CameraIcon className="w-4 h-4 stroke-[2.5]" />
-            <span>{scanning ? 'Scanning…' : 'Upload Screenshot(s)'}</span>
+            <span>{scanning ? `${t.profile.scanning} (${(scanElapsedMs / 1000).toFixed(1)}s)` : t.profile.uploadBtn}</span>
             <input
               type="file"
               accept="image/png,image/jpeg,image/webp"
@@ -375,7 +469,7 @@ export default function ProfilePage() {
               }`}
             >
               <CookieIcon className="w-4 h-4" />
-              <span>Cookies</span>
+              <span>{t.profile.cookiesTab}</span>
               <span className="px-2 py-0.5 rounded-full text-xs font-extrabold bg-zinc-950/40">{catalog.cookies.length}</span>
             </button>
 
@@ -388,7 +482,7 @@ export default function ProfilePage() {
               }`}
             >
               <PetIcon className="w-4 h-4" />
-              <span>Pets</span>
+              <span>{t.profile.petsTab}</span>
               <span className="px-2 py-0.5 rounded-full text-xs font-extrabold bg-zinc-950/40">{catalog.pets.length}</span>
             </button>
 
@@ -401,7 +495,7 @@ export default function ProfilePage() {
               }`}
             >
               <TreasureIcon className="w-4 h-4" />
-              <span>Treasures</span>
+              <span>{t.profile.treasuresTab}</span>
               <span className="px-2 py-0.5 rounded-full text-xs font-extrabold bg-zinc-950/40">{catalog.treasures.length}</span>
             </button>
           </div>
@@ -412,13 +506,13 @@ export default function ProfilePage() {
               onClick={() => selectAllCategory(activeTab)}
               className="px-4 py-2 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 transition cursor-pointer"
             >
-              Select All {activeTab.toUpperCase()}s
+              {t.profile.selectAll}
             </button>
             <button
               onClick={() => deselectAllCategory(activeTab)}
               className="px-4 py-2 rounded-xl text-xs font-bold bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 transition cursor-pointer"
             >
-              Clear All
+              {t.profile.clearAll}
             </button>
           </div>
         </div>
@@ -429,7 +523,7 @@ export default function ProfilePage() {
             <SearchIcon className="w-4 h-4 text-zinc-500 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder={`Search ${activeTab}s by name or ID...`}
+              placeholder={`Search ${activeTab}s...`}
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
@@ -440,7 +534,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto pb-2">
-            <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider mr-2">Grade:</span>
+            <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider mr-2">{t.profile.grade}</span>
             <button
               onClick={() => { setSelectedGrade('ALL'); setCurrentPage(1); }}
               className={`px-3 py-1.5 rounded-xl text-xs font-extrabold transition cursor-pointer ${
@@ -449,7 +543,7 @@ export default function ProfilePage() {
                   : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white'
               }`}
             >
-              All Grades
+              {t.profile.allGrades}
             </button>
             {grades.map(g => (
               <button
@@ -474,14 +568,15 @@ export default function ProfilePage() {
           pageSize={pageSize}
           onPageChange={setCurrentPage}
           onPageSizeChange={setPageSize}
+          pageSizeOptions={[12, 24, 48, 96, 'ALL']}
           className="mb-4 bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4"
         />
 
-        {/* Item Grid */}
+        {/* Item Grid with Pagination */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {(pageSize === 'ALL'
             ? filteredItems
-            : filteredItems.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+            : filteredItems.slice((currentPage - 1) * (typeof pageSize === 'number' ? pageSize : filteredItems.length), currentPage * (typeof pageSize === 'number' ? pageSize : filteredItems.length))
           ).map(item => {
             const isOwned = activeTab === 'cookie' 
               ? Boolean(profile.ownedCookies[item.id]) 
@@ -500,32 +595,29 @@ export default function ProfilePage() {
             return (
               <div
                 key={`${activeTab}-${item.id}`}
-                className={`relative group rounded-2xl border transition-all duration-200 p-3.5 flex flex-col items-center text-center cursor-pointer ${
+                className={`relative group rounded-2xl border transition-all duration-300 p-3.5 flex flex-col items-center text-center cursor-pointer hover:-translate-y-1 ${
                   isOwned
                     ? 'bg-zinc-900/95 border-amber-500/50 shadow-md shadow-amber-500/10 hover:border-amber-400'
                     : 'bg-zinc-900/30 border-zinc-800/60 opacity-60 hover:opacity-100 hover:border-zinc-700'
                 }`}
               >
-                {/* Owned Checkmark */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleOwnership(item.id, activeTab, maxLvl);
                   }}
                   className={`absolute top-2.5 left-2.5 w-6 h-6 rounded-full flex items-center justify-center transition-all cursor-pointer ${
-                    isOwned ? 'bg-amber-500 text-zinc-950 shadow-md' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+                    isOwned ? 'bg-amber-500 text-zinc-950 shadow-md scale-105' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
                   }`}
-                  title={isOwned ? "Click to remove from inventory" : "Click to mark as owned"}
+                  title={isOwned ? "Click to remove" : "Click to mark as owned"}
                 >
                   {isOwned ? <CheckIcon className="w-3.5 h-3.5 stroke-[3]" /> : <PlusIcon className="w-3.5 h-3.5 stroke-[3]" />}
                 </button>
 
-                {/* Grade Badge */}
                 <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md text-[9px] font-black bg-zinc-950/90 text-amber-400 border border-zinc-800">
                   {item.grade}
                 </span>
 
-                {/* Icon Image */}
                 <div
                   onClick={() => toggleOwnership(item.id, activeTab, maxLvl)}
                   className="w-16 h-16 relative my-3 group-hover:scale-105 transition-transform flex items-center justify-center"
@@ -540,10 +632,8 @@ export default function ProfilePage() {
                   />
                 </div>
 
-                {/* Name */}
                 <span className="text-xs font-extrabold text-zinc-200 line-clamp-1 w-full">{item.name}</span>
 
-                {/* Level Controls (If owned) */}
                 {isOwned && (
                   <div className="mt-2 flex items-center gap-1.5">
                     <span className="text-[10px] text-zinc-500 font-bold">Lvl:</span>
@@ -562,7 +652,6 @@ export default function ProfilePage() {
                   </div>
                 )}
 
-                {/* View Details & Stats Button */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -571,7 +660,7 @@ export default function ProfilePage() {
                   className="mt-2.5 text-[10px] font-bold text-zinc-400 hover:text-amber-400 transition flex items-center gap-1 cursor-pointer"
                 >
                   <EyeIcon className="w-3 h-3" />
-                  <span>Details & Stats</span>
+                  <span>{t.profile.detailsAndStats}</span>
                 </button>
               </div>
             );
@@ -585,139 +674,192 @@ export default function ProfilePage() {
           pageSize={pageSize}
           onPageChange={setCurrentPage}
           onPageSizeChange={setPageSize}
+          pageSizeOptions={[12, 24, 48, 96, 'ALL']}
           className="mt-6 bg-zinc-900/60 border border-zinc-800 rounded-2xl px-4"
         />
 
+        {/* Google AdSense Banner Placement */}
+        <div className="mt-12">
+          <AdSenseBanner
+            type="leaderboard"
+            slot="inventory-bottom-ad"
+          />
+        </div>
+
       </div>
 
-      {/* Item Detail Modal */}
-      {selectedItem && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative text-zinc-100 shadow-2xl">
-            <button
-              onClick={() => setSelectedItem(null)}
-              className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-sm cursor-pointer"
-            >
-              ✕
-            </button>
-
-            <div className="flex items-center gap-4 border-b border-zinc-800 pb-4">
-              <div className="w-16 h-16 relative bg-zinc-950 rounded-2xl p-2 border border-zinc-800 flex items-center justify-center shrink-0">
-                <Image
-                  src={selectedItem.item.imageUrl}
-                  alt={selectedItem.item.name}
-                  width={60}
-                  height={60}
-                  unoptimized
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-500/20 text-amber-400 border border-amber-500/40">
-                    Grade {selectedItem.item.grade}
-                  </span>
-                  <span className="text-xs text-zinc-400 font-bold capitalize">{selectedItem.type}</span>
-                </div>
-                <h2 className="text-xl font-black text-white mt-1">{selectedItem.item.name}</h2>
-              </div>
-            </div>
-
-            <div className="mt-4 space-y-4 max-h-[60vh] overflow-y-auto pr-1">
-              <div>
-                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Description & Effect</h4>
-                <p className="text-sm text-zinc-300 leading-relaxed">
-                  {selectedItem.type === 'treasure' 
-                    ? (selectedItem.item as Treasure).effect 
-                    : (selectedItem.item as Cookie | Pet).description}
-                </p>
-              </div>
-
-              {selectedItem.type !== 'treasure' && (selectedItem.item as Cookie | Pet).skill && (
-                <div>
-                  <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Skill Power</h4>
-                  <p className="text-sm text-amber-100/90 font-medium">{(selectedItem.item as Cookie | Pet).skill}</p>
-                </div>
-              )}
-
-              {selectedItem.type !== 'treasure' && (selectedItem.item as Cookie | Pet).combiBonus && (
-                <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5">
-                  <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider">Combi Bonus</h4>
-                  <p className="text-xs text-zinc-200 mt-1 font-semibold">{(selectedItem.item as Cookie | Pet).combiBonus}</p>
-                </div>
-              )}
-
-              {selectedItem.type === 'treasure' && (
-                <div>
-                  <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Enhancement Level Progression (+0 to +9)</h4>
-                  {(selectedItem.item as Treasure).enhancementProgression && (selectedItem.item as Treasure).enhancementProgression!.length > 0 ? (
-                    <div className="space-y-1.5 bg-zinc-950 p-3 rounded-xl border border-zinc-800">
-                      {(selectedItem.item as Treasure).enhancementProgression!.map((st, idx) => (
-                        <div key={idx} className="flex items-start justify-between gap-3 text-xs bg-zinc-900/80 p-2.5 rounded-lg border border-zinc-800/80">
-                          <span className={`font-black shrink-0 px-2 py-0.5 rounded text-[11px] ${st.level === 9 ? 'bg-amber-500 text-zinc-950 shadow' : st.level === 0 ? 'bg-zinc-800 text-zinc-300' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
-                            {st.upgrade || `+${st.level}`}
-                          </span>
-                          <span className="text-zinc-200 text-right leading-snug">{st.effect}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (selectedItem.item as Treasure).enhancementStats ? (
-                    <div className="space-y-2 bg-zinc-950 p-4 rounded-xl border border-zinc-800">
-                      <p className="text-xs text-zinc-300">
-                        <strong className="text-zinc-400">Base (+0):</strong> {(selectedItem.item as Treasure).enhancementStats.baseEffect}
-                      </p>
-                      <p className="text-xs text-amber-300">
-                        <strong className="text-amber-400">Max (+9):</strong> {(selectedItem.item as Treasure).enhancementStats.plus9Effect}
-                      </p>
-                    </div>
-                  ) : null}
-                </div>
-              )}
-
-              {/* HP Stats Table */}
-              {selectedItem.item.hpStats && selectedItem.item.hpStats.length > 0 && !selectedItem.item.hpStats[0].effect.includes('placeholder') && (
-                <div>
-                  <h4 className="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Energy / HP Progression</h4>
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {selectedItem.item.hpStats.map((st, idx) => (
-                      <div key={idx} className="flex items-center justify-between text-xs bg-zinc-950 p-2 rounded-lg border border-zinc-800/60">
-                        <span className="font-bold text-zinc-400">Lvl {st.level}</span>
-                        <span className="font-semibold text-red-300">{st.effect} HP</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Skill Stats Table */}
-              {selectedItem.item.skillStats && selectedItem.item.skillStats.length > 0 && !selectedItem.item.skillStats[0].effect.includes('placeholder') && (
-                <div>
-                  <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Skill Improvements Per Level</h4>
-                  <div className="space-y-1.5">
-                    {selectedItem.item.skillStats.map((st, idx) => (
-                      <div key={idx} className="flex items-center justify-between text-xs bg-zinc-950 p-2.5 rounded-lg border border-zinc-800/60">
-                        <span className="font-bold text-amber-400 min-w-[55px]">Level {st.level}</span>
-                        <span className="text-zinc-200 text-right">{st.effect}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-zinc-800 flex justify-end">
+      {/* Item Detail Modal Popup */}
+      {selectedItem && selectedItem.type === 'cookie' ? (
+        <CookieDetailWikiModal
+          cookie={selectedItem.item as Cookie}
+          catalog={catalog}
+          onClose={() => setSelectedItem(null)}
+        />
+      ) : selectedItem && selectedItem.type === 'pet' ? (
+        <PetDetailWikiModal
+          pet={selectedItem.item as Pet}
+          catalog={catalog}
+          onClose={() => setSelectedItem(null)}
+        />
+      ) : selectedItem && (
+        <PortalModal>
+          <div className="modal-backdrop animate-fade-in">
+            <div className="absolute inset-0" onClick={() => setSelectedItem(null)}></div>
+            <div className="bg-zinc-900 border border-amber-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative text-zinc-100 shadow-2xl animate-modal-pop z-10">
               <button
                 onClick={() => setSelectedItem(null)}
-                className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-black text-xs transition cursor-pointer"
+                className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-sm cursor-pointer"
               >
-                Close
+                <CloseIcon className="w-4 h-4" />
               </button>
+
+              <div className="flex items-center gap-4 border-b border-zinc-800 pb-4">
+                <div className="w-16 h-16 relative bg-zinc-950 rounded-2xl p-2 border border-zinc-800 flex items-center justify-center shrink-0">
+                  <Image
+                    src={selectedItem.item.imageUrl}
+                    alt={selectedItem.item.name}
+                    width={60}
+                    height={60}
+                    unoptimized
+                    className="object-contain"
+                  />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-500/20 text-amber-400 border border-amber-500/40">
+                      Grade {selectedItem.item.grade}
+                    </span>
+                    <span className="text-xs text-zinc-400 font-bold capitalize">{selectedItem.type}</span>
+                  </div>
+                  <h2 className="text-xl font-black text-white mt-1">{selectedItem.item.name}</h2>
+                </div>
+              </div>
+
+              <div className="mt-4 space-y-4 max-h-[60vh] overflow-y-auto pr-1">
+                <div>
+                  <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Description & Effect</h4>
+                  <p className="text-sm text-zinc-300 leading-relaxed">
+                    {selectedItem.type === 'treasure' 
+                      ? (selectedItem.item as Treasure).effect 
+                      : (selectedItem.item as Cookie | Pet).description}
+                  </p>
+                </div>
+
+                {selectedItem.type !== 'treasure' && (selectedItem.item as Cookie | Pet).skill && (
+                  <div>
+                    <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Skill Power</h4>
+                    <p className="text-sm text-amber-100/90 font-medium">{(selectedItem.item as Cookie | Pet).skill}</p>
+                  </div>
+                )}
+
+                {selectedItem.type !== 'treasure' && (selectedItem.item as Cookie | Pet).combiBonus && (
+                  <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5">
+                    <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider">Combi Bonus</h4>
+                    <p className="text-xs text-zinc-200 mt-1 font-semibold">{(selectedItem.item as Cookie | Pet).combiBonus}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-zinc-800 flex justify-end">
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-black text-xs transition cursor-pointer"
+                >
+                  {t.modal.close}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </PortalModal>
       )}
 
-      {/* SCAN VERIFICATION MODAL */}
+      {/* Debug AI Request Body & Payload Monitor Modal */}
+      {debugPayloadModal.isOpen && (
+        <PortalModal>
+          <div className="modal-backdrop animate-fade-in">
+            <div className="absolute inset-0" onClick={() => setDebugPayloadModal(prev => ({ ...prev, isOpen: false }))}></div>
+            <div className="bg-zinc-900 border border-emerald-500/40 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative text-zinc-100 shadow-2xl animate-modal-pop z-10 font-mono text-xs">
+              <button
+                onClick={() => setDebugPayloadModal(prev => ({ ...prev, isOpen: false }))}
+                className="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-sm cursor-pointer"
+              >
+                <CloseIcon className="w-4 h-4" />
+              </button>
+
+              <div className="flex items-center gap-2 border-b border-zinc-800 pb-3 mb-4">
+                <span className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                  <SparklesIcon className="w-5 h-5" />
+                </span>
+                <div>
+                  <h3 className="text-base font-black text-white font-sans">🔍 AI Request Body & Payload Inspector</h3>
+                  <p className="text-[11px] text-zinc-400 font-sans">Real-time HTTP request body monitoring & payload size diagnostics</p>
+                </div>
+              </div>
+
+              {debugPayloadModal.info ? (
+                <div className="space-y-3 max-h-[65vh] overflow-y-auto pr-2">
+                  <div className="grid grid-cols-2 gap-2 bg-zinc-950 p-3 rounded-2xl border border-zinc-800">
+                    <div>
+                      <span className="text-[10px] text-zinc-500 uppercase font-bold block">Target Provider API Endpoint:</span>
+                      <span className="text-emerald-400 font-bold break-all">{debugPayloadModal.info.endpoint}</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-zinc-500 uppercase font-bold block">Configured Model:</span>
+                      <span className="text-amber-400 font-bold">{debugPayloadModal.info.modelName}</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-zinc-500 uppercase font-bold block">Total HTTP Body Size:</span>
+                      <span className="text-emerald-300 font-black text-sm">{debugPayloadModal.info.payloadSizeKb} ({debugPayloadModal.info.payloadSizeBytes.toLocaleString()} bytes)</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-zinc-500 uppercase font-bold block">Compression Status:</span>
+                      <span className="text-emerald-400 font-bold">✅ 1080p Canvas Compressed JPEG (~120KB/img)</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] text-zinc-400 font-bold uppercase">Full Prompt Text ({debugPayloadModal.info.promptLengthChars?.toLocaleString()} chars):</span>
+                      <button
+                        type="button"
+                        onClick={() => navigator.clipboard.writeText(debugPayloadModal.info.fullPromptText || debugPayloadModal.info.promptTextSnippet)}
+                        className="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-[10px] text-amber-400 font-bold border border-zinc-700 cursor-pointer font-sans"
+                      >
+                        📋 Copy Full Prompt
+                      </button>
+                    </div>
+                    <pre className="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800 text-[11px] text-zinc-300 whitespace-pre-wrap font-mono max-h-[300px] overflow-y-auto select-all border-amber-500/20">
+                      {debugPayloadModal.info.fullPromptText || debugPayloadModal.info.promptTextSnippet}
+                    </pre>
+                  </div>
+
+                  <div>
+                    <span className="text-[10px] text-zinc-400 font-bold uppercase block mb-1">Timestamp:</span>
+                    <span className="text-zinc-500">{debugPayloadModal.info.timestamp}</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="p-4 bg-zinc-950 rounded-2xl border border-zinc-800 space-y-2 text-zinc-300 font-sans">
+                  <p className="font-bold text-amber-400">ℹ️ No scan payload recorded yet in current session.</p>
+                  <p className="text-xs text-zinc-400">
+                    Upload an inventory screenshot above. Once uploaded, this inspector will capture and display the exact JSON payload, total HTTP body byte size, target API endpoint URL, and prompt snippet sent to your AI provider!
+                  </p>
+                </div>
+              )}
+
+              <div className="mt-6 pt-4 border-t border-zinc-800 flex justify-end">
+                <button
+                  onClick={() => setDebugPayloadModal(prev => ({ ...prev, isOpen: false }))}
+                  className="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-black text-xs transition cursor-pointer font-sans"
+                >
+                  Close Inspector
+                </button>
+              </div>
+            </div>
+          </div>
+        </PortalModal>
+      )}
+
       {catalog && (
         <ScanVerificationModal
           key={scanRunId}

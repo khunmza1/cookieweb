@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { Cookie, Pet, Treasure, Grade, ItemCategory } from '@/lib/types';
 import PaginationControls, { PageSizeOption } from '@/components/PaginationControls';
+import PortalModal from '@/components/PortalModal';
 import { 
   CookieIcon, 
   PetIcon, 
@@ -71,8 +72,10 @@ export default function ItemPickerModal({
   const CategoryIcon = category === 'cookie' ? CookieIcon : category === 'pet' ? PetIcon : TreasureIcon;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-2xl w-full p-6 relative text-zinc-100 shadow-2xl flex flex-col max-h-[85vh]">
+    <PortalModal>
+      <div className="modal-backdrop animate-fade-in">
+        <div className="absolute inset-0" onClick={onClose}></div>
+        <div className="bg-zinc-900 border border-amber-500/40 rounded-3xl max-w-2xl w-full p-6 relative text-zinc-100 shadow-2xl flex flex-col max-h-[85vh] z-10 animate-modal-pop">
         
         {/* Header */}
         <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-4">
@@ -207,5 +210,6 @@ export default function ItemPickerModal({
 
       </div>
     </div>
+    </PortalModal>
   );
 }

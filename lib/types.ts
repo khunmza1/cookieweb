@@ -11,16 +11,39 @@ export interface LevelStat {
 export interface Cookie {
   id: string;
   name: string;
+  code?: string;
   grade: Grade;
   category: 'cookie';
   description: string;
   skill: string;
   unlockedBy?: string;
   combiPetId?: string;
+  combiPetName?: string;
   combiBonus?: string;
-  hpStats?: LevelStat[];
-  skillStats?: LevelStat[];
-  levelStats?: LevelStat[];
+  story?: string;
+  rewardTreasure?: {
+    id?: string;
+    name: string;
+    subText?: string;
+    imageUrl?: string;
+  };
+  skins?: Array<{
+    name: string;
+    subText?: string;
+    imageUrl?: string;
+  }>;
+  levelProgression?: Array<{
+    level: number;
+    title: string;
+    energy: number;
+    upgradeCost: string;
+  }>;
+  standardizedTraits?: {
+    typeTags: string[];
+    activeTags: string[];
+    summary: string;
+  };
+  hp?: string;
   maxLevel: number;
   imageUrl: string;
   isHidden?: boolean;
@@ -29,15 +52,37 @@ export interface Cookie {
 export interface Pet {
   id: string;
   name: string;
+  code?: string;
   grade: Grade;
   category: 'pet';
   description: string;
   skill: string;
+  abilityTag?: string;
   combiCookieId?: string;
+  combiCookieName?: string;
   combiBonus?: string;
-  hpStats?: LevelStat[];
-  skillStats?: LevelStat[];
-  levelStats?: LevelStat[];
+  story?: string;
+  rewardTreasure?: {
+    id?: string;
+    name: string;
+    subText?: string;
+    imageUrl?: string;
+  };
+  hiddenStats?: Array<{
+    effect: string;
+    lv1: string;
+    lv8: string;
+  }>;
+  levelProgression?: Array<{
+    level: number;
+    abilityMagnitude: string;
+    upgradeCost: string;
+  }>;
+  standardizedTraits?: {
+    typeTags: string[];
+    activeTags: string[];
+    summary: string;
+  };
   maxLevel: number;
   imageUrl: string;
   isHidden?: boolean;
@@ -144,11 +189,26 @@ export type RandomBoostType =
   | 'Double Coins';
 
 export interface PreRunBoosts {
+  hasAll?: boolean;
+  health?: boolean;
+  itemTime?: boolean;
+  fastStart?: boolean;
+  draw?: string | boolean;
   hpExtension?: boolean;
   powerJellyBoost?: boolean;
   doubleXp?: boolean;
-  fastStart?: boolean;
   randomBoost?: RandomBoostType;
+}
+
+export interface PowerPlusEffects {
+  hasAll?: boolean;
+  cheerleader?: boolean;
+  commando?: boolean;
+  fairy?: boolean;
+  cheesecake?: boolean;
+  seaFairy?: boolean;
+  serenade?: boolean;
+  expParty?: boolean;
 }
 
 // Combo Setup Schema (Real User Combos)
@@ -168,6 +228,8 @@ export interface ComboSetup {
   description: string;
   tags: string[];
   boosts?: PreRunBoosts;
+  powerPlusEffects?: PowerPlusEffects;
+  videoUrl?: string;
   createdAt: string;
   upvotes: number;
   isBoosted?: boolean;

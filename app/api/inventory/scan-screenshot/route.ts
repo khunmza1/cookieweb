@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getUserProfile, updateUserProfile, getCatalog } from '@/lib/store';
-import { mergeScreenshotDetections, ScannedTileResult } from '@/lib/scannerEngine';
-import { analyzeInventoryScreenshots, parseImageDataUrl, assertImageSizeOk, AIConfigError, AIVisionError } from '@/lib/ai';
+import { mergeScreenshotDetections, ScannedTileResult, isTreasureEvolved } from '@/lib/scannerEngine';
+import { analyzeInventoryScreenshots, parseImageDataUrl, assertImageSizeOk, AIConfigError, AIVisionError, getLastAIPayloadDebug } from '@/lib/ai';
 import { OwnedItem } from '@/lib/types';
 
 interface ImagePayload {
@@ -28,15 +28,16 @@ export async function POST(req: Request) {
       // profile — if two confirmed tiles reference the same treasure
       // (e.g. an unresolved conflict from multi-screenshot scanning), the
       // higher level wins rather than "whichever happened to be last".
-      (body.tiles as ScannedTileResult[]).forEach((t) => {
-        if (!t.treasureId) return;
+      (body.tiles as (ScannedTileResult & { treasureId?: string; isEvolved?: boolean })[]).forEach((t) => {
+        const id = t.treasure?.id || t.treasureId;
+        if (!id) return;
         const level = Math.max(0, Math.min(9, Math.round(Number(t.level) || 0)));
-        const existing = confirmedTreasures[t.treasureId];
+        const existing = confirmedTreasures[id];
         if (!existing || level > existing.level) {
-          confirmedTreasures[t.treasureId] = {
-            itemId: t.treasureId,
+          confirmedTreasures[id] = {
+            itemId: id,
             level,
-            isEvolved: t.isEvolved,
+            isEvolved: t.treasure ? isTreasureEvolved(t.treasure) : Boolean(t.isEvolved),
           };
         }
       });
@@ -89,26 +90,30 @@ export async function POST(req: Request) {
     try {
       rawDetections = await analyzeInventoryScreenshots(imageSources, catalog.treasures);
     } catch (e: unknown) {
+      const debugPayloadInfo = getLastAIPayloadDebug();
       if (e instanceof AIConfigError) {
-        return NextResponse.json({ error: e.message }, { status: 503 });
+        return NextResponse.json({ error: e.message, debugPayloadInfo }, { status: 503 });
       }
       if (e instanceof AIVisionError) {
-        return NextResponse.json({ error: e.message }, { status: 502 });
+        return NextResponse.json({ error: e.message, debugPayloadInfo }, { status: 502 });
       }
-      throw e;
+      return NextResponse.json({ error: e instanceof Error ? e.message : 'AI Error', debugPayloadInfo }, { status: 500 });
     }
 
     const scannedTiles = mergeScreenshotDetections(rawDetections, catalog.treasures);
+    const debugPayloadInfo = getLastAIPayloadDebug();
 
     return NextResponse.json({
       success: true,
       scannedTiles,
       screenshotUrls: images.map(img => img.imageBase64),
-      totalDetected: scannedTiles.filter(t => t.treasureId).length,
-      conflictCount: scannedTiles.filter(t => t.conflict).length,
+      totalDetected: scannedTiles.filter(t => t.treasure && !t.treasure.id.startsWith('unmatched-')).length,
+      conflictCount: 0,
+      debugPayloadInfo
     });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : "Failed to process inventory screenshot";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const debugPayloadInfo = getLastAIPayloadDebug();
+    return NextResponse.json({ error: message, debugPayloadInfo }, { status: 500 });
   }
 }

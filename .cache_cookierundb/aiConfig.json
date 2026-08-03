@@ -1,0 +1,10 @@
+{
+  "providerType": "openai-compatible",
+  "baseUrl": "https://maxplus-ai.cc/v1",
+  "apiKey": "ccsk-1e6eebb00ba94b2713b6940b0e5fb717485af76c95021ab38c16d4f16f0e6e5a",
+  "modelName": "gemini-3.6-flash",
+  "enabled": true,
+  "maxTokens": 4096,
+  "temperature": 0.2,
+  "updatedAt": "2026-08-02T07:44:20.717Z"
+}

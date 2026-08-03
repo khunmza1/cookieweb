@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import { LanguageProvider } from "@/lib/i18nContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,10 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased dark">
+    <html lang="th" className="h-full antialiased dark">
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100 font-sans">
-        <Navbar />
-        <main className="flex-1">{children}</main>
+        <LanguageProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+        </LanguageProvider>
       </body>
     </html>
   );

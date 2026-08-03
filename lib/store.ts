@@ -36,7 +36,7 @@ function saveCatalog(data: CatalogData) {
 catalogData = loadCatalog();
 
 export function getCatalog(): CatalogData {
-  return catalogData;
+  return loadCatalog();
 }
 
 export function saveCatalogItem(category: 'cookie' | 'pet' | 'treasure', item: Cookie | Pet | Treasure): CatalogData {
@@ -449,7 +449,7 @@ function saveCombos() {
 communityCombos = loadCombos();
 
 export function getCombos(): ComboSetup[] {
-  return communityCombos;
+  return loadCombos();
 }
 
 export function addCombo(combo: Omit<ComboSetup, 'id' | 'createdAt' | 'upvotes'>): ComboSetup {

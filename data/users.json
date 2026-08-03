@@ -250,10 +250,6 @@
           "itemId": "marshmallow-bunny-cookie",
           "level": 8
         },
-        "mint-choco-cookie": {
-          "itemId": "mint-choco-cookie",
-          "level": 8
-        },
         "moon-rabbit-cookie": {
           "itemId": "moon-rabbit-cookie",
           "level": 8
@@ -417,6 +413,10 @@
         "zombie-cookie": {
           "itemId": "zombie-cookie",
           "level": 8
+        },
+        "mint-choco-cookie": {
+          "itemId": "mint-choco-cookie",
+          "level": 8
         }
       },
       "ownedPets": {
@@ -551,7 +551,7 @@
           "level": 9
         }
       },
-      "updatedAt": "2026-08-01T17:22:18.324Z"
+      "updatedAt": "2026-08-03T17:56:40.878Z"
     },
     "default-user": {
       "id": "default-user",
